@@ -1,0 +1,12 @@
+body{
+    background-color: #101014;
+}
+
+.login-full{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.conteinter-login{
+    background-color: #56566c;
+}

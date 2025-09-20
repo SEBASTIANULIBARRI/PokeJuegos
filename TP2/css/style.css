@@ -9,4 +9,30 @@ body{
 }
 .conteinter-login{
     background-color: #56566c;
+    
+h1{
+ color: #B9B9B9;
+ font-size: 61.04px;
+ font-family: "Outfit", sans-serif;
+ font-weight: 600;
+}
+h2{
+    font-size: 48px medium;
+    font-family: "Outfit", sans-serif;
+    font-weight: normal;
+}
+h4{
+    font-size: 32px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+}
+p{
+    font-size: 16px;
+    font-family: "Outfit", sans-serif;
+    font-weight: normal;
+}
+.p-semibold{
+    font-size: 16px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
 }

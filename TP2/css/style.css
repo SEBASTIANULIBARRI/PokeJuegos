@@ -3,13 +3,27 @@ body{
 }
 
 .login-full{
+    width: 1407px;
+    height: 986px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #56566c;
+    border-radius: 30%;
+
+}
+.conteinter-login-register{
+    width: 838px;
+    height: 634px;
+    justify-content: center;
+    justify-items: center;
 }
 .conteinter-login{
-    background-color: #56566c;
-    
+    width: 838px;
+    height: 406px;
+    background-color: #333340;
+    border-radius: 30%;
+}    
 h1{
  color: #B9B9B9;
  font-size: 61.04px;

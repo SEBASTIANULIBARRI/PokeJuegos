@@ -1,55 +1,77 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokejuegos - Crear Cuenta</title>
-  <link rel="stylesheet" href="../CSS/styles.css" />
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <title>PokeJuegos</title>
 </head>
 <body>
-  <div class="container">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Poké_Ball_icon.svg" alt="Pokeball" class="logo">
-    <h1>Crea tu cuenta</h1>
+    <section class="login-full">
+        <section class="conteiner-login-register">
+            <div class="logo">
+                <img class="image24" src="./img/icon-logo.png" alt="Logo Pokebola">
+                <h1>POKEJUEGOS</h1>
+            </div>
+            <div class="conteiner-register">
+                <div class="container-btn">
+                    <h2>Crea tu cuenta</h2>
+                    <a href="home.html" class="btn-gf" id="google">
+                        <img src="./img/google.png" alt="Google Icon" class="btn-gf-img" />
+                        <span class="btn-gf-text">Registrarse con Google</span>
+                    </a>
+                    <a href="home.html" class="btn-gf" id="facebook">
+                        <img src="./img/facebook.png" alt="Facebook Icon" class="btn-gf-img" />
+                        <span class="btn-gf-text">Registrarse con Facebook</span>
+                    </a>
+                </div>
+                <div class="separador-login">
+                    <img class="logo-separador-login" src="./img/linea-separador.png" alt="Logo Pokebola separador">
+                </div>
+                <div class="conteiner-form">
+                    <form>
+                        <label>Nombre De Usuario</label>
+                         <input type="text" class="input-form" name="nombre" placeholder="nombre..."> 
 
-    <form>
-      <label>Nombre De Usuario</label>
-      <input type="text">
+                        <label>Nickname (Opcional)</label>
+                         <input type="text" class="input-form" name="nickname" placeholder="nickname..."> 
 
-      <label>Nickname (Opcional)</label>
-      <input type="text">
+                        <label>Contraseña</label>
+                        <input type="password" class="input-form" name="contraseña" placeholder="contraseña...">
+                        <div class="password-conditions">
+                            <p class="password-condition--invalid">❌ 8 caracteres como mínimo</p>
+                            <p class="password-condition--valid">✅ al menos un número</p>
+                            <p class="password-condition--invalid">❌ al menos una mayúscula</p>
+                        </div>
 
-      <label>Contraseña</label>
-      <input type="password">
-      <div class="password-conditions">
-        <p>❌ 8 caracteres como mínimo</p>
-        <p>✅ al menos un número</p>
-        <p>❌ al menos una mayúscula</p>
-      </div>
+                        <label>Repetir Contraseña</label>
+                       <input type="password" class="input-form" name="repetir-contraseña" placeholder="Repetir Contraseña...">
 
-      <label>Repetir Contraseña</label>
-      <input type="password">
+                        <label>Edad</label>
+                        <input type="number" class="input-form-age" name="edad" placeholder="edad... " min="1">
 
-      <label>Edad</label>
-      <input type="number" min="1">
+                        <label>Mail</label>
+                        <input type="email" class="input-form" name="mail" placeholder="mail...">
 
-      <label>Mail</label>
-      <input type="email">
+                        <div class="captcha">
+                            <img src="./img/captcha-robot.png" alt="Captcha" srcset="">
+                        </div>
 
-      <div class="checkbox">
-        <input type="checkbox">
-        <label>Soy un robot 😅</label>
-      </div>
-
-      <div class="checkbox">
-        <input type="checkbox">
-        <label>Acepto los <a href="#">términos y condiciones</a></label>
-      </div>
-        <a class="submit-btn" href="./../index.html">Registrarse</a>
-        <!-- Puse en un a para evitar el inicio de sesion -->
-      
-      <!-- <button type="submit" class="submit-btn">Registrarse</button> -->
-    </form>
-  </div>
+                        <div class="checkbox-terms">
+                            <input type="checkbox">
+                            <label>Acepto los <a href="#">términos y condiciones</a></label>
+                        </div>
+                        <div class="btn-registrarse-ya-cuenta">
+                            <a class="ya-tienes-cuenta" href="./index.html">Ya tienes cuenta? Inicia sesión</a>
+                            <a class="registrarse-btn" href="./index.html" >Registrarse</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section>
 </body>
 </html>

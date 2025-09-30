@@ -1,0 +1,584 @@
+/* Iconos login arriba y abajo del sidebar */
+.sidebar-login-top, .sidebar-login-bottom {
+    display: block;
+    margin: 0;
+    width: 15rem;
+    object-fit: contain;
+}
+/* === SIDEBAR CATEGORIAS === */
+.sidebar-categorias {
+    position: fixed;
+    top: 4rem;
+    left: 0;
+    width: 16rem;
+    height: calc(100vh - 4rem);
+    background: #56566C;
+    z-index: 2000;
+    box-shadow: 2px 0 16px rgba(0,0,0,0.18);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    overflow-y: auto;
+    transform: translateX(-100%);
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+.sidebar-categorias.abierta {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+.sidebar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem 0.5rem 2.5rem;
+}
+.sidebar-hamburguesa {
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+}
+.sidebar-pokeball, .sidebar-pokeball-bottom {
+    width: 2.5rem;
+    margin: 0.5rem auto 0.5rem auto;
+    display: block;
+}
+.sidebar-divider {
+    border: none;
+    border-top: 2px solid #7a7a8c;
+}
+.sidebar-divider-top {
+    margin: 0 1.5rem 1.5rem 1.5rem;
+}
+.sidebar-divider-bottom {
+    margin: 1.5rem 1.5rem 0 1.5rem;
+}
+.sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1;
+}
+.sidebar-list li {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    font-weight: 400;
+    padding: 1rem 2rem 1rem 2rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    border-radius: 0.5rem;
+}
+.sidebar-list li:hover {
+    background: #23232b;
+    color: #5CCCFF;
+}
+.sidebar-list li img {
+    width: 2rem;
+    height: 2rem;
+    object-fit: contain;
+    filter: brightness(0) invert(1) opacity(0.8);
+}
+/* === PROFILE DROPDOWN === */
+.icon-profile {
+    position: relative;
+    cursor: pointer;
+}
+.profile-menu {
+    position: fixed;
+    top: 4rem;
+    right: 0;
+    background: #56566C;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    min-width: 200px;
+    z-index: 1000;
+    padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+    display: none;
+}
+.profile-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.profile-menu li, .profile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    padding-top: 0.2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.profile-menu li:hover, .profile-menu a:hover {
+    background: #23232b;
+}
+.profile-menu-icon {
+    width: 1.875rem;
+    height: 1.875rem;
+    object-fit: contain;
+    filter: brightness(0) invert(1) opacity(0.8);
+}
+
+
+body {
+    background: #101014;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/* === HEADER === */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(51, 51, 64, 0.600);
+    padding: 0 2rem;
+    height: 4rem;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo-header {
+    margin-left: 0.75rem;
+}
+
+.title-header {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #b9b9b9;
+}
+.header-center {
+    display: flex;
+    align-items: center;
+    flex: 1;
+     max-width: 31.25rem;
+    margin: 0 2rem;
+}
+.search-bar {
+
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    border: none;
+    background: rgba(211, 211, 220, 0.753);
+    color: #fff;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.125rem;
+}
+
+/* === SEARCH INPUT ICON === */
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 31.25rem;
+    display: flex;
+    align-items: center;
+}
+.search-bar {
+    width: 100%;
+    padding-right: 2.5rem;
+}
+.icon-search-in-input {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+
+
+/* === DESTACADO === */
+.btn-jugar-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+}
+.btn-jugar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: none;
+    background: #333340bb;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 18px 48px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0003;
+    transition: background 0.2s, color 0.2s;
+}
+.btn-jugar-container:hover .btn-jugar {
+    display: block;
+}
+.btn-jugar:hover {
+    background: #333340;
+    color: white;
+}
+.btn-jugar-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+
+
+.contenedor-carruseldestacado {
+    display: flex;
+    overflow-x: auto; /* Permitir desplazamiento horizontal */
+    scroll-behavior: smooth; /* Desplazamiento suave */
+    position: relative;   
+    padding-top: 0.5rem;
+
+}
+.contenedor-carruseldestacado::-webkit-scrollbar {
+  display: none; /* Oculta las barras de scroll */
+}
+.destacado-carrousels {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 418px;
+}
+.destacado-grid {
+    display: flex;
+    flex-direction: row;
+    background-color: #333340bb;
+    gap: 0.7rem;
+    margin: 0.5rem 0 0.5rem 0;
+    padding-left: 0.7rem;
+    padding-bottom: 0.5rem;
+    align-items: flex-start;
+}
+.destacado-card img {
+    width: 14.375rem;
+    height: 8.125rem;
+    border-radius: 0.5rem;
+}
+.destacado-card span {
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 0.25rem;
+}
+.destacado-img {
+    flex: none;
+    height: 17.75rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    overflow: hidden;
+    background: #23232b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.destacado-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+.destacado-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    overflow-x: auto;
+    align-items: flex-start;
+}
+
+.destacado-card {
+    border-radius: 0.75rem;
+    display: flex;
+
+
+    flex-direction: column;
+    align-items: center;
+    width: 14.375rem;
+    min-width: 14.375rem;
+    height: 8.125rem;
+    padding: 0.5rem;
+    align-items: flex-start;
+    gap: 0.25rem;
+}
+@keyframes inclinacion {
+    0% { transform: rotateY(0deg); } 
+    50% { transform: rotateY(30deg); } /* Aumenta el ángulo de inclinación */
+    100% { transform: rotateY(0deg); } 
+}
+  
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.flecha-izquierda-destacado, .flecha-derecha-destacado {
+    position: absolute;
+    transform: translateY(-50%); /* Ajuste para mantener centrado */
+    background-color: transparent; /* Sin fondo */
+    border: none; /* Sin borde */
+    padding: 0;
+    cursor: pointer;
+    z-index: 2; /* Asegura que esté por encima del contenido */
+}
+.destacado-cards .flecha1 {
+    top: 16%; /* Centra verticalmente */
+}
+.destacado-cards .flecha2 {
+    top: 32%; /* Centra verticalmente */
+}
+.flecha-derecha-destacado {
+    right: 0;
+}
+
+.flecha-izquierda-destacado img {
+    padding-left: 15px;
+}
+.flecha-derecha-destacado img, .flecha-izquierda-destacado img {
+    width: 50px; /* Ajusta según el tamaño de tu imagen */
+    height: 50px; 
+}
+.flecha-izquierda-destacado:disabled, .flecha-derecha-destacado:disabled {
+    opacity: 0.5; /* Opcional: estilo para las flechas deshabilitadas */
+    cursor: not-allowed;
+}
+
+.flecha-izquierda-destacado img:hover, .flecha-derecha-destacado img:hover {
+    transition: filter 0.3s ease; /* Suaviza la transición del brillo */
+}    
+
+
+/* === CARDS === */
+
+.games-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.55rem;
+    margin-top: 0.20rem;
+    padding-left: 0.7rem;
+}
+.carrusel-juegos {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    position: relative;
+    overflow: hidden; 
+}
+.contenedor-carrusel {
+    display: flex;
+    overflow-x: auto; /* Permitir desplazamiento horizontal */
+    scroll-behavior: smooth; /* Desplazamiento suave */
+    position: relative;
+    gap: 0.5rem;
+    padding-left: 0.7rem;
+    
+}
+
+.contenedor-carrusel::-webkit-scrollbar {
+  display: none; /* Oculta las barras de scroll */
+}
+.game-card img {
+    height: 6.188rem;
+    width: 12.375rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+.game-card span {
+    font-size: 0.9375rem;
+    color: #fff;
+    margin-top: 0.125rem;
+}
+.price {
+    padding-left: 9.375rem;
+    font-size: 0.8125rem;
+    color: #b9b9b9;
+}
+.game-card {
+    background: #23232b;
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    
+}
+@keyframes inclinacion {
+    0% { transform: rotateY(0deg); } 
+    50% { transform: rotateY(30deg); } /* Aumenta el ángulo de inclinación */
+    100% { transform: rotateY(0deg); } 
+}
+  
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+  
+.flecha-izquierda, .flecha-derecha {
+      
+    position: absolute;
+    top: 40%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajuste para mantener centrado */
+    background-color: transparent; /* Sin fondo */
+    border: none; /* Sin borde */
+    padding: 0;
+    cursor: pointer;
+    z-index: 2; /* Asegura que esté por encima del contenido */
+}
+.flecha-derecha {
+    right: -1.1%;
+}
+.flecha-derecha img {
+    padding-right: 15px;
+}
+.flecha-izquierda img {
+    padding-left: 15px;
+}
+.flecha-derecha img, .flecha-izquierda img {
+    width: 50px; /* Ajusta según el tamaño de tu imagen */
+    height: 50px; 
+}
+.flecha-izquierda:disabled, .flecha-derecha:disabled {
+    opacity: 0.5; /* Opcional: estilo para las flechas deshabilitadas */
+    cursor: not-allowed;
+}
+
+.flecha-izquierda img:hover, .flecha-derecha img:hover {
+    transition: filter 0.3s ease; /* Suaviza la transición del brillo */
+}    
+    
+    
+/* === FAT FOOTER === */
+
+
+.pokefat-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: rgba(51, 51, 64, 0.600);
+    gap: 0.625rem;
+}
+
+
+.fat-footer-col {
+    min-width: 11.25rem;
+    padding: 0 1.5rem;
+}
+
+.redes-list li {
+    margin-top: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: #e0e0e0;
+    font-size: 1rem;
+    margin-bottom: 1.125rem;
+    font-weight: 400;
+    transition: color 0.2s;
+    cursor: pointer;
+    margin-right: 3.125rem;
+}
+.redes-list li img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #fff;
+    object-fit: contain;
+}
+.fat-footer-divider {
+    width: 0.0625rem;
+    background: linear-gradient(to bottom, transparent 0%, #5CCCFF 50%, transparent 100%);
+    height: 8.75rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5625rem;
+}
+.pokeball-divider {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 0.125rem;
+    margin-top: 1.5625rem;
+}
+.compania-footer {
+    max-width: 12.5rem;
+    text-align: left;
+    margin-left: 0.625rem;
+    margin-top: 1.875rem;
+}
+.compania-footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.compania-footer li {
+    color: #e0e0e0;
+    font-size: 1rem;
+    margin-bottom: 0.875rem;
+    font-weight: 400;
+    transition: color 0.2s;
+    cursor: pointer;
+    text-align: left;
+}
+.compania-footer li:hover {
+    color: #5CCCFF;
+}
+
+.fat-footer-juegos {
+    display: flex;
+    flex-direction: row;
+    gap: 4.4rem;
+    padding-left: 3.125rem;
+    min-width: 31.25rem;
+    max-width: 43.75rem;
+}
+
+.footer-juegos-bloque h4 {
+    margin-top: 0.25rem;
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #fff;
+}
+.footer-juegos-bloque ul {
+    list-style: none;
+    margin: 0 0 0.5rem 0;
+    padding-left: 0;
+}
+.footer-juegos-bloque li {
+    color: #e0e0e0;
+    font-size: 1rem;
+    margin-bottom: 0.375rem;
+    font-weight: 400;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+.footer-juegos-bloque li:hover {
+    color: #5CCCFF;
+}

@@ -1,0 +1,1951 @@
+
+* {
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box;
+  }
+
+
+  body {
+      font-family: "Outfit", sans-serif;
+      background-color: #121E67;
+    }
+    .slider {  
+        transition: transform 0.5s ease-in-out; /* Transición en el slider */
+      }
+      
+      .slider.inclinando { 
+        transform: perspective(300px) rotateY(15deg); 
+      }
+/* REGISTER LOADING*/
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 9999;
+    color: #ffffff;
+    font-family: 'Outfit', sans-serif;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid #320bc0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-percentage {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+  
+  .container-login-full { 
+    display: none; 
+  }
+
+/* HEADER MOBILE */
+.header {
+    display: flex;
+    background-color: #1629A1;
+    width: 100%;
+    position: fixed;
+    top: 0;          /* Asegura que se quede en la parte superior de la página */
+    left: 0;
+    z-index: 1000;   /* Asegura que el header esté por encima de otros elementos */
+}
+
+.nav {
+    display: none;
+    padding-top: 6.295907660020986vh;
+    background-color: #4554B1;
+    width: 27.282266526757606vh;
+    height: 88.84679958027283vh;
+    position: fixed; /* Fija el menú en su posición */
+    left: -27.282266526757606vh; /* Posición inicial fuera de la vista */
+    top: 0;
+    transition: left 0.10s ease; /* Añade una animación para el deslizamiento */
+    overflow-y: hidden; /* Permite el scroll solo dentro del menú */
+    z-index: 10; 
+}
+
+.nav.visible {
+    left: 0;
+    display: flex;
+}
+
+.nav-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-left: 20px;
+}
+.nav-list li {
+    margin-top: 35px; /* Ajusta este valor para controlar el espacio entre elementos */
+  }
+.nav-list a {
+    gap: 5px;
+    font-size: small;
+    padding-left: 2.0986358866736623vh;
+    padding-right: 6.295907660020986vh;
+    color: #FFF;
+    display: flex;
+    align-items: center; 
+    text-align: left; 
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.nav-list a img {
+    height: 15px;
+    width: 15px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+ 
+}
+
+.logo {
+    
+    padding-top: 1.0493179433368311vh;
+    
+}
+
+
+.icons a {
+    padding-left: 1.0493179433368311vh;
+}
+.icons a:first-child {
+    position: relative; /* Para que el contador se posicione relativo al enlace */
+  }
+  
+  .contador-carrito {
+    display: none;
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrar el contador */
+    background-color: red; /* Color de fondo del contador */
+    color: white; 
+    border-radius: 50%; /* Hacer el contador circular */
+    padding: 2px 6px; /* Ajustar el padding según el tamaño del número */
+    font-size: 18px; /* Ajustar el tamaño de la fuente */
+  }
+.icons img {
+    width: 3.147953830010493vh;
+    height: 3.147953830010493vh;
+}
+
+.menu-toggle {
+    padding-right: 7.345225603357817vh;
+    cursor: pointer;
+    position: relative;
+}
+
+.icon-menu{
+    width: 3.147953830010493vh;
+    height: 3.147953830010493vh;
+}
+
+/* Contenedor del menú */
+.profile-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Estilo del menú desplegable */
+.profile-dropdown {
+    display: none;
+    position: fixed;
+    top: 55px; /* Ajusta según la altura que quieras */
+    right: 0;
+    z-index: 1000; /* Asegura que esté sobre otros elementos */
+    background-color:#4554B1;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    min-width: 150px;
+}
+
+/* Estilos de los enlaces dentro del menú */
+.profile-dropdown a {
+    font-size: small;
+    display: block;
+    padding: 8px 12px;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+
+.profile-dropdown a:hover {
+    background-color: #1629A1;
+    opacity: 0.5;
+}
+
+
+.search-container {
+    display: none;
+    position:relative;
+}
+.btn-buscar {
+    position: absolute; 
+    right: 10px; /* Ajusta según el padding interno de .search-container */
+    top: 50%;
+    transform: translateY(-50%); 
+}
+
+/* JUEGOS RECOMENDADOS MOBILE */
+.juego-recomendados-container {
+    padding-top: 6.3vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 705px;
+    background-image: url(/img/fondo-juegos-recomendados.png);
+}
+
+.juegos-recomendados {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #4554B1;
+}
+.juego-main {
+    padding-left: 30px;
+}
+
+.titulo {
+    height: 5.25vh;
+    width: 55.08vh;
+    font-weight: 400;
+    color: #FFF;
+    padding-top: 6px;
+    padding-left: 13px;
+
+}
+
+  
+  input[type="radio"] {
+    display: none;
+  }
+  
+  .tiktok, .contacto, .facebook, .telegram, .twitter, .instagram, .desarrolladores, .terminos-uso, .privacidad, .cookies, .ayuda {
+    text-decoration: none;
+    color: #3498db;
+    transition: all 0.3s ease;
+  }
+  
+  .tiktok:hover, .contacto:hover, .facebook:hover, .telegram:hover, .twitter:hover, .instagram:hover, .desarrolladores:hover, .terminos-uso:hover, .privacidad:hover, .cookies:hover, .ayuda:hover {
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+    /*HOVER JUEGO COSMIC CLASH */
+  .game-image:hover{
+    opacity: 0.5;
+  }
+
+  .game-image:hover .badge.add {
+    display: none; /* Oculta el badge al hacer hover */
+}
+
+  /*HOVER JUEGO COSMIC CLASH FIN*/
+  .game-card-carrusel {
+    position: relative;
+    width: 100px;
+    height: 60px;
+    margin-bottom: 22px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.controls {
+    position: absolute; /* Mantiene los controles dentro del contenedor */
+    bottom: 10px; /* Acomoda la distancia de la parte inferior del contenedor */
+    left: 50%; /* Centra los controles horizontalmente */
+    transform: translateX(-50%); /* Ajusta la posición */
+    display: flex;
+    gap: 10px;
+}
+
+.controls button {
+    cursor: pointer; /* Muestra un puntero al pasar el mouse */
+    padding: 10px 15px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    border: none; /* Elimina el borde del botón */
+}
+
+.controls button:hover {
+    background-color: #555; /* Cambia el color al pasar el mouse */
+}
+
+.arrow {
+    position: absolute;
+    top: 50%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Alineación vertical */
+    cursor: pointer;
+    font-size: 24px; /* Ajusta el tamaño de las flechas */
+    color: black; /* Cambia el color de las flechas si es necesario */
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+    
+  }
+  
+  .arrow-left {
+    left: -20px; /* Ajusta el espacio a la izquierda de la tarjeta */
+  }
+  
+  .arrow-right {
+    right: -20px; /* Ajusta el espacio a la derecha de la tarjeta */
+  }
+  .arrow-left img {
+    height: 70px;
+    width: 45px;
+  }
+
+  .arrow-right img {
+    height: 70px;
+    width: 50px;
+  }
+
+  .juegos-recomendados-desktop {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Hovers carrusel */
+
+  .game-info {
+    display: none; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    padding: 10px; 
+  }
+
+  .game-card:hover .game-info {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: block;
+  }
+
+  .game-title {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 0; 
+    color: white;
+    z-index: 1; 
+    font-size: 18px;
+
+  }
+
+  .game-icon {
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
+    transform: translateX(0); 
+    z-index: 1;
+  }
+  .game-icon:active { /* Estilos al hacer clic */
+    transform: translateY(2px); 
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); 
+  }
+  .price-container {
+    position: absolute;
+    bottom: 3px; 
+    right: 10px;
+    display: flex;
+    align-items: center; 
+  }
+
+  .game-price {
+    display: inline-block;
+    color: white;
+    margin-right: 120px;
+    font-size: 18px;
+  }
+ 
+
+  .game-card:hover .badge {
+    display: none; 
+  }
+  .game-card-main {
+    border-radius: 500px;
+    width: 310px;
+    height: 200px;
+    position: relative;
+    margin-bottom: 22px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
+    position: relative; 
+    overflow: hidden; 
+}
+  .game-card-main:hover .badge {
+    display: none; 
+  }
+  .game-card-main:hover .hover-content {
+    opacity: 1; 
+  }
+  .hover-content a button { 
+    position: absolute; 
+    bottom: 20px;  
+    right: 20px; 
+    background-color: #00FF00; 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    font-size: 26px; 
+    width: 120px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 30px;
+}
+.hover-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: flex-start;  
+    background-color: rgba(0, 0, 0, 0.7); 
+    color: white;
+    opacity: 0; 
+    transition: opacity 0.2s ease; 
+    padding: 20px; 
+}
+.hover-content a button:active {
+    transform: translateY(5px); 
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4); 
+}
+  .hover-content h2 {
+    font-size: 18px; 
+    margin: 0; 
+  }
+
+  .game-image:hover{
+    opacity: 0.5;
+  }
+
+  
+  .add {
+    z-index: 2; 
+  }
+  .game-card:hover .badge { 
+    display: none; 
+  }
+ 
+ 
+  
+  .game-card:hover img.game-image { 
+    opacity: 0.5; 
+  }
+
+
+/* CSS JUEGO EN GAME.HTML */
+.juego-en-ejecucion-container{
+    display: flex;
+}
+.otros-juegos {
+    padding-top: 110px;
+    width: 20%;;
+    background-color:#121E67 ;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+}
+.juego-en-ejecucion {
+    width: 80%;
+    padding-top: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #121E67;
+    padding-left: 220px;
+    padding-bottom: 200px;
+}
+/* CSS JUEGO 4 EN LINEA */
+
+
+.game-board {
+    position: relative;
+    display: flex;
+  }
+
+  .column {
+    width: 50px; /* Ancho de cada columna */
+    height: 0; /* Altura inicial para la flecha */
+    position: relative;
+    margin: 0 5px; /* Espacio entre columnas */
+  }
+  
+
+  /* Estilo para la flecha */
+  .column::before {
+    content: '';
+    position: absolute;
+    top: -20px; /* Ajusta la posición vertical de la flecha */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid red; /* Color de la flecha */
+  }
+  
+  /* Ajustes opcionales para el contenedor */
+  .game-board {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px; /* Espacio desde el canvas */
+  }
+
+.juego{
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-image: url("../img/fondo-juego.png");
+     width: 95.697796432319vh;
+     height: 72.82371458551941vh;
+     border-radius: 20px;
+    
+}
+
+.esconder {
+    display: none;
+}
+.formato-juego.selected, .jugadores.selected:hover, .formato-juego.selected:hover {
+    border: 3px solid white;
+}
+
+.robots.selected {
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 100px;
+}
+
+.aliens.selected {
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 100px;
+}
+
+#container-formato-juego{
+    display: flex;
+    justify-content: center ;
+    gap: 30px;
+}
+
+#container-formato-juego h2{
+    font-size:17px;
+    color: white;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.formato-juego{
+    width: 160px;
+    height: 120px;
+    border-radius: 20px;
+}
+
+#container-btn-jugar{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#btn-jugar{
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 300px;
+    background-color: #1B1B1B;
+    border-radius: 50px;
+    cursor: pointer;
+    padding-bottom: 20px;
+    
+}
+
+#btn-jugar:hover{
+    scale: 0.98;
+    background-color: #320bc0;
+    transition-duration: 0.5s;
+}
+
+
+#btn-jugar h1{
+    color: white;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+
+#temporizador{
+    margin-top: 30px;
+    margin-left: 750px;
+    position: absolute;
+    font-size: 20px;
+    background-color: #4f40d9;
+    border: none;
+    color: rgb(0, 0, 0);
+}
+
+#tiempo-restante{
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #4f40d9;
+    border: 2px solid #4f40d9;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#btn-menu-juego {
+    margin-top: 20px;
+    margin-left: 50px;
+    height: 30px;
+    width: 80px;
+    position: absolute;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #4f40d9;
+    border: none;
+    color: #FFF;
+}
+
+#btn-menu-juego:hover {
+    background-color: #320bc0;
+}
+
+
+.juego  h1 {
+    padding-top: 23px;
+    color: #FFF;
+    font-weight: 400;
+}
+
+.personajes {
+    
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.personajes h2 {
+    padding-bottom: 50px;
+    padding-right: 200px;
+    padding-left: 200px;
+    color: #FFF;
+    font-weight: 400;
+}
+.personajes img {
+    padding: 10px;
+    height: 80px;
+    width: 81px;
+}
+
+
+
+/* CSS DE INFO JUEGO */
+.intrucciones-container{
+    padding: 30px;
+    height: 1080px;
+    width: 95.697796432319vh;
+    border-radius: 20px;
+    background-color: #1629A1;
+    margin-top: 30px
+}
+
+.intrucciones-container h1 {
+    font-size: 40px;
+    color: #FFF;
+    font-weight: 400;
+    padding-bottom: 20px;
+}
+
+.titulo-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.breadcams-container {
+    padding-left: 10px;
+    height: 40px;
+    width: 100%;
+    padding-left: 15%;
+    justify-content: left;
+    background-color: #121E67;
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
+.breadcams {
+    font-size: large;
+    color: #FFF;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con transparencia */
+    display: none; /* Inicialmente oculto */
+    z-index: 999; /* Debajo del menú de compartir */
+}
+.compartir {
+  
+    width: 17.83840503672613vh;
+    height:  3.147953830010493vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #237C75;
+    color: #FFF;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.5s ease, background-color 0.5s ease; /* Transición suave para transformaciones y color (0.5s) */
+}
+
+.compartir:hover {
+    background-color: #1A6F64; /* Color de fondo al pasar el ratón */
+    transform: scale(1.05); /* Aumenta el tamaño del botón al pasar el ratón */
+}
+
+.compartir:active {
+    transform: scale(0.4); /* Efecto de pulsación al hacer clic */
+}
+
+.share-menu {
+    position: fixed;
+    top: 35%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    background-color:#6D6D6D;
+    width: 400px;
+    padding: 10px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none; /* Inicialmente oculto */
+}
+
+.share-option {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.share-menu img {
+    padding-bottom: 3px;
+}
+
+.share-option:hover {
+    background-color: #8d8d8d8d;
+}
+
+.share-menu.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transform: translateY(0); /* Aparece suavemente desde arriba */
+}
+.share-container {
+    position: relative;
+    display: inline-block;
+}
+
+.share-menu-container {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+.separador2 {
+   display: flex;
+    gap: 28px;
+}
+.separador {
+    display: flex;
+    padding-bottom: 5vh;
+    gap: 13px;
+}
+.share-menu-container h1 {
+    padding-left: 22px;
+    color: #ffffff;
+}
+.compartir-top {
+    display: flex;
+}
+.exit {
+    padding-left: 57px;
+}
+.link-compartir {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFF;
+}
+.link-compartir a {
+    color: #FFF;
+    text-decoration: underline;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.info p {
+    text-align: justify;
+    color: #FFF;
+}
+
+.intrucciones-container h2 {
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    font-weight: 300;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.controles-container {
+    gap: 20px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+.gif-controles img {
+    height: 160px;
+    width: 200px;
+}
+
+.controles {
+    text-align: justify;
+    color: #FFF;
+    width: 100%;
+}
+    /*GAMEPLAY CARRUSEL */
+.carrusel-gameplay-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.carrusel-gameplay-content {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.carrusel-gameplay-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateX(100%); /* Comienza fuera de la pantalla a la derecha */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Transiciones para opacidad y movimiento */
+}
+
+.carrusel-gameplay-slide.active {
+    opacity: 1; /* Totalmente visible */
+    transform: translateX(0); /* Se mueve a su lugar */
+}
+
+.carrusel-gameplay-slide.exit {
+    opacity: 0; /* Se vuelve invisible */
+    transform: translateX(-100%); /* Se mueve fuera de la pantalla a la izquierda */
+}
+
+.carrusel-gameplay-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+    gap: 50px;
+}
+
+
+.carrusel-gameplay-dot {
+    height: 15px;
+    width: 15px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.carrusel-gameplay-dot.active {
+    background-color: #121E67; /* Color del punto activo */
+}
+
+/*COMENTARIOS */
+
+.comments-container{
+    display: flex;
+    justify-content: center;
+}
+.comments-container h2 {
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    font-weight: 300;
+}
+.seccion-comentarios-container{
+    padding: 30px;
+    border-radius: 20px;
+    background-color: #1629A1;
+    margin-top: 30px;
+    width: 95.697796432319vh;
+    height: 380px;
+}
+.comentarios-container {
+    border-radius: 20px;
+    height: 250px;
+    width: 84.99475341028331vh;
+    background-color: #5D5D5D;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 20px;
+    padding-bottom: 20px;
+}
+
+.comentarios-profile {
+    gap: 5px;
+    border: #ffffff , solid, 2px;
+    border-left: none ;
+    border-right: none;
+    border-top: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.comentarios-profile p {
+  
+    color: #FFF;
+    font-size: large;
+}
+
+.comentario {
+    height: 90px;
+}
+
+.comentario input {
+    width: 500px;
+    padding-top: 10px;
+    background-color:#5D5D5D ;
+    font-size: 15px;
+    border: none;
+}
+
+.comentario ::placeholder {
+    color: white;
+    font-family: "Outfit", sans-serif;
+  
+}
+
+.comentario input:focus {
+    outline: none;
+    border: none; /* Opcional, si también quieres eliminar el borde */
+  }
+
+.btn-enviar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #237C75;
+    border-radius: 15px;
+    text-align: center;
+    width: 170px;
+    height: 30px;
+    color: #FFF;
+    gap: 5px;
+    border: none;
+    transition: transform 0.5s ease, background-color 0.5s ease;
+}
+
+.btn-enviar-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+
+.btn-enviar:hover {
+    background-color: #1A6F64; /* Color de fondo al pasar el ratón */
+    transform: scale(1.05); /* Aumenta el tamaño del botón al pasar el ratón */
+}
+
+
+.btn-enviar:active {
+    transform: scale(0.4); /* Efecto de pulsación al hacer clic */
+}
+
+
+/* Contenedor de estrellas */
+.puntuacion-container {
+    direction: rtl;
+    display: inline-flex;
+    position: relative;
+    font-size: 40px; /* Tamaño de las estrellas */
+  }
+  
+  .puntuacion-container input {
+    display: none; /* Oculta los botones de radio */
+  }
+  
+  .puntuacion-container label {
+    cursor: pointer;
+    color: #D9D9D9; /* Color de estrellas no seleccionadas */
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .puntuacion-container input:checked ~ label {
+    color: #FFD700; /* Color de estrellas seleccionadas */
+  }
+  
+  .puntuacion-container label:hover,
+  .puntuacion-container label:hover ~ label {
+    color: #FFD700; /* Color de estrellas al pasar el cursor */
+  }
+  /*CARDS JUEGOS */
+  .game-card-container {
+    border-radius: 30px;
+    background-color: #1629A1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+
+}
+
+/* Estilo de cada tarjeta */
+.game-card {
+    position: relative;
+    width: 160px;
+    height: 90px;
+    margin-bottom: 22px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Estilos para las etiquetas (badges) */
+.badge {
+    display: flex;
+    align-items: center;
+    width: 71px;
+    height: 19px;
+    position: absolute;
+    top: 10px;
+    padding: 5px 10px;
+    border-radius: 7px;
+    font-size: 10px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.premium {
+    background-color: #FFCC00; /* Color dorado */
+}
+
+.free {
+    background-color: #00CC44; /* Color verde */
+}
+.add {
+    background-color: #81C8BC;
+}
+
+
+  /*CSS FOOTER */
+
+.footer-container {
+    gap: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    background-color: #4554B1;
+}
+
+.acerca-epic-play {
+    padding-top: 20px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    color : #FFF
+}
+
+.acerca-epic-play p{
+    font-size: small;
+}
+.acerca-epic-play a {
+    font-weight: bold;
+    color:  #ffffff;
+}
+
+.acerca-epic-play h2 {
+    font-size: 40px;
+    font-weight: 400;
+    padding-bottom: 15px;
+}
+
+.footer-info {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 30px;
+}
+
+.footer-contactos , .info-extra  , .footer-contactos-2{
+    padding-top: 10px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: center;
+    border: #121E67, solid,4px;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 1px;
+}
+
+.footer-contactos a  , .info-extra a , .footer-contactos-2 a{
+    padding-left: 20px;
+    padding-right: 60px;
+    color: #FFF;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.info-extra a {
+    text-decoration: none;
+}
+
+/* JUEGOS POR CATEGORIA */
+.juegos-por-categoria {
+    padding: 10px;
+    width: 100%;
+    height: 736px;
+    background-color: #121E67;
+}
+.subtitulo {
+font-weight: 400;
+color: #FFF;
+padding-top: 16px;
+padding-left: 13px;
+}
+
+.seccion-juegos-nuevos , .seccion-juegos-tendencia , .seccion-juegos-shooters , .seccion-juegos-lucha{
+    width: 100%;
+    height: 25%;
+}
+
+.carrusel-juegos {
+    padding-top: 20px;
+    padding-left: 10px;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%; /* Ajusta según tu diseño */
+    overflow: hidden; 
+}
+
+.carrusel-juegos-recomendados {
+    padding-top: 13px;
+    padding-left: 10px;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%; /* Ajusta según tu diseño */
+    overflow: hidden; 
+}
+.juego-main {
+    padding-top: 10px;
+}
+
+  .contenedor-carrusel {
+    display: flex;
+    overflow-x: auto; /* Permitir desplazamiento horizontal */
+    scroll-behavior: smooth; /* Desplazamiento suave */
+    gap: 10px; /* Espacio entre las tarjetas */
+    position: relative;
+    
+  
+    
+  }
+
+  .game-card {
+    min-width: 200px; /* Ajusta el ancho de cada tarjeta */
+    margin-right: 10px; /* Espacio entre tarjetas */
+    flex-shrink: 0;
+    
+    
+    
+  }
+  @keyframes inclinacion {
+    0% { transform: rotateY(0deg); } 
+    50% { transform: rotateY(30deg); } /* Aumenta el ángulo de inclinación */
+    100% { transform: rotateY(0deg); } 
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+
+  .flecha-izquierda, .flecha-derecha {
+    
+    position: absolute;
+    top: 50%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajuste para mantener centrado */
+    background-color: transparent; /* Sin fondo */
+    border: none; /* Sin borde */
+    padding: 0;
+    cursor: pointer;
+    z-index: 2; /* Asegura que esté por encima del contenido */
+}
+
+.flecha-derecha img {
+    padding-right:15px;
+}
+
+.flecha-izquierda {
+   
+    left: 0;
+    background-color: transparent; /* Fondo transparente */
+}
+
+.flecha-derecha {
+ 
+    right: 0;
+    background-color: transparent; /* Fondo transparente */
+
+    }
+    .flecha-izquierda img {
+        padding-left: 15px;
+    }
+     .flecha-derecha img {
+        width: 60px; /* Ajusta según el tamaño de tu imagen */
+        height: 65px; 
+    }
+    .flecha-izquierda img {
+         width: 50px; /* Ajusta según el tamaño de tu imagen */
+        height: 90px;
+    }
+
+    .flecha-izquierda, .flecha-derecha {
+        width: 50px; /* Igual al tamaño de la imagen */
+        height: 90px;
+    }
+
+
+.flecha-izquierda:disabled, .flecha-derecha:disabled {
+    opacity: 0.5; /* Opcional: estilo para las flechas deshabilitadas */
+    cursor: not-allowed;
+}
+  .contenedor-carrusel::-webkit-scrollbar {
+    display: none; /* Oculta las barras de scroll */
+}
+
+
+.flecha-izquierda img:hover, .flecha-derecha img:hover {
+    filter: brightness(5.2);  /* Resalta un poco la imagen */
+    transition: filter 0.3s ease; /* Suaviza la transición del brillo */
+}
+
+/* REGISTER */ 
+.register-btn {
+    display: none; 
+    width: 250px;
+    height: 25px;
+    background-color: #237C75; 
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    line-height: 25px; 
+    border: none;
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+
+#loading-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Estilo para el porcentaje/mensaje de éxito */
+#loading-percentage {
+    font-size: 40px;
+    color: #237C75;
+}
+
+/* Mensaje de éxito: oculto por defecto */
+#successMessage {
+    display: none;
+    color: #237C75; /* Color verde personalizado */
+    font-size: 40px;
+    text-align: center;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+
+.container-login-full {
+    height: 500px;
+    width: 900px;
+    display: flex; 
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    flex-direction: row;
+    background-color:rgba(255, 255, 255, 0.5);
+    margin: 5%;
+}
+
+
+.background-color-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121E67;
+}
+.container-register{
+    display: flex;
+    height: 400px;
+    width: 350px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    background-color: #9d9d9d;
+}
+
+.container-login{
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 350px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    background-color: #9d9d9d;
+}
+
+.form-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-form{
+    align-items: center;
+    justify-content: center;
+}
+
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 250px;
+    border: none;
+    padding: 0%;
+    margin: 0%;
+    background-color: #237C75;
+    color: #ffffff;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Outfit", sans-serif;
+}
+
+.btn-google{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 250px;
+    border: none;
+    padding: 0%;
+    margin: 0%;
+    background-color: #237C75;
+    color: #000;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Outfit", sans-serif;
+}
+
+.no-account{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    color: #237C75 ;
+    margin: 10px;
+}
+.register-now{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 125px;
+    border: none;
+    padding: 0%;
+    margin: 0%;
+    background-color: #237C75;
+    color: #ffffff;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.register-btn {
+    display: none; 
+    width: 250px;
+    height: 25px;
+    background-color: #237C75; 
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    line-height: 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    margin-top: 4px;
+}
+.register-btn:hover{
+    background-color: #2A9D8F;
+    transition: 0.5s ease-in-out;
+    scale: 1.05;
+}
+#register-now:hover{
+    background-color: #2A9D8F;
+    transition: 0.5s ease-in-out;
+    scale: 1.05;
+}
+
+
+.ini-session{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    font-size: 40px;
+    color: white;
+}
+
+.name-user, .pw{
+    display: flex;
+    font-size: 18px;
+    color: white;
+}
+
+.icono-separador{
+  display: flex;
+  margin: 10px;
+  padding: 1%;
+}
+
+#separator-line{
+    border-left: 1px solid black;
+    border-radius: 25px;
+    height: 90%;;
+    left: 50%;
+}
+
+#google{
+    background-color: #ffffff;
+}
+
+#google:hover {
+    background-color: #f2f2f2;
+
+    transition: 0.5s ease-in-out;
+    scale: 1.05;
+  }
+
+#facebook{
+    margin-top: 5px;
+    background-color: #3b5998;
+}
+
+#facebook:hover{
+    background-color: #091248;
+    transition: 0.5s ease-in-out;
+    scale: 1.05;
+}
+
+#btn-register{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    width: 100px;
+    border: none;
+    padding: 0%;
+    margin: 0%;
+    background-color: #237C75;
+    color: #ffffff;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+#btn-register:hover{
+    background-color: #2A9D8F;
+    transition: 0.5s ease-in-out;
+    scale: 1.05;
+}
+
+.container-btn div{
+    margin-top: 10px;
+}
+
+.container-btn, .container-btn div{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+/* FORMULARIO REGISTER*/
+.form-principal{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.forgot-pw{
+    display: flex;
+    justify-content: center;
+    color: #237C75;
+}
+
+.captcha-password-class{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 55px;
+    width: 160px;
+    margin: 2%; 
+}
+
+.captcha-robot-class{
+    margin-top: 2%;
+}
+
+.conditions-accept{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.acept-terms-text{
+    display: flex;
+    color: #237C75;
+    font-size: 18px;
+}
+
+.checkbox{
+    display: flex;
+    width: 30px;
+    height: 30px;
+}
+
+.change{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+#first-label{
+    margin: 0%;
+}
+
+.input-form{
+    margin-top: 2px;
+    height: 23px;
+    width: 250px;
+    border: none;
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+#form input:focus{
+    outline: none;
+}
+
+#form label{
+    color: #ffffff;
+    font-size: 11px;
+}
+
+.ayuda-pass{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 55px;
+    width: 160px;
+    background-color: #D1D1D1;
+    border-radius: 8px;
+}
+
+.ayuda-pass div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1px 8px;
+}
+
+.ayuda-pass h5{
+    margin: 0%;
+    padding-left: 8px;
+    font-size: 10px;
+}
+
+.rojo {
+    color: red;
+}
+
+.verde{
+    color: green;
+}
+
+.icono-ayuda-pass{
+    height: 10px;
+    width: 10px;
+}
+
+#pass-reset a{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: -5px; 
+    font-size: 10px;
+}
+
+div a {
+    text-decoration: none;
+    color: #CB8AD5;
+}
+
+#btn-login:hover {
+    background-color: #2A9D8F;
+    transition: 0.5s ease-in;
+    scale: 1.05;
+}
+
+@media (min-width: 768px) {
+   
+    /*HEADER DESKTOP */
+     .container {
+         justify-content: space-between; 
+         
+     }
+ 
+     .menu-toggle { 
+         padding-right: 0; 
+         margin-left: 20px;
+     }
+ 
+     .logo {
+         margin-left: 20px; /* Ajustamos el margen izquierdo del logo para que coincida con el de los iconos */
+         
+     }
+ 
+     .icons {
+         margin-left: auto; 
+         margin-right: 20px; /* Agregamos margen derecho a los iconos */
+     }
+ 
+     .search-container {
+         /* ... otros estilos ... */
+         display: block;
+         position: absolute; 
+         left: 50%;
+         transform: translateX(-50%); 
+         width: 275px; 
+         height: 33px;  
+         border-radius: 9px; 
+     }
+     
+     .search-container input {
+         /* ... otros estilos ... */
+         width: 100%; /* El input ocupa todo el ancho del contenedor */
+         height: 100%; 
+         border-radius: 9px;
+         padding-right: 30px; /* Espacio para la lupa a la derecha */
+         position: relative; /* Para posicionar la lupa dentro */
+     }
+ 
+     .search-container input:focus {
+         outline: none;
+         border: none; /* Opcional, si también quieres eliminar el borde */
+     }
+ 
+     #buscar {
+         border: none;
+     }
+     
+     .btn-buscar {
+         position: absolute;
+         right: 5px; /* Ajusta según el padding interno de .search-container */
+         top: 50%;
+         transform: translateY(-50%);
+         background: none; /* Eliminamos el fondo del botón */
+         border: none;    /* Eliminamos el borde del botón */
+         cursor: pointer; /* Indicamos que es un elemento interactivo */
+     }
+     
+     
+     
+ 
+     nav { 
+      
+         flex-grow: 0; 
+         display: flex;
+         justify-content: flex-start; 
+     }
+
+     .nav-list a {
+        font-size: x-large;
+     }
+     .nav-list a img {
+        height: 40px;
+        width: 40px;
+     }
+ 
+ 
+     .juegos-recomendados-desktop {
+         display: flex;
+         flex-direction: row;
+         padding: 15px;
+         padding-top: 35px;
+         width: 100%;
+         height: 100%;
+         align-items: center;
+     }
+    
+
+     .juegos-recomendados {
+         padding-left: 10px;
+         height: 320px;
+     }
+     .juego-recomendados-container{
+        height: 491px;
+     }
+
+     .juego-main {
+        padding:0;
+    }
+ 
+     .titulo {
+         font-size: 30px;
+     }
+     .juegos-otros {
+         display: flex;
+         flex-direction: column;
+         position: relative;
+         width: 100%; /* Ajusta según tu diseño */
+         overflow: hidden; 
+     }
+ 
+     .juegos-otros-top, .juegos-otros-bottom {
+        display: flex;
+        flex-direction: row;
+        padding-left: 40px;
+        gap: 30px;
+       
+    }
+    .titulo {
+        padding-top: 25px;
+    }
+
+     
+     /* JUEGOS POR CATEGORIA */
+
+     
+     /* FOOTER DESKTOP */
+     .footer-container {
+         flex-direction: row;
+         padding-bottom: 20px;
+         padding-left: 60px;
+         padding-right: 60px;
+     }
+     .footer-info{
+        gap: none;
+        padding-top: 30px;
+        flex-direction: row;
+     }
+
+     .footer-contactos , .info-extra  , .footer-contactos-2{
+        border-right: none;
+     }
+     #victoria-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000; /* Asegúrate de que el popup esté por encima del canvas */
+      }
+      
+      .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+      }
+      
+      #cerrar-popup {
+        z-index: 1001;
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      /* Estilos para los fuegos artificiales (puedes personalizarlos) */
+      .fuegos-artificiales {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      
+      .fuego-artificial {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #ff0000; /* Color inicial del fuego artificial */
+        animation: explotar 2s forwards; /* Animación de la explosión */
+      }
+      
+      @keyframes explotar {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(20);
+          opacity: 0;
+        }
+      }
+ }
+
+  
+  
+
+

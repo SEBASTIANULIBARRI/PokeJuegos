@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1440, initial-scale=1.0">
+    <title>PokeJuegos - Peg Solitaire: Pikachu vs Charmander</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/juego.css">
+</head>
+<body>
+    
+    <nav class="sidebar-categorias" id="sidebarCategorias">
+        <!-- El botón de cerrar se elimina, solo se usa el de header -->
+        <ul class="sidebar-list">
+            <li id="sidebarInicio"><img src="img/icon-menu/icon-home.png"> INICIO</li>
+            <li><img src="img/icon-menu/icon-futbol.png"> FUTBOL</li>
+            <li><img src="img/icon-menu/icon-medicina.png"> MEDICINA</li>
+            <li><img src="img/icon-menu/icon-misterio.png"> MISTERIO</li>
+            <li><img src="img/icon-menu/icon-novedades.png"> NOVEDADES</li>
+            <li><img src="img/icon-menu/icon-fotografia.png"> FOTOGRAFIA</li>
+            <li><img src="img/icon-menu/icon-arte.png"> ARTE</li>
+            <li><img src="img/icon-menu/icon-cocina.png"> COCINA</li>
+            <li><img src="img/icon-menu/icon-stickman.png"> STICKMAN</li>
+            <li><img src="img/icon-menu/icon-vestir.png"> VESTIR</li>
+            <li><img src="img/icon-menu/icon-universo.png"> UNIVERSO</li>
+            <li><img src="img/icon-menu/icon-controlador.png"> CONTROLADOR</li>
+            <li><img src="img/icon-menu/icon-ciencia.png"> CIENCIA</li>
+            <li><img src="img/icon-menu/icon-ciclismo.png"> CICLISMO</li>
+            <li><img src="img/icon-menu/icon-autos.png"> AUTOS</li>
+            <li><img src="img/icon-menu/icon-barcos.png"> BARCOS</li>
+            <li><img src="img/icon-menu/icon-belleza.png"> BELLEZA</li>
+            <li><img src="img/icon-menu/icon-baloncesto.png"> BALONCESTO</li>
+            <li><img src="img/icon-menu/icon-mascota.png"> MASCOTA</li>
+            <li><img src="img/icon-menu/icon-multijugador.png"> MULTIJUGADOR</li>
+        </ul>
+    </nav>
+    <header class="header">
+        <div class="header-left">
+            <div class="hamburguesa-icon"><img src="img/Hamburguesa.png"></div>
+            <img src="img/icon-home-logo.png" alt="Logo" class="logo-header">
+            <span class="title-header">POKEJUEGOS</span>
+        </div>
+        <div class="header-center">
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Buscar...">
+                <img src="img/icon-search.png" class="icon-search-in-input">
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="icon-cart"><img src="img/icon-cart.png"></div>
+            <div class="icon-profile" id="profileMenuBtn">
+                <img src="img/icon-profile.png">
+                <div class="profile-menu" id="profileMenu" style="display:none;">
+                    <ul>
+                        <li><img src="img/icon-profile/icon-profile.png" class="profile-menu-icon"> PERFIL</li>
+                        <li><img src="img/icon-profile/Icon-keep.png" class="profile-menu-icon"> MIS JUEGOS</li>
+                        <li><img src="img/icon-profile/icon-Settings.png" class="profile-menu-icon"> CONFIGURACION</li>
+                        <li><a href="index.html"><img src="img/icon-profile/icon-outsession.png" class="profile-menu-icon"> CERRAR SESION</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    </header>
+    <div class="main-flex">
+        <div class="main-content-comments">
+            <main class="main-content">
+            <nav class="breadcrumb">
+                <a href="./home.html">Home</a> <span class="breadcrumb-sep">></span> <span>Peg Solitaire: Pikachu vs Charmander</span>
+            </nav>
+            <section class="game-section">
+                <div class="game-main">
+                    <div class="img-juego">
+                        <img src="./img/juego/Game_Screen.png" alt="Peg Solitaire Pikachu vs Charmander">
+                    </div>
+                    <div class="game-descripcion">
+                        <h4>Peg Solitaire: Pikachu vs Charmander</h4>
+                        <div class="descripcion-juego-imagen">
+                            <div class="descripcion-juego">
+                                <p>¡¿Qué es Peg Solitarie?</p>
+                                <p>Peg Solitaire (Solitario de clavijas) es un puzzle de tablero para un jugador. Salta una clavija sobre otra (como en las damas) para eliminarla; el objetivo es quedarte con una sola clavija, preferiblemente en el centro. Tablero clásico en forma de cruz, controles con clic o toque, y niveles de desafío para todos los públicos. Perfecto para jugar en el navegador, sin instalaciones.</p>
+                                <p>Instrucciones rápidas:</p>
+                                <ul>
+                                    <li>Haz clic/toca una clavija para seleccionarla.</li>
+                                    <li>Haz clic/toca el hueco donde quieres saltarla (sólo saltos ortogonales de una ficha sobre otra).</li>
+                                    <li>La clavija saltada se elimina.</li>
+                                    <li>Objetivo: quedar con 1 sola clavija — ¡mejor si es en el centro!</li>
+                                </ul>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                                <div class="imagen-descripcion">
+                                    <img src="./img/juego/Image-descripcion.png" alt="imagen mas chica de Peg Solitaire" srcset="">
+                                </div>
+                                <div class="compartir-row">
+                                    <img src="./img/juego/btn-share.png" alt="boton compartir" class="btn-compartir-img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carrousel-img">
+                            <img src="./img/juego/muestra=Default.png" alt="Muestra 1" class="carrousel-img-item">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            </main>
+
+<!-- MODAL COMPARTIR -->
+    <div id="modalCompartir" class="modal-compartir" style="display:none;">
+        <div class="modal-compartir-content">
+            <span class="modal-compartir-close" id="closeCompartir">&#10006;</span>
+            <h2>Compartir con:</h2>
+            <div class="modal-compartir-grid">
+                <a href="https://www.instagram.com/" target="_blank"><img src="img/fat-footer/icon-instagram.png"><span>Instagram</span></a>
+                <a href="mailto:?subject=¡Mirá este juego!&body=www.pokejuegos.com/peg-solitaire" target="_blank"><img src="img/fat-footer/icon-gmail.png"><span>Gmail</span></a>
+                <a href="https://wa.me/?text=www.pokejuegos.com/peg-solitaire" target="_blank"><img src="img/fat-footer/icon-whatsapp.png"><span>WhatsApp</span></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=www.pokejuegos.com/peg-solitaire" target="_blank"><img src="img/fat-footer/icon-facebook.png"><span>Facebook</span></a>
+                <a href="https://www.messenger.com/" target="_blank"><img src="img/fat-footer/icon-messenger.png"><span>Messenger</span></a>
+                <a href="https://discord.com/" target="_blank"><img src="img/fat-footer/icon-discord.png"><span>Discord</span></a>
+                <a href="https://t.me/share/url?url=www.pokejuegos.com/peg-solitaire" target="_blank"><img src="img/fat-footer/icon-telegram.png"><span>Telegram</span></a>
+                <a href="https://www.tiktok.com/" target="_blank"><img src="img/fat-footer/icon-tiktok.png"><span>TikTok</span></a>
+            </div>
+            <div class="modal-compartir-link">
+                Link de la pagina: <a href="./home.html" target="_blank">www.pokejuegos.com/peg-solitaire</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+            <section class="comments-section">
+                <div class="comments-header">
+                    <h4>Comentarios</h4>
+                    <img src="./img/juego/icon-comments.png" alt="icono comentarios">
+                </div>
+                <form class="comment-form">
+                    <div class="comment-form-user">
+                        <img src="./img/juego/comentario-tu.png" alt="User" class="comment-user-img">
+                        <span class="comment-user-name">Tu</span>
+                    </div>
+                    <div class="icon-separador">
+                        <img src="./img/juego/icon-separador-comentario.png" alt="Separador" class="icon-separador-img">
+                    </div>
+                    <input class="comment-input-text" placeholder="Escribir un comentario sobre este juego..." name="comment"></input>
+                    <div class="comment-form-stars-actions">
+                        <div class="comment-form-stars">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <button type="submit" class="comment-submit-btn">Enviar <span style="font-size:18px;vertical-align:middle;">▶</span></button>
+                    </div>
+                </form>
+                <div class="comment-box">
+                    <div class="comment-user" style="display: flex; align-items: center; gap: 10px;">
+                        <img src="./img/juego/icon-comentarios-user.png" alt="User" class="comment-user-img">
+                        <span class="comment-user-name">AshKetchum</span>
+                        <div class="comment-rating" style="margin-left: 10px;">
+                            <span>⭐⭐⭐⭐⭐</span>
+                        </div>
+                        
+                    </div>
+                <p class="comment-text">Muy Bueno, me encanto.</p>    
+                </div>             
+                 <div class="comment-box">
+                    <div class="comment-user" style="display: flex; align-items: center; gap: 10px;">
+                        <img src="./img/juego/icon-comentarios-user.png" alt="User" class="comment-user-img">
+                        <span class="comment-user-name">Misty</span>
+                        <div class="comment-rating" style="margin-left: 10px;">
+                            <span>⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    <p class="comment-text">Muy divertido, pero difícil de ganar.</p>
+                </div>
+                <div class="comment-box">
+                    <div class="comment-user" style="display: flex; align-items: center; gap: 10px;">
+                        <img src="./img/juego/icon-comentarios-user.png" alt="User" class="comment-user-img">
+                        <span class="comment-user-name">Brock</span>
+                        <div class="comment-rating" style="margin-left: 10px;">
+                            <span>⭐⭐⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    <p class="comment-text">¡Ideal para pasar el rato!</p>
+                </div>
+            </section>
+        </div>
+        <aside class="game-sidebar">
+            <ul class="sidebar-games">
+                <li><img src="./img/cards/Cars.png" alt="Game 1"></li>
+                <li><img src="./img/cards/Words.png" alt="Game 2"></li>
+                <li><img src="./img/cards/Redball.png" alt="Game 3"></li>
+                <li><img src="./img/cards/Merge.png" alt="Game 4"></li>
+                <li><img src="./img/cards/Minicraft.png" alt="Game 5"></li>
+                <li><img src="./img/cards/deluxe.png" alt="Game 6"></li>
+                <li><img src="./img/cards/Motos.png" alt="Game 7"></li>
+                <li><img src="./img/cards/plantas.png" alt="Game 8"></li>
+                <li><img src="./img/cards/Counter.jpg" alt="Game 8"></li>
+                <li><img src="./img/cards/Words.png" alt="Game 8"></li>
+                <li><img src="./img/cards/Aguafuego.png" alt="Game 8"></li>
+            </ul>
+        </aside>
+    </div>
+    <footer class="footer">
+        <div class="pokefat-footer">
+            <div class="fat-footer-juegos">
+                    <div class="footer-juegos-bloque">
+                        <h4>Juegos</h4>
+                        <ul>
+                            <li>Among Us</li>
+                            <li>Moto X3M</li>
+                            <li>Fireboy and Watergirl</li>
+                            <li>Slither.io</li>
+                            <li>Minicraft</li>
+                            <li>Red Ball 4</li>
+                        </ul>
+                    </div>
+                    <div class="footer-juegos-bloque">
+                        <h4>Populares</h4>
+                        <ul>
+                            <li>Obby Escape</li>
+                            <li>Wordling</li>
+                            <li>Brainrot: Ice Truck</li>
+                            <li>Merge Fantasy</li>
+                            <li>Cars: Lightning Speed</li>
+                            <li>Steal a Brainrot 3D</li>
+                        </ul>
+                    </div>
+                    <div class="footer-juegos-bloque">
+                        <h4>Con Logros</h4>
+                        <ul>
+                            <li>Autobahn: M5 Drift</li>
+                            <li>Call of Terror</li>
+                            <li>Fly the Plane!</li>
+                            <li>Counter-Terror: Global Strike</li>
+                            <li>Heroes of War</li>
+                            <li>F1 Racing PRO</li>
+                        </ul>
+                    </div>
+            </div>
+            <div class="fat-footer-divider"><span class="pokeball-divider"><img src="img/icon-separador-vertical.png"></span></div>
+            <div class="fat-footer-redes">
+                <ul class="redes-list">
+                    <li><img src="img/fat-footer/icon-facebook.png"> Facebook</li>
+                    <li><img src="img/fat-footer/icon-instagram.png"> Instagram</li>
+                    <li><img src="img/fat-footer/icon-twitter.png"> Twitter</li>
+                </ul>
+            </div>
+            <div class="fat-footer-redes">
+                <ul class="redes-list">
+                    <li><img src="img/fat-footer/icon-contactanos.png" alt="Contactanos"> Contactanos</li>
+                    <li><img src="img/fat-footer/icon-tiktok.png" alt="TikTok"> Tik Tok</li>
+                    <li><img src="img/fat-footer/icon-telegram.png" alt="Telegram"> Telegram</li>
+                </ul>
+            </div>
+            <div class="fat-footer-divider"><span class="pokeball-divider"><img src="img/icon-separador-vertical.png"></span></div>
+            <div class="fat-footer-col compania-footer">
+                <ul>
+                    <li>Novedades</li>
+                    <li>Términos de uso</li>
+                    <li>Privacidad</li>
+                    <li>Cookies</li>
+                    <li>Ayuda</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    </main>
+    <script>
+        // Modal compartir
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('modalCompartir');
+            const btnCompartir = document.querySelector('.btn-compartir-img');
+            const closeCompartir = document.getElementById('closeCompartir');
+            if (modal && btnCompartir && closeCompartir) {
+                btnCompartir.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    modal.style.display = 'flex';
+                });
+                closeCompartir.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            }
+        });
+        // Redirigir al hacer clic en INICIO del sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            var inicioBtn = document.getElementById('sidebarInicio');
+            if (inicioBtn) {
+                inicioBtn.addEventListener('click', function() {
+                    window.location.href = 'home.html';
+                });
+            }
+        });
+        // Sidebar categorías desplegable con cambio de ícono
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebarCategorias');
+            const hamburguesaBtn = document.querySelector('.hamburguesa-icon');
+            const hamburguesaImg = hamburguesaBtn.querySelector('img');
+            let abierto = false;
+            if (sidebar && hamburguesaBtn && hamburguesaImg) {
+                hamburguesaBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    abierto = !sidebar.classList.contains('abierta');
+                    sidebar.classList.toggle('abierta');
+                    hamburguesaImg.src = abierto ? 'img/Hamburguesa-cerrar.png' : 'img/Hamburguesa.png';
+                });
+                document.addEventListener('click', function(e) {
+                    if (sidebar.classList.contains('abierta') && !sidebar.contains(e.target) && !hamburguesaBtn.contains(e.target)) {
+                        sidebar.classList.remove('abierta');
+                        hamburguesaImg.src = 'img/Hamburguesa.png';
+                    }
+                });
+            }
+        });
+        // Mostrar/ocultar menú de perfil
+        const profileBtn = document.getElementById('profileMenuBtn');
+        const profileMenu = document.getElementById('profileMenu');
+        document.addEventListener('click', function(e) {
+            if (profileBtn.contains(e.target)) {
+                profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+            } else {
+                profileMenu.style.display = 'none';
+            }
+        });
+
+        // Estrellas seleccionables en comentarios
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.comment-form-stars .star');
+            let selected = 0;
+            stars.forEach((star, idx) => {
+                star.addEventListener('click', function() {
+                    selected = idx + 1;
+                    updateStars();
+                });
+                star.addEventListener('mouseover', function() {
+                    updateStars(idx + 1);
+                });
+                star.addEventListener('mouseout', function() {
+                    updateStars();
+                });
+            });
+            function updateStars(hover = 0) {
+                stars.forEach((star, i) => {
+                    if ((hover ? i < hover : i < selected)) {
+                        star.style.color = '#41C34F';
+                    } else {
+                        star.style.color = '#B9B9B9';
+                    }
+                });
+            }
+            // Inicializar
+            updateStars();
+        });
+    </script>
+</body>
+</html>

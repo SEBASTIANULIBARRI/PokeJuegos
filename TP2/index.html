@@ -1,48 +1,67 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PokeJuegos - Práctico 1 (Grupo 37)</title>
-  <link rel="stylesheet" href="Css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">   
+
+    <title>PokeJuegos</title>
 </head>
-<body class = "body" >
-  <header class="site-header">
-    <div class="container header-inner">
-      <div>
-        <h1 class="title">Práctico 1: <span class="highlight">PokeJuegos</span></h1>
-        <p class="subtitle">Grupo 37</p>
-        <a href="Pages/Registro.html">Registrarse</a>
-      </div>
-      <nav class="nav-links" aria-label="Enlaces del proyecto">
-        <a class="btn" href="https://www.figma.com/design/taiEPy1X8lcxdmOLUy2012/Tpe-Interfaces?node-id=770-14577&m=dev&t=0L4KY6BHlmQ6q0KU-1"
-           target="_blank" rel="noopener noreferrer">Diseño</a>
-        <a class="btn outline" href="https://www.figma.com/proto/taiEPy1X8lcxdmOLUy2012/Tpe-Interfaces?node-id=770-2811&p=f&t=BeLpM2AxaGyiVtN7-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=770%3A2811"
-           target="_blank" rel="noopener noreferrer">Prototipo</a>
-      </nav>
-    </div>
-  </header>
+<body>
 
-  <main class="container">
+    <div id="loading-screen" style="display: none;">
+      <div class="spinner"></div>
+      <div id="loading-porcentage">0%</div>
+    </div>
+
+    <section class="login-full">
+        <section class="conteiner-login-register">
+            <div class="logo">
+                <img class="image24" src="./img/logo-reg-ini.png" alt="Logo Pokebola">
+                <h1>POKEJUEGOS</h1>
+            </div>
+            <div class="conteiner-login">
+             <div class="container-btn">
+                    <div class="container-btn">
+                    <h2>Iniciar Sesión</h2>
+                    <a href="home.html" class="btn-gf" id="google">
+                        <img src="./img/google.png" alt="Google Icon" class="btn-gf-img" />
+                        <span class="btn-gf-text">Iniciar con Google</span>
+                    </a>
+                    <a href="home.html" class="btn-gf" id="facebook">
+                        <img src="./img/facebook.png" alt="Facebook Icon" class="btn-gf-img" />
+                        <span class="btn-gf-text">Iniciar con Facebook</span>
+                    </a>
+                </div>
+                <div class="separador-login">
+                    <img class="logo-separador-login" src="./img/linea-separador.png" alt="Logo Pokebola separador">
+                </div>
+                <div class="conteiner-form">
+                    <form class="form-login" action="">
+                        <div id="nombre-label">
+                            <span class="span-form">Nombre De Usuario</span>
+                            <input type="text" class="input-form" name="nombre"> 
+                        </div>
+                        <div>
+                            <span class="span-form" >Contraseña</span>
+                            <input type="password" class="input-form" name="contra">
+                        </div>
+                        <span class="olvide-contra" >Olvide mi contraseña</span>
+                        <a type="button" class="btn-ini" id="btn-login" href="home.html">Iniciar Sesion</a>
+                        <div class="registrarse-no-cuenta">
+                            <span class="no-cuenta">¿Aun no tienes cuenta?</span>
+                            <a type="button" id="btn-registrarse-login" href="register.html">Registrarse</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <script src="js/register-loading.js"></script>
     
-    <div class="principal">
-
-      <div class="carrusel"></div>
-
-    </div>
-   
-
-    <div class="categorias">
-
-
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <small>© Grupo 37 — PokeJuegos</small>
-    </div>
-  </footer>
-  <script src="Scripts/app.js"></script>
 </body>
-</html>
+</html>   

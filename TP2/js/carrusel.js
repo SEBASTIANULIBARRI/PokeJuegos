@@ -37,6 +37,38 @@ function moverCarruselDestacado(direccion, carruselId) {
     });
 }
 
+const carrousel = document.getElementById("carrousel");
+const prevBtn = document.querySelector(".carrousel-btn.prev");
+const nextBtn = document.querySelector(".carrousel-btn.next");
+
+let index = 0;
+
+function showSlide() {
+    const width = carrousel.clientWidth; 
+    carrousel.style.transform = `translateX(${-index * width}px)`;
+}
+
+nextBtn.addEventListener("click", () => {
+    if (index < carrousel.children.length - 1) {
+        index++;
+    } else {
+        index = 0; // vuelve al inicio
+    }
+    showSlide();
+});
+
+prevBtn.addEventListener("click", () => {
+    if (index > 0) {
+        index--;
+    } else {
+        index = carrousel.children.length - 1; // vuelve al final
+    }
+    showSlide();
+});
+
+window.addEventListener("resize", showSlide);
+
+
 
   
   

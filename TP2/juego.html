@@ -98,9 +98,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="carrousel-img">
-                            <img src="./img/juego/muestra=Default.png" alt="Muestra 1" class="carrousel-img-item">
+                        <div class="carrousel-container">
+                            <button class="carrousel-btn prev">&#10094;</button>
+                            <div class="carrousel-img" id="carrousel">
+                                <img src="./img/Video_juego_1.png" alt="Muestra 1" class="carrousel-img-item">
+                                <img src="./img/Video_juego_2.png" alt="Muestra 2" class="carrousel-img-item">
+                                <img src="./img/Video_juego_3.png" alt="Muestra 3" class="carrousel-img-item">
+                                </div>
+                            <button class="carrousel-btn next">&#10095;</button>
                         </div>
+
                     </div>
                 </div>
             </section>
@@ -162,7 +169,11 @@
                         <img src="./img/juego/icon-comentarios-user.png" alt="User" class="comment-user-img">
                         <span class="comment-user-name">AshKetchum</span>
                         <div class="comment-rating" style="margin-left: 10px;">
-                            <span>⭐⭐⭐⭐⭐</span>
+                            <span class="star-selected" data-value="1">★</span>
+                            <span class="star-selected" data-value="2">★</span>
+                            <span class="star-selected" data-value="3">★</span>
+                            <span class="star-selected" data-value="4">★</span>
+                            <span class="star-selected" data-value="5">★</span>
                         </div>
                         
                     </div>
@@ -173,7 +184,11 @@
                         <img src="./img/juego/icon-comentarios-user.png" alt="User" class="comment-user-img">
                         <span class="comment-user-name">Misty</span>
                         <div class="comment-rating" style="margin-left: 10px;">
-                            <span>⭐⭐⭐⭐</span>
+                            <span class="star-selected" data-value="1">★</span>
+                            <span class="star-selected" data-value="2">★</span>
+                            <span class="star-selected" data-value="3">★</span>
+                            <span class="star-selected" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
                         </div>
                     </div>
                     <p class="comment-text">Muy divertido, pero difícil de ganar.</p>
@@ -183,7 +198,11 @@
                         <img src="./img/juego/icon-comentarios-user.png" alt="User" class="comment-user-img">
                         <span class="comment-user-name">Brock</span>
                         <div class="comment-rating" style="margin-left: 10px;">
-                            <span>⭐⭐⭐⭐⭐</span>
+                            <span class="star-selected" data-value="1">★</span>
+                            <span class="star-selected" data-value="2">★</span>
+                            <span class="star-selected" data-value="3">★</span>
+                            <span class="star-selected" data-value="4">★</span>
+                            <span class="star-selected" data-value="5">★</span>
                         </div>
                     </div>
                     <p class="comment-text">¡Ideal para pasar el rato!</p>
@@ -362,5 +381,7 @@
             updateStars();
         });
     </script>
+    <script src="./js/carrusel.js"></script>
+
 </body>
 </html>

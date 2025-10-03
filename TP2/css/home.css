@@ -157,6 +157,8 @@ body {
     font-size: 2rem;
     font-weight: 600;
     color: #b9b9b9;
+    text-decoration: none;
+
 }
 .header-center {
     display: flex;

@@ -180,6 +180,31 @@ body {
     align-items: center;
     gap: 1.125rem;
 }
+.icon-cart {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-cart img {
+  width: 40px;
+  height: auto;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  min-width: 20px;
+  text-align: center;
+  line-height: 1;
+  display: none; /* oculto si no hay items */
+}
 
 /* === SEARCH INPUT ICON === */
 .search-container {
@@ -401,7 +426,7 @@ body {
 .contenedor-carrusel::-webkit-scrollbar {
   display: none; /* Oculta las barras de scroll */
 }
-.game-card img {
+/* .game-card img {
     height: 6.188rem;
     width: 12.375rem;
     object-fit: cover;
@@ -426,7 +451,73 @@ body {
     align-items: flex-start;
     gap: 0.25rem;
     
+} */
+
+.game-card img {
+    height: 6.188rem;
+    width: 12.375rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
 }
+
+.game-card span {
+    font-size: 0.9375rem;
+    color: #fff;
+    margin-top: 0.125rem;
+}
+
+.price {
+    padding-left: 9.375rem;
+    font-size: 0.8125rem;
+    color: #b9b9b9;
+}
+
+.game-card {
+    background: #23232b;
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    position: relative; /* necesario para posicionar el + */
+    overflow: hidden;
+}
+
+/* + oculto inicialmente */
+.plus-icon {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.plus-icon img {
+    width: 0.9rem;  /* ajusta el tamaño del ícono */
+    height: 0.9rem;
+    filter: invert(1); /* lo pone blanco si tu imagen es negra */
+}
+.plus-btn {
+  transition: opacity 0.3s ease;
+}
+
+
+
+/* aparece al hacer hover */
+.game-card:hover .plus-icon {
+    opacity: 1;
+}
+
+
 @keyframes inclinacion {
     0% { transform: rotateY(0deg); } 
     50% { transform: rotateY(30deg); } /* Aumenta el ángulo de inclinación */

@@ -249,23 +249,27 @@ body {
     transform: translate(-50%, -50%);
     z-index: 2;
     display: none;
-    background: #333340bb;
-    color: white;
-    border: none;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.7); /* translúcido claro como en el diseño */
+    color: black;
+    border: 3px solid #fff;
+    border-radius: 15px;
+    font-family: "Outfit";
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
     font-size: 1.5rem;
     font-weight: 700;
-    padding: 18px 48px;
+    padding: 18px 48px 18px 57px; /* espacio extra a la izquierda para el icono */
     cursor: pointer;
     box-shadow: 0 2px 8px #0003;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, transform 0.12s ease;
+    background-image: url("../img/icon-play.png");
+    background-repeat: no-repeat;
+    background-position: 18px center; /* posiciona el icono a la izquierda, centrado verticalmente */
+    background-size: 42px 42px;
 }
 .btn-jugar-container:hover .btn-jugar {
     display: block;
-}
-.btn-jugar:hover {
-    background: #333340;
-    color: white;
 }
 .btn-jugar-container img {
     width: 100%;
@@ -273,6 +277,7 @@ body {
     object-fit: cover;
     border-radius: 1rem;
 }
+
 
 
 

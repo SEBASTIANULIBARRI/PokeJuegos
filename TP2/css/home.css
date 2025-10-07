@@ -433,32 +433,7 @@ body {
 .contenedor-carrusel::-webkit-scrollbar {
   display: none; /* Oculta las barras de scroll */
 }
-/* .game-card img {
-    height: 6.188rem;
-    width: 12.375rem;
-    object-fit: cover;
-    border-radius: 0.5rem;
-}
-.game-card span {
-    font-size: 0.9375rem;
-    color: #fff;
-    margin-top: 0.125rem;
-}
-.price {
-    padding-left: 9.375rem;
-    font-size: 0.8125rem;
-    color: #b9b9b9;
-}
-.game-card {
-    background: #23232b;
-    border-radius: 0.75rem;
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-    
-} */
+
 
 .game-card img {
     height: 6.188rem;
@@ -488,7 +463,6 @@ body {
     align-items: flex-start;
     gap: 0.25rem;
     position: relative; /* necesario para posicionar el + */
-    overflow: hidden;
 }
 
 /* + oculto inicialmente */

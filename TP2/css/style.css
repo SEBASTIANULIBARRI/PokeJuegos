@@ -1,5 +1,13 @@
 body{
     background-color: #101014;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+*{
+    margin: 0;
+    padding: 0;
+    
 }
 h1{
     color: #B9B9B9;
@@ -43,9 +51,8 @@ label{
     font-family: "Outfit", sans-serif;
     font-weight: normal;
 }
-.conteiner-login-register{
+.conteiner-login-full{
     width: 838px;
-    height: 1000px;
     justify-content: center;
     justify-items: center;
     align-items: center;
@@ -53,7 +60,7 @@ label{
 /* login*/
 .login-full{
     width: 1407px;
-    height: 986px;
+    height: 700px;
     display: flex;
     justify-content: center;
     justify-items: center;
@@ -70,6 +77,31 @@ label{
     justify-content: center;
     justify-items: center;
     align-items: center;
+}
+.conteiner-register{
+    width: 838px;
+    height: 406px;
+    background-color: #333340;
+    border-radius: 5%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.conteiner-register-section{
+    width: 838px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.register-full{
+    width: 80%;
+    height: 864px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    background-color: #56566C;
+    border-radius: 5%;
+    margin-top: 1.7rem;
 }
 .container-btn{
     display: flex;

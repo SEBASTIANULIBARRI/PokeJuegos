@@ -681,6 +681,122 @@ body {
     color: #5CCCFF;
 }
 
+.btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .btn:active {
+    transform: scale(0.95);
+  }
+
+  /* BOTÓN 1: Relleno desde abajo */
+  .btn-fill-bottom {
+    background: transparent;
+    color: white;
+    border: 3px solid white;
+    z-index: 1;
+  }
+
+  .btn-fill-bottom::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: white;
+    transition: height 0.4s ease;
+    z-index: -1;
+  }
+
+  .btn-fill-bottom:hover::before {
+    height: 100%;
+  }
+
+  .btn-fill-bottom:hover {
+    color: #667eea;
+  }
+
+  /* BOTÓN 2: Deslizamiento diagonal */
+  .btn-slide-diagonal {
+    background: #f4b41a;
+    color: #333;
+    z-index: 1;
+  }
+
+  .btn-slide-diagonal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    transition: left 0.5s ease;
+    z-index: -1;
+    transform: skewX(-20deg);
+    transform-origin: top left;
+  }
+
+  .btn-slide-diagonal:hover::before {
+    left: 0;
+  }
+
+  .btn-slide-diagonal:hover {
+    color: white;
+  }
+
+  /* BOTÓN 3: Expansión desde el centro */
+  .btn-expand-center {
+    background: #2c3e50;
+    color: white;
+    z-index: 1;
+  }
+
+  .btn-expand-center::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    transition: width 0.5s ease, height 0.5s ease, top 0.5s ease, left 0.5s ease;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+  }
+
+  .btn-expand-center:hover::before {
+    width: 300%;
+    height: 400%;
+  }
+
+  /* Contenedor para cada botón con etiqueta */
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-label {
+    color: white;
+    font-size: 0.9rem;
+    text-align: center;
+    opacity: 0.8;
+  }
+
 /* --- RESPONSIVE DESIGN --- */
 @media (max-width: 1200px) {
   .header-center {
@@ -758,6 +874,7 @@ body {
 }
 
 @media (max-width: 600px) {
+
   .header {
     flex-direction: column;
     height: auto;
@@ -839,18 +956,134 @@ body {
     padding-inline-start: 5px;
     unicode-bidi: isolate;
   }
+  
+  header {
+    flex-wrap: wrap;
+  }
+  
+  .header-left {
+    order: 1;
+  }
+  
+  .header-right {
+    order: 2;
+  }
+  
+  .header-center {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0.5rem;
+  }
 }
 
-@media (max-width: 400px) {
-  .header {
-    font-size: 0.9rem;
-    padding: 0.25rem;
+
+@media (max-width: 600px) {
+    .game-card .plus-icon {
+    opacity: 1;
+}
+.game-card .plus-icon img {
+    width: 1.2rem;  /* ajusta el tamaño del ícono */
+    height: 1.2rem;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  gap: 0.5rem 0.75rem;
+}
+
+/* Header Left - Menú y Logo */
+.header-left {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-left img {
+  width: 32px;
+  height: 32px;
+}
+
+.header-left span {
+  font-size: 1rem;
+}
+
+/* Header Right - Carrito y Usuario */
+.header-right {
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-right svg,
+.header-right img {
+  width: 28px;
+  height: 28px;
+}
+
+/* Header Center - Barra de búsqueda */
+.header-center {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.header-center input {
+  width: 100%;
+  padding: 0.4rem 0.75rem;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.875rem;
+}
+
+/* Responsive para móviles */
+
+  header {
+    padding: 0.4rem 0.5rem;
+    gap: 0.4rem 0.5rem;
   }
-  .title-header {
+  
+  .header-left {
+    gap: 0.4rem;
+  }
+  
+  .header-left img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .header-left span {
+    font-size: 0.875rem;
+  }
+  
+  .header-right {
+    gap: 0.5rem;
+  }
+  
+  .header-right svg,
+  .header-right img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .header-center input {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+.title-header {
     font-size: 1.2rem;
-  }
-  .search-bar {
-    font-size: 1rem;
-    padding: 0.25rem 0.5rem;
-  }
+    font-weight: 600;
+    color: #b9b9b9;
+    text-decoration: none;
+}
+
+
 }

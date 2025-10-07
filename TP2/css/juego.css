@@ -11,6 +11,7 @@
     justify-content: center;
     z-index: 3000;
 }
+
 .modal-compartir-content {
     background: #56566C;
     border-radius: 1.2rem;
@@ -22,6 +23,7 @@
     color: #fff;
     text-align: center;
 }
+
 .modal-compartir-close {
     position: absolute;
     top: 1.2rem;
@@ -33,17 +35,20 @@
     border: none;
     z-index: 10;
 }
+
 .modal-compartir h2 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     font-weight: 700;
 }
+
 .modal-compartir-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.2rem 1.5rem;
     margin-bottom: 1.2rem;
 }
+
 .modal-compartir-grid a {
     display: flex;
     flex-direction: column;
@@ -54,42 +59,51 @@
     font-weight: 500;
     transition: color 0.2s;
 }
+
 .modal-compartir-grid a:hover {
     color: #5CCCFF;
 }
+
 .modal-compartir-grid img {
     width: 3.2rem;
     height: 3.2rem;
     margin-bottom: 0.3rem;
     object-fit: contain;
 }
+
 .modal-compartir-link {
     margin-top: 1.2rem;
     font-size: 1rem;
     color: #fff;
 }
+
 .modal-compartir-link a {
     color: #5CCCFF;
     text-decoration: underline;
     word-break: break-all;
 }
+
 .comments-header{
     display: flex;
     gap: 0.5em;
     align-items: center;
     margin: 0.5rem;
 }
+
 .comments-header h4{
     margin: 0%;
 }
+
 .comments-header img{
     width: 2em;
     height: 2em;
     vertical-align: middle;
 }
+
 .icon-separador img {
     width: 100%;
 }
+
 .comment-form-stars-actions {
     display: flex;
     align-items: center;
@@ -97,6 +111,7 @@
     gap: 12px;
     margin-top: 8px;
 }
+
 .comment-form-stars {
     display: flex;
     align-items: center;
@@ -106,21 +121,26 @@
     cursor: pointer;
     user-select: none;
 }
+
 .comment-form-stars .star {
     transition: color 0.2s;
 }
+
 .comment-form-stars .star.selected,
 .comment-form-stars .star:hover,
 .comment-form-stars .star.selected ~ .star {
     color: #B9B9B9;
 }
+
 .star-selected {
     color : #41C34F;
 }
 
+
 .star-unselected {
     color : #41C34F;
 }
+
 /* Box para nuevo comentario */
 .comment-form {
     background: rgba(123, 123, 150, 0.39);
@@ -132,11 +152,13 @@
     gap: 12px;
     box-shadow: 0 2px 8px #0002;
 }
+
 .comment-form-user {
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
 .comment-input-name {
     flex: 1;
     padding: 6px 12px;
@@ -146,6 +168,7 @@
 
     color: #fff;
 }
+
 .comment-input-text {
     background: #b4b4cf;
     width: 100%;
@@ -156,12 +179,14 @@
     color: black;
     resize: vertical;
 }
+
 .comment-form-actions {
     display: flex;
     align-items: center;
     gap: 12px;
     justify-content: flex-end;
 }
+
 .comment-input-rating {
     border-radius: 6px;
     border: none;
@@ -170,6 +195,7 @@
     background: #29293d;
     color: #fff;
 }
+
 .comment-submit-btn {
     background: #41C3FF;
     color: #232334;
@@ -181,9 +207,11 @@
     cursor: pointer;
     transition: background 0.2s;
 }
+
 .comment-submit-btn:hover {
     background: #5CCCFF;
 }
+
 /* Iconos login arriba y abajo del sidebar */
 .sidebar-login-top, .sidebar-login-bottom {
     display: block;
@@ -191,6 +219,7 @@
     width: 15rem;
     object-fit: contain;
 }
+
 /* === SIDEBAR CATEGORIAS === */
 .sidebar-categorias {
     position: fixed;
@@ -210,44 +239,53 @@
     opacity: 0;
     pointer-events: none;
 }
+
 .sidebar-categorias.abierta {
     transform: translateX(0);
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
 }
+
 .sidebar-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem 1rem 0.5rem 2.5rem;
 }
+
 .sidebar-hamburguesa {
     cursor: pointer;
     width: 2rem;
     height: 2rem;
 }
+
 .sidebar-pokeball, .sidebar-pokeball-bottom {
     width: 2.5rem;
     margin: 0.5rem auto 0.5rem auto;
     display: block;
 }
+
 .sidebar-divider {
     border: none;
     border-top: 2px solid #7a7a8c;
 }
+
 .sidebar-divider-top {
     margin: 0 1.5rem 1.5rem 1.5rem;
 }
+
 .sidebar-divider-bottom {
     margin: 1.5rem 1.5rem 0 1.5rem;
 }
+
 .sidebar-list {
     list-style: none;
     padding: 0;
     margin: 0;
     flex: 1;
 }
+
 .sidebar-list li {
     display: flex;
     align-items: center;
@@ -260,21 +298,25 @@
     transition: background 0.2s, color 0.2s;
     border-radius: 0.5rem;
 }
+
 .sidebar-list li:hover {
     background: #23232b;
     color: #5CCCFF;
 }
+
 .sidebar-list li img {
     width: 2rem;
     height: 2rem;
     object-fit: contain;
     filter: brightness(0) invert(1) opacity(0.8);
 }
+
 /* === PROFILE DROPDOWN === */
 .icon-profile {
     position: relative;
     cursor: pointer;
 }
+
 .profile-menu {
     position: fixed;
     top: 4rem;
@@ -285,11 +327,13 @@
     padding: 1.2rem 1.2rem 1.2rem 1.2rem;
     display: none;
 }
+
 .profile-menu ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
+
 .profile-menu li, .profile-menu a {
     display: flex;
     align-items: center;
@@ -302,15 +346,18 @@
     text-decoration: none;
     transition: background 0.2s;
 }
+
 .profile-menu li:hover, .profile-menu a:hover {
     background: #23232b;
 }
+
 .profile-menu-icon {
     width: 1.875rem;
     height: 1.875rem;
     object-fit: contain;
     filter: brightness(0) invert(1) opacity(0.8);
 }
+
 /* === HEADER === */
 .header {
     display: flex;
@@ -320,14 +367,17 @@
     padding: 0 2rem;
     height: 4rem;
 }
+
 .header-left {
     display: flex;
     align-items: center;
 }
 
+
 .logo-header {
     margin-left: 0.75rem;
 }
+
 
 .title-header {
     font-size: 2rem;
@@ -336,6 +386,7 @@
     text-decoration: none;
 
 }
+
 .header-center {
     display: flex;
     align-items: center;
@@ -343,6 +394,7 @@
      max-width: 31.25rem;
     margin: 0 2rem;
 }
+
 .search-bar {
 
     padding: 0.5rem 1rem;
@@ -353,11 +405,13 @@
     color: #fff;
 }
 
+
 .header-right {
     display: flex;
     align-items: center;
     gap: 1.125rem;
 }
+
 
 /* === SEARCH INPUT ICON === */
 .search-container {
@@ -367,10 +421,12 @@
     display: flex;
     align-items: center;
 }
+
 .search-bar {
     width: 100%;
     padding-right: 2.5rem;
 }
+
 .icon-search-in-input {
     position: absolute;
     right: 1rem;
@@ -382,6 +438,7 @@
     opacity: 0.7;
 }
 
+
 /* Flex para main-content y comments juntos */
 .main-content-comments {
     display: flex;
@@ -389,6 +446,7 @@
     flex: 1 1 0;
     min-width: 0;
 }
+
 /* Contenedor principal flex para main y sidebar */
 .main-flex {
     display: flex;
@@ -400,10 +458,12 @@
     min-height: 100vh;
     padding-left: 0.5rem;
 }
+
 .main-content {
     flex: 1 1 0;
     min-width: 0;
 }
+
 
 body {
     background: #101014;
@@ -412,11 +472,13 @@ body {
     margin: 0;
     padding: 0;
 }
+
 h1{
     color: #B9B9B9;
     font-size: 61.04px;
     font-weight: 600;
 }
+
 h2{
     font-size: 48px;
     font-weight: normal;
@@ -424,29 +486,35 @@ h2{
     margin: 5px;
 }
 
+
 h4{
     font-size: 32px;
     font-weight: 600;
 }
+
 .h6{/* P SEMI BOLD*/
     font-size: 18px;
     font-weight: 600;
 }
+
 p{
     font-size: 16px;
     font-weight: normal;
     
 }
+
 label{
     font-size: 14px;
     font-weight: 400;
     color: #A7A7B9;
 
-}   
+}
+
 .p-14px{
     font-size: 14px;
     font-weight: normal;
 }
+
 
 
 
@@ -459,9 +527,11 @@ label{
     align-items: flex-start;
     justify-content: flex-end;
 }
+
 .imagen-descripcion img {
     border-radius: 12px;
 }
+
 
 .breadcrumb {
     color: #B9B9B9;
@@ -469,13 +539,16 @@ label{
     margin: 24px 0 16px 0;
     padding-left: 24px;
 }
+
 .breadcrumb-sep {
     margin: 0 8px;
 }
+
 .breadcrumb a {
     color: #B9B9B9;
     text-decoration: none;
 }
+
 
 .game-section {
     display: flex;
@@ -491,6 +564,7 @@ label{
 
 }
 
+
 .game-main {
     flex: 2;
     display: flex;
@@ -498,6 +572,7 @@ label{
     align-items: flex-start;
     min-width: 0;
 }
+
 .img-juego {
     display: flex;
     border-radius: 18px;
@@ -505,11 +580,13 @@ label{
     align-items: center;
     
 }
+
 .img-juego img {
     width: 1142px;
     height: auto;
     border-radius: 18px;
 }
+
 .descripcion-juego-imagen {
     display: flex;
     flex-direction: row;
@@ -517,29 +594,35 @@ label{
     margin-bottom: 18px;
 }
 
+
 .game-descripcion {
     background: #29293d;
     border-radius: 18px;
     padding: 32px 16px 24px 16px;
 }
+
 .descripcion-juego h2 {
     color: #fff;
     font-size: 2rem;
     margin-bottom: 12px;
 }
+
 .descripcion-juego p {
     color: #B9B9B9;
     font-size: 1.1rem;
     margin-bottom: 12px;
 }
+
 .descripcion-juego ul {
     color: #B9B9B9;
     margin-bottom: 18px;
     padding-left: 20px;
 }
+
 .imagen-descripcion{
     display: inline-flex;
 }
+
 
 
 .compartir-row {
@@ -550,15 +633,18 @@ label{
     margin-top: 8px;
     margin-bottom: 16px;
 }
+
 .btn-compartir-img {
     width: 10.5rem;
     height: auto;
     cursor: pointer;
     transition: transform 0.15s;
 }
+
 .btn-compartir-img:hover {
     transform: scale(1.05);
 }
+
 .carrousel-container {
     position: relative;
     width: 100%;       /* ocupa todo el ancho disponible */
@@ -567,11 +653,15 @@ label{
     overflow: hidden;  /* oculta las imágenes que se salen */
 }
 
+
 .carrousel-img {
     display: flex;
-    transition: transform 0.5s ease-in-out;
     height: 396px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
 }
+
+
 
 .carrousel-img-item {
     flex: 0 0 100%;     /* cada slide ocupa todo el ancho */
@@ -581,14 +671,239 @@ label{
     object-position: center;
     border-radius: 8px;
     background: #29293d;  /* relleno negro en caso de que sobren espacios */
+     transform: scale(0.95);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
+
+
+.carrousel-img-item.active {
+    opacity: 1;
+}
+
+
+/**/
+/* Contenedor del carrusel */
+.carrousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* Wrapper de las imágenes */
+.carrousel-img {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+}
+
+
+/* Cada imagen */
+.carrousel-img-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s ease;
+}
+
+
+/* Imagen activa */
+.carrousel-img-item.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Botones del carrusel */
+.carrousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(244, 180, 26, 0.3);
+}
+
+
+.carrousel-btn:hover {
+    background: rgba(244, 180, 26, 0.9);
+    border-color: rgba(244, 180, 26, 1);
+    box-shadow: 0 4px 15px rgba(244, 180, 26, 0.5);
+    transform: translateY(-50%) scale(1.15);
+}
+
+
+/* .carrousel-btn.prev {
+margin-inline-start: -4px;
+    left: 10px;
+}
+     */
+
+.carrousel-btn.prev:hover {
+    transform: translateY(-50%) translateX(-5px) scale(1.15);
+}
+
+
+/* .carrousel-btn .next {
+    margin-inline-start: -4px;
+    right: 10px;
+}
+     */
+
+.carrousel-btn.next:hover {
+    transform: translateY(-50%) translateX(5px) scale(1.15);
+}
+
+
+.carrousel-btn:active {
+    transform: translateY(-50%) scale(1.05);
+}
+
+
+/* Animación: Sale hacia arriba y se desvanece */
+@keyframes fadeOutUp {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+
+}
+
+
+/* Animación: Entra desde abajo */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* Animación: Sale hacia abajo */
+@keyframes fadeOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+
+}
+
+
+/* Animación: Entra desde arriba */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* Clases de animación */
+.carrousel-img-item.fade-out-up {
+    animation: fadeOutUp 0.8s ease forwards;
+    position: absolute;
+    z-index: 1;
+}
+
+
+.carrousel-img-item.fade-in-up {
+    animation: fadeInUp 0.8s ease forwards;
+    position: absolute;
+    z-index: 2;
+    visibility: visible;
+}
+
+
+.carrousel-img-item.fade-out-down {
+    animation: fadeOutDown 0.8s ease forwards;
+    position: absolute;
+    z-index: 1;
+}
+
+
+.carrousel-img-item.fade-in-down {
+    animation: fadeInDown 0.8s ease forwards;
+    position: absolute;
+    z-index: 2;
+    visibility: visible;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .carrousel-img {
+        min-height: 250px;
+    }
+
+    
+    .carrousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    
+    .carrousel-btn.prev {
+        left: 5px;
+    }
+
+    
+    .carrousel-btn.next {
+        right: 5px;
+    }
+
+}
+
+/**/
 
 /* Botones */
 .carrousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
     padding: 12px;
@@ -596,15 +911,100 @@ label{
     font-size: 18px;
     border-radius: 50%;
     z-index: 2;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(244, 180, 26, 0.3);
 }
 
+
+/* Hover effect */
+.carrousel-btn:hover {
+    background: rgba(244, 180, 26, 0.9);
+    border-color: rgba(244, 180, 26, 1);
+    box-shadow: 0 4px 15px rgba(244, 180, 26, 0.5);
+    transform: translateY(-50%) scale(1.15);
+}
+
+
+/* Animación específica para cada botón */
 .carrousel-btn.prev {
+    margin-inline: -2px;
+    margin-inline-start: -4px;
     left: 10px;
 }
 
+
+.carrousel-btn.prev:hover {
+    transform: translateY(-50%) translateX(-5px) scale(1.15);
+}
+
+
 .carrousel-btn.next {
+    margin-inline: -2px;
+    margin-inline-start: -4px;
     right: 10px;
 }
+
+
+.carrousel-btn.next:hover {
+    transform: translateY(-50%) translateX(5px) scale(1.15);
+}
+
+
+/* Efecto active al hacer click */
+.carrousel-btn:active {
+    transform: translateY(-50%) scale(1.05);
+}
+
+
+/* Opcional: Pulso sutil cuando no hay hover */
+@keyframes subtle-pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(244, 180, 26, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(244, 180, 26, 0);
+    }
+
+}
+
+
+.carrousel-btn {
+    animation: subtle-pulse 2s ease-in-out infinite;
+}
+
+
+.carrousel-btn:hover {
+    animation: none;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .carrousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    
+    .carrousel-btn.prev {
+        left: 5px;
+    }
+
+    
+    .carrousel-btn.next {
+        right: 5px;
+    }
+
+}
+
 
 .game-sidebar {
     width: 16.1rem;
@@ -619,11 +1019,13 @@ label{
     margin-right: 0.5rem;
     z-index: 5;
 }
+
 .game-sidebar h3 {
     color: #fff;
     font-size: 1.2rem;
     margin-bottom: 16px;
 }
+
 .sidebar-games {
     list-style: none;
     padding: 0;
@@ -633,12 +1035,14 @@ label{
     gap: 12px;
     width: 100%;
 }
+
 .sidebar-games li {
     width: 100%;
     display: flex;
     justify-content: center;
     margin: 4px 0px 4px 0px;
 }
+
 .sidebar-games img {
     width: 14.375rem;
     height: 8.125rem;
@@ -646,17 +1050,20 @@ label{
     border-radius: 0.5rem;
 }
 
+
 .game-banner {
     width: 100%;
     margin: 32px 0 24px 0;
     display: flex;
     justify-content: center;
 }
+
 .game-banner-img {
     width: 100%;
     max-width: 900px;
     border-radius: 18px;
 }
+
 
 .comments-section {
     width: 98%;
@@ -665,11 +1072,13 @@ label{
     margin-bottom: 32px;
     padding: 0rem 0.5rem;
 }
+
 .comments-section h3 {
     color: #fff;
     font-size: 1.3rem;
     margin-bottom: 18px;
 }
+
 .comment-box {
     background: #232334;
     border-radius: 12px;
@@ -679,11 +1088,13 @@ label{
     flex-direction: column;
     gap: 6px;
 }
+
 .comment-user {
     display: flex;
     align-items: center;
     gap: 10px;
 }
+
 .comment-user-img {
     width: 32px;
     height: 32px;
@@ -691,31 +1102,38 @@ label{
     object-fit: cover;
     background: #fff;
 }
+
 .comment-user-name {
     color: #fff;
     font-weight: 600;
     font-size: 1rem;
 }
+
 .comment-rating {
     color: #b9b9b9;
     font-size: 1.1rem;
 }
+
 .comment-text {
     color: #B9B9B9;
     font-size: 1rem;
     margin: 0;
 }
 
+
 @media (max-width: 1500px) {
     .main-content, .header-bar {
         width: 100vw;
         min-width: 0;
     }
+
 }
+
 @media (max-width: 1100px) {
     .game-section {
         flex-direction: column;
     }
+
     .game-sidebar {
         max-width: 100vw;
         width: 100%;
@@ -723,11 +1141,14 @@ label{
         gap: 8px;
         justify-content: center;
     }
+
     .sidebar-games {
         flex-direction: row;
         gap: 8px;
     }
+
 }
+
 
 
 /* === FAT FOOTER === */
@@ -742,10 +1163,12 @@ label{
 }
 
 
+
 .fat-footer-col {
     min-width: 11.25rem;
     padding: 0 1.5rem;
 }
+
 
 .redes-list li {
     margin-top: 1.8rem;
@@ -760,6 +1183,7 @@ label{
     cursor: pointer;
     margin-right: 3.125rem;
 }
+
 .redes-list li img {
     width: 2rem;
     height: 2rem;
@@ -767,6 +1191,7 @@ label{
     background: #fff;
     object-fit: contain;
 }
+
 .fat-footer-divider {
     width: 0.0625rem;
     background: linear-gradient(to bottom, transparent 0%, #5CCCFF 50%, transparent 100%);
@@ -777,6 +1202,7 @@ label{
     justify-content: center;
     margin-top: 1.5625rem;
 }
+
 .pokeball-divider {
     position: absolute;
     left: 50%;
@@ -785,17 +1211,20 @@ label{
     padding: 0 0.125rem;
     margin-top: 1.5625rem;
 }
+
 .compania-footer {
     max-width: 12.5rem;
     text-align: left;
     margin-left: 0.625rem;
     margin-top: 1.875rem;
 }
+
 .compania-footer ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
+
 .compania-footer li {
     color: #e0e0e0;
     font-size: 1rem;
@@ -805,9 +1234,11 @@ label{
     cursor: pointer;
     text-align: left;
 }
+
 .compania-footer li:hover {
     color: #5CCCFF;
 }
+
 
 .fat-footer-juegos {
     display: flex;
@@ -818,17 +1249,20 @@ label{
     max-width: 43.75rem;
 }
 
+
 .footer-juegos-bloque h4 {
     margin-top: 0.25rem;
     font-size: 1.375rem;
     font-weight: 700;
     color: #fff;
 }
+
 .footer-juegos-bloque ul {
     list-style: none;
     margin: 0 0 0.5rem 0;
     padding-left: 0;
 }
+
 .footer-juegos-bloque li {
     color: #e0e0e0;
     font-size: 1rem;
@@ -837,6 +1271,140 @@ label{
     transition: color 0.2s;
     cursor: pointer;
 }
+
 .footer-juegos-bloque li:hover {
     color: #5CCCFF;
 }
+
+
+/*botones*/
+
+.btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+
+  .btn:active {
+    transform: scale(0.95);
+  }
+
+
+  /* BOTÓN 1: Relleno desde abajo */
+  .btn-fill-bottom {
+    background: transparent;
+    color: white;
+    border: 3px solid white;
+    z-index: 1;
+  }
+
+
+  .btn-fill-bottom::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: white;
+    transition: height 0.4s ease;
+    z-index: -1;
+  }
+
+
+  .btn-fill-bottom:hover::before {
+    height: 100%;
+  }
+
+
+  .btn-fill-bottom:hover {
+    color: #667eea;
+  }
+
+
+  /* BOTÓN 2: Deslizamiento diagonal */
+  .btn-slide-diagonal {
+    background: #f4b41a;
+    color: #333;
+    z-index: 1;
+  }
+
+
+  .btn-slide-diagonal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    transition: left 0.5s ease;
+    z-index: -1;
+    transform: skewX(-20deg);
+    transform-origin: top left;
+  }
+
+
+  .btn-slide-diagonal:hover::before {
+    left: 0;
+  }
+
+
+  .btn-slide-diagonal:hover {
+    color: white;
+  }
+
+
+  /* BOTÓN 3: Expansión desde el centro */
+  .btn-expand-center {
+    background: #2c3e50;
+    color: white;
+    z-index: 1;
+  }
+
+
+  .btn-expand-center::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    transition: width 0.5s ease, height 0.5s ease, top 0.5s ease, left 0.5s ease;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+  }
+
+
+  .btn-expand-center:hover::before {
+    width: 300%;
+    height: 400%;
+  }
+
+
+  /* Contenedor para cada botón con etiqueta */
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+
+  .btn-label {
+    color: white;
+    font-size: 0.9rem;
+    text-align: center;
+    opacity: 0.8;
+  }

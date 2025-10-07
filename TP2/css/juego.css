@@ -153,6 +153,15 @@
     box-shadow: 0 2px 8px #0002;
 }
 
+.comment-rating{
+    margin-left: 10px;
+}
+
+.comment-user{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 .comment-form-user {
     display: flex;
     align-items: center;
@@ -622,8 +631,15 @@ label{
 .imagen-descripcion{
     display: inline-flex;
 }
+.descripcion-div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 
-
+.modal-compartir{
+   display:none;
+}
 
 .compartir-row {
     display: flex;
@@ -752,22 +768,12 @@ label{
 }
 
 
-/* .carrousel-btn.prev {
-margin-inline-start: -4px;
-    left: 10px;
-}
-     */
 
 .carrousel-btn.prev:hover {
     transform: translateY(-50%) translateX(-5px) scale(1.15);
 }
 
 
-/* .carrousel-btn .next {
-    margin-inline-start: -4px;
-    right: 10px;
-}
-     */
 
 .carrousel-btn.next:hover {
     transform: translateY(-50%) translateX(5px) scale(1.15);

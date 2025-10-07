@@ -378,10 +378,10 @@ body {
     z-index: 2; /* Asegura que esté por encima del contenido */
 }
 .destacado-cards .flecha1 {
-    top: 16%; /* Centra verticalmente */
+    top: 21%; /* Centra verticalmente */
 }
 .destacado-cards .flecha2 {
-    top: 32%; /* Centra verticalmente */
+    top: 41%; /* Centra verticalmente */
 }
 .flecha-derecha-destacado {
     right: 0;

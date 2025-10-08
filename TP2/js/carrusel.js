@@ -33,7 +33,7 @@ function moverCarruselDestacado(direccion, carruselId) {
     cards.forEach(card => {
       card.style.animation = 'none';  //Reinicia la animación
       card.offsetHeight;  //Fuerza al navegador a aplicar los cambios
-      card.style.animation = `inclinacion 0.2s ease-in-out`;  //Aplica la animación
+      card.style.animation = `inclinacion 0.6s ease-in-out`;  //Aplica la animación
     });
 }
 /*

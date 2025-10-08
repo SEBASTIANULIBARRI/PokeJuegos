@@ -738,51 +738,7 @@ label{
 
 
 /* Botones del carrusel */
-.carrousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 12px;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 50%;
-    z-index: 10;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    border: 2px solid rgba(244, 180, 26, 0.3);
-}
 
-
-.carrousel-btn:hover {
-    background: rgba(244, 180, 26, 0.9);
-    border-color: rgba(244, 180, 26, 1);
-    box-shadow: 0 4px 15px rgba(244, 180, 26, 0.5);
-    transform: translateY(-50%) scale(1.15);
-}
-
-
-
-.carrousel-btn.prev:hover {
-    transform: translateY(-50%) translateX(-5px) scale(1.15);
-}
-
-
-
-.carrousel-btn.next:hover {
-    transform: translateY(-50%) translateX(5px) scale(1.15);
-}
-
-
-.carrousel-btn:active {
-    transform: translateY(-50%) scale(1.05);
-}
 
 
 /* Animación: Sale hacia arriba y se desvanece */
@@ -1431,3 +1387,8 @@ label{
 .btn-compartir svg {
   flex-shrink: 0;
 }
+
+.clickeable, .hamburguesa-icon,.destacado-img {
+    cursor: pointer;
+}
+

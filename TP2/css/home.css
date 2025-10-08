@@ -445,13 +445,13 @@ body {
 .game-card span {
     font-size: 0.9375rem;
     color: #fff;
-    margin-top: 0.125rem;
 }
 
 .price {
     padding-left: 9.375rem;
     font-size: 0.8125rem;
     color: #b9b9b9;
+    margin-top: auto; 
 }
 
 .game-card {
@@ -1061,4 +1061,8 @@ body {
 }
 
 
+}
+
+.clickeable, .hamburguesa-icon,.destacado-img {
+    cursor: pointer;
 }

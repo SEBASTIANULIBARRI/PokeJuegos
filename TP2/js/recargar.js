@@ -6,3 +6,7 @@ document.querySelectorAll('.clickeable').forEach(el => {
     });
   });
 
+function clearSearch() {
+    document.querySelector('.search-bar').value = '';
+    document.querySelector('.search-bar').focus();
+}

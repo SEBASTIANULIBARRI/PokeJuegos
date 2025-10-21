@@ -10,14 +10,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="img/logo-reg-ini.png">
 </head>
 
 <body>
+    <div id="loading-screen">
+      <div class="spinner"></div>
+      <div id="loading-porcentage">0%</div>
+    </div>
+
     <nav class="sidebar-categorias" id="sidebarCategorias">
         <!-- El botón de cerrar se elimina, solo se usa el de header -->
         <ul class="sidebar-list">
             <li id="sidebarInicio">
-                <img class = "clickeable" src="img/icon-menu/icon-home.png" /> INICIO
+                <img class = "clickeable" src="img/icon-menu/icon-home.png" id="logohome"/> INICIO
             </li>
             <li class = "clickeable"  ><img class = "clickeable" src="img/icon-menu/icon-futbol.png" /> FUTBOL</li>
             <li class = "clickeable"  ><img class = "clickeable" src="img/icon-menu/icon-medicina.png" /> MEDICINA</li>
@@ -47,10 +53,12 @@
             <img src="img/icon-home-logo.png" alt="Logo" class="logo-header clickeable" />
             <a href="./home.html" class="title-header">POKEJUEGOS</a>
         </div>
-        <div class="header-center">
+          <div class="header-center">
             <div class="search-container">
-                <input type="text" name="search-bar" class="search-bar" placeholder="Buscar..." />
-                <img src="img/icon-search.png" class="icon-search-in-input" />
+                <input type="text" class="search-bar" id="searchInput" placeholder="Buscar...">
+                <button type="button" class="icon-search-button" onclick="clearSearch()">
+                    <img src="img/icon-search.png" class="icon-search-in-input">
+                </button>
             </div>
         </div>
         <div class="header-right">
@@ -395,6 +403,7 @@
     <script src="./js/sidebar.js"></script>
     <script src="./js/carrusel.js"></script>
     <script src="./js/recargar.js"></script>
+    <script src="./js/home-loading.js"></script>
 </body>
 
 </html>

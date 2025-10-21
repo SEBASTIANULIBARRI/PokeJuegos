@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1440, initial-scale=1.0">
-    <title>PokeJuegos - Peg Solitaire: Pikachu vs Charmander</title>
+    <title>PokeJuegos - Blocka: Armando Pokemones</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/juego.css">
+    <link rel="icon" type="image/png" href="img/logo-reg-ini.png">
 </head>
 
 <body>
@@ -16,26 +17,26 @@
     <nav class="sidebar-categorias" id="sidebarCategorias">
         <!-- El botón de cerrar se elimina, solo se usa el de header -->
         <ul class="sidebar-list">
-            <li id="sidebarInicio"><img class = "clickeable" src="img/icon-menu/icon-home.png"> INICIO</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-futbol.png"> FUTBOL</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-medicina.png"> MEDICINA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-misterio.png"> MISTERIO</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-novedades.png"> NOVEDADES</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-fotografia.png"> FOTOGRAFIA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-arte.png"> ARTE</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-cocina.png"> COCINA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-stickman.png"> STICKMAN</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-vestir.png"> VESTIR</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-universo.png"> UNIVERSO</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-controlador.png"> CONTROLADOR</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-ciencia.png"> CIENCIA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-ciclismo.png"> CICLISMO</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-autos.png"> AUTOS</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-barcos.png"> BARCOS</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-belleza.png"> BELLEZA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-baloncesto.png"> BALONCESTO</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-mascota.png"> MASCOTA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-multijugador.png"> MULTIJUGADOR</li>
+            <li id="sidebarInicio"><img class="clickeable" src="img/icon-menu/icon-home.png"> INICIO</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-futbol.png"> FUTBOL</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-medicina.png"> MEDICINA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-misterio.png"> MISTERIO</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-novedades.png"> NOVEDADES</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-fotografia.png"> FOTOGRAFIA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-arte.png"> ARTE</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-cocina.png"> COCINA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-stickman.png"> STICKMAN</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-vestir.png"> VESTIR</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-universo.png"> UNIVERSO</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-controlador.png"> CONTROLADOR</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-ciencia.png"> CIENCIA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-ciclismo.png"> CICLISMO</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-autos.png"> AUTOS</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-barcos.png"> BARCOS</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-belleza.png"> BELLEZA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-baloncesto.png"> BALONCESTO</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-mascota.png"> MASCOTA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-multijugador.png"> MULTIJUGADOR</li>
         </ul>
     </nav>
     <header class="header">
@@ -44,12 +45,16 @@
             <img src="img/icon-home-logo.png" alt="Logo" class="logo-header clickeable">
             <a href="./home.html" class="title-header">POKEJUEGOS</a>
         </div>
+
         <div class="header-center">
             <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Buscar...">
-                <img src="img/icon-search.png" class="icon-search-in-input">
+                <input type="text" class="search-bar" id="searchInput" placeholder="Buscar...">
+                <button type="button" class="icon-search-button" onclick="clearSearch()">
+                    <img src="img/icon-search.png" class="icon-search-in-input">
+                </button>
             </div>
         </div>
+
         <div class="header-right">
             <div class="icon-cart clickeable"><img src="img/icon-cart.png"></div>
             <div class="icon-profile" id="profileMenuBtn">
@@ -71,65 +76,186 @@
         <div class="main-content-comments">
             <main class="main-content">
                 <nav class="breadcrumb">
-                    <a href="./home.html">Home</a> <span class="breadcrumb-sep">></span> <span>Peg Solitaire: Pikachu vs
-                        Charmander</span>
+                    <a href="./home.html">Home</a> <span class="breadcrumb-sep">></span> <span> Blocka: Armando
+                        Pokemones</span>
                 </nav>
                 <section class="game-section">
                     <div class="game-main">
-                        <div class="img-juego">
-                            <img src="./img/juego/Screen-game.png" alt="Peg Solitaire Pikachu vs Charmander">
-                        </div>
-                        <div class="game-descripcion">
-                            <h4>Peg Solitaire: Pikachu vs Charmander</h4>
-                            <div class="descripcion-juego-imagen">
-                                <div class="descripcion-juego">
-                                    <p>¡¿Qué es Peg Solitarie?</p>
-                                    <p>Peg Solitaire (Solitario de clavijas) es un puzzle de tablero para un jugador.
-                                        Salta una clavija sobre otra (como en las damas) para eliminarla; el objetivo es
-                                        quedarte con una sola clavija, preferiblemente en el centro. Tablero clásico en
-                                        forma de cruz, controles con clic o toque, y niveles de desafío para todos los
-                                        públicos. Perfecto para jugar en el navegador, sin instalaciones.</p>
-                                    <p>Instrucciones rápidas:</p>
-                                    <ul>
-                                        <li>Haz clic/toca una clavija para seleccionarla.</li>
-                                        <li>Haz clic/toca el hueco donde quieres saltarla (sólo saltos ortogonales de
-                                            una ficha sobre otra).</li>
-                                        <li>La clavija saltada se elimina.</li>
-                                        <li>Objetivo: quedar con 1 sola clavija — ¡mejor si es en el centro!</li>
-                                    </ul>
-                                </div>
-                                <div class="descripcion-div">
-                                    <div class="imagen-descripcion">
-                                        <img src="./img/juego/Image-descripcion.png"
-                                            alt="imagen mas chica de Peg Solitaire" srcset="">
-                                    </div>
-                                    <div class="compartir-row">
-                                        <!-- <img src="./img/juego/btn-share.png" alt="boton compartir" class="btn-compartir-img"> -->
-                                        <button class="btn-compartir btn-compartir-img btn btn-expand-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white"
-                                                viewBox="0 0 24 24">
-                                                <path
-                                                    d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.02-4.11A2.99 2.99 0 0018 7.91a3 3 0 10-3-3c0 .24.04.47.09.7l-7.02 4.11A2.99 2.99 0 006 9a3 3 0 100 6c1.19 0 2.22-.66 2.73-1.63l7.14 4.18c-.05.21-.08.43-.08.65a3 3 0 103-3z" />
-                                            </svg>
-                                            Compartir
-                                        </button>
+                        <div class="body-juego">
+
+                            <!-- MAIN MENU -->
+                            <div id="juego" class="screen active">
+                                <div class="contenedor-juego">
+                                    <h1 class="title">BLOCKA</h1>
+                                    <p class="subtitle">Gira las piezas para reconstruir la imagen</p>
+                                    <div class="menu-buttons">
+                                        <button class="botones btn-primary" onclick="startGame()">Comenzar</button>
+                                        <button class="botones btn-instrucciones"
+                                            onclick="showInstructions()">Instrucciones</button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="carrousel-container">
-                                <button class="carrousel-btn prev">&#10094;</button>
-                                <div class="carrousel-img" id="carrousel">
-                                    <img src="./img/Video_juego_1.png" alt="Muestra 1" class="carrousel-img-item clickeable">
-                                    <img src="./img/Video_juego_2.png" alt="Muestra 2" class="carrousel-img-item clickeable">
-                                    <img src="./img/Video_juego_3.png" alt="Muestra 3" class="carrousel-img-item clickeable">
-                                </div>
-                                <button class="carrousel-btn next">&#10095;</button>
                             </div>
 
+                            <!-- INSTRUCCIONES -->
+
+                            <div id="instructions" class="screen">
+                                <div class="contenedor-juego">
+                                    <h2 class="title">Instrucciones</h2>
+                                    <div class="instructions-content">
+                                        <div class="instruction-item">
+                                            <h3>🎯Objetivo</h3>
+                                            <p>Reconstruye la imagen girando las piezas hasta que todas estén en su
+                                                posición correcta.</p>
+                                        </div>
+                                        <div class="instruction-item">
+                                            <h3>🎮Controles</h3>
+                                            <p><strong>Click Izquierdo:</strong> Gira la pieza 90° a la izquierda</p>
+                                            <p><strong>Click Derecho:</strong> Gira la pieza 90° a la derecha</p>
+                                        </div>
+                                        <div class="instruction-item">
+                                            <h3>📊Niveles</h3>
+                                            <p>Cada nivel aplica un filtro diferente a la imagen. Completa todos los
+                                                niveles para ganar.</p>
+                                        </div>
+                                        <div class="instruction-item">
+                                            <h3>💡Ayudita</h3>
+                                            <p>Usa el botón "Ayudita" para colocar una pieza correctamente, pero añadirá
+                                                5 segundos al tiempo.</p>
+                                        </div>
+                                    </div>
+                                    <button class="botones btn-instrucciones" onclick="showMainMenu()">Volver</button>
+                                </div>
+                            </div>
+
+                            <!-- GAME SCREEN -->
+
+                            <div id="game-screen" class="screen">
+                                <div class="contenedor-juego">
+                                    <div class="game-header">
+                                        <div class="game-info">
+                                            <div class="info-item">
+                                                <span class="label">Nivel:</span>
+                                                <span id="current-level" class="value">1</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="label">Tiempo:</span>
+                                                <span id="timer" class="value">00:00</span>
+                                            </div>
+                                        </div>
+                                        <button class="botones btn-help" onclick="useHelp()">Ayudita (+5s)</button>
+                                    </div>
+
+                                    <!-- PREVIEW CANVAS -->
+
+                                    <div id="preview-container" class="preview-container">
+                                        <canvas id="preview-canvas"></canvas>
+                                        <div class="preview-overlay">
+                                            <p>Memoriza la imagen...</p>
+                                            <div class="countdown" id="countdown">3</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- GAME CANVAS -->
+
+                                    <canvas id="game-canvas"></canvas>
+
+                                    <div class="game-footer">
+                                        <button class="botones btn-secondary" onclick="showMainMenu()">Menú
+                                            Principal</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- VICTORY SCREEN -->
+
+                            <div id="victory-screen" class="screen">
+                                <div class="contenedor-juego">
+                                    <h2 class="title">¡Nivel Completado!</h2>
+                                    <div class="victory-content">
+                                        <p class="victory-time">Tiempo: <span id="final-time">00:00</span></p>
+                                        <canvas id="victory-canvas"></canvas>
+                                    </div>
+                                    <div class="menu-buttons">
+                                        <button class="botones btn-primary" onclick="nextLevel()">Siguiente
+                                            Nivel</button>
+                                        <button class="botones btn-secondary" onclick="showMainMenu()">Menú
+                                            Principal</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- GAME COMPLETE SCREEN -->
+
+                            <div id="complete-screen" class="screen">
+                                <div class="contenedor-juego">
+                                    <h2 class="title">¡Juego Completado!</h2>
+                                    <div class="complete-content">
+                                        <p>Has completado todos los niveles</p>
+                                        <div id="level-times"></div>
+                                    </div>
+                                    <button class="botones btn-primary" onclick="showMainMenu()">Menú Principal</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 </section>
             </main>
+
+            <div class="game-descripcion">
+                <h4>Blocka: Armando Pokemones</h4>
+                <div class="descripcion-juego-imagen">
+                    <div class="descripcion-juego">
+                        <h5>¿Qué es Blocka?</h5>
+                        <p>Blocka es un relajante y desafiante rompecabezas visual donde tu misión es reconstruir una
+                            imagen girando las piezas hasta que todas encajen perfectamente. Ideal para quienes
+                            disfrutan de los juegos de lógica y observación, con niveles que aumentan la dificultad y
+                            añaden un toque artístico.</p>
+
+                            <p>Objetivo:
+                            Gira las piezas para que todas queden en la orientación correcta y revelen la imagen
+                            completa em el menor tiempo posible.</p>
+
+                        <h5>Instrucciones rápidas:</h5>
+                        <ul>
+                            <li>Click Izquierdo: Gira la pieza 90° a la izquierda</li>
+                            <li>Click Derecho: Gira la pieza 90° a la derecha</li>
+                            <li>Cada nivel aplica un filtro diferente a la imagen. Completa todos los niveles para
+                                ganar.</li>
+                            <li>Usa el botón "Ayudita" para colocar una pieza correctamente, pero añadirá 5 segundos al
+                                tiempo.
+                            </li>
+                        </ul>
+                    </div>
+                   <div class="descripcion-div">
+                        <div class="imagen-descripcion">
+                            <img src="./img/bloka_desc.png" alt="imagen mas chica de Bloka"
+                                srcset="">
+                        </div>
+                        <div class="compartir-row">
+                            <!-- <img src="./img/juego/btn-share.png" alt="boton compartir" class="btn-compartir-img"> -->
+                            <button class="btn-compartir btn-compartir-img btn btn-expand-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.02-4.11A2.99 2.99 0 0018 7.91a3 3 0 10-3-3c0 .24.04.47.09.7l-7.02 4.11A2.99 2.99 0 006 9a3 3 0 100 6c1.19 0 2.22-.66 2.73-1.63l7.14 4.18c-.05.21-.08.43-.08.65a3 3 0 103-3z" />
+                                </svg>
+                                Compartir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carrousel-container">
+                    <button class="carrousel-btn prev">&#10094;</button>
+                    <div class="carrousel-img" id="carrousel">
+                        <img src="./img/opcionesjuego/pokemon.webp" alt="Muestra 1" class="carrousel-img-item clickeable">
+                        <img src="./img/opcionesjuego/pikachu.jpg" alt="Muestra 2" class="carrousel-img-item clickeable">
+                        <img src="./img/opcionesjuego/iniciales.jpg" alt="Muestra 3" class="carrousel-img-item clickeable">
+                    </div>
+                    <button class="carrousel-btn next">&#10095;</button>
+                </div>
+
+            </div>
 
             <!-- MODAL COMPARTIR -->
             <div id="modalCompartir" class="modal-compartir">
@@ -192,6 +318,8 @@
                             <span>▶</span></button>
                     </div>
                 </form>
+
+
                 <div class="comment-box">
                     <div class="comment-user">
                         <img src="./img/juego/icon-comentarios-user.png" alt="User" class="comment-user-img clickeable">
@@ -239,17 +367,17 @@
         </div>
         <aside class="game-sidebar">
             <ul class="sidebar-games">
-                <li><img class = "clickeable" src="./img/cards/Cars.png" alt="Game 1"></li>
-                <li><img class = "clickeable" src="./img/cards/Words.png" alt="Game 2"></li>
-                <li><img class = "clickeable" src="./img/cards/Redball.png" alt="Game 3"></li>
-                <li><img class = "clickeable" src="./img/cards/Merge.png" alt="Game 4"></li>
-                <li><img class = "clickeable" src="./img/cards/Minicraft.png" alt="Game 5"></li>
-                <li><img class = "clickeable" src="./img/cards/Deluxe.png" alt="Game 6"></li>
-                <li><img class = "clickeable" src="./img/cards/Motos.png" alt="Game 7"></li>
-                <li><img class = "clickeable" src="./img/cards/plantas.png" alt="Game 8"></li>
-                <li><img class = "clickeable" src="./img/cards/Counter.jpg" alt="Game 8"></li>
-                <li><img class = "clickeable" src="./img/cards/Words.png" alt="Game 8"></li>
-                <li><img class = "clickeable" src="./img/cards/Aguafuego.png" alt="Game 8"></li>
+                <li><img class="clickeable" src="./img/cards/Cars.png" alt="Game 1"></li>
+                <li><img class="clickeable" src="./img/cards/Words.png" alt="Game 2"></li>
+                <li><img class="clickeable" src="./img/cards/Redball.png" alt="Game 3"></li>
+                <li><img class="clickeable" src="./img/cards/Merge.png" alt="Game 4"></li>
+                <li><img class="clickeable" src="./img/cards/Minicraft.png" alt="Game 5"></li>
+                <li><img class="clickeable" src="./img/cards/Deluxe.png" alt="Game 6"></li>
+                <li><img class="clickeable" src="./img/cards/Motos.png" alt="Game 7"></li>
+                <li><img class="clickeable" src="./img/cards/plantas.png" alt="Game 8"></li>
+                <li><img class="clickeable" src="./img/cards/Counter.jpg" alt="Game 8"></li>
+                <li><img class="clickeable" src="./img/cards/Words.png" alt="Game 8"></li>
+                <li><img class="clickeable" src="./img/cards/Aguafuego.png" alt="Game 8"></li>
             </ul>
         </aside>
     </div>
@@ -325,6 +453,7 @@
     <script src="./js/sidebar.js"></script>
     <script src="./js/carrusel.js"></script>
     <script src="./js/recargar.js"></script>
+    <script src="./js/blocka.js"></script>
 
 </body>
 

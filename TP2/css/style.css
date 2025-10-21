@@ -107,6 +107,9 @@ label{
     display: flex;
     align-items: center;
     flex-direction: column;
+    font-size: 14px;
+    font-family: "Outfit", sans-serif;
+    font-weight: normal;
 }
 .logo{
     display: inline-flex;
@@ -179,6 +182,7 @@ a {
 .olvide-contra{
     color: #26BBFF;
     text-decoration: underline;
+    cursor: pointer;
 }
 .btn-ini{
     display: flex;
@@ -311,6 +315,7 @@ a {
     font-family: "Outfit", sans-serif;
     font-weight: 400;
     text-decoration: none;
+    cursor: pointer;
 }
 .btn-registrarse-ya-cuenta{
     display: inline-flex;

@@ -1,0 +1,399 @@
+body{
+    background-color: #101014;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+h1{
+    color: #B9B9B9;
+    font-size: 61.04px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+}
+h2{
+    font-size: 48px;
+    font-family: "Outfit", sans-serif;
+    font-weight: bolder;
+    color: white;
+    margin: 5px;
+}
+
+h4{
+    font-size: 32px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+}
+.h6{/* P SEMI BOLD*/
+    font-size: 18px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+}
+p{
+    font-size: 16px;
+    font-family: "Outfit", sans-serif;
+    font-weight: normal;
+    
+}
+label{
+    font-size: 14px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    color: #A7A7B9;
+
+}   
+.p-14px{
+    font-size: 14px;
+    font-family: "Outfit", sans-serif;
+    font-weight: normal;
+}
+.conteiner-login-full{
+    width: 838px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+/* login*/
+.login-full{
+    width: 1407px;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    background-color: #56566C;
+    border-radius: 5%;
+    margin: 5%;
+}
+
+.conteiner-login{
+    width: 838px;
+    height: 406px;
+    background-color: #333340;
+    border-radius: 5%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.conteiner-register{
+    width: 838px;
+    height: 406px;
+    background-color: #333340;
+    border-radius: 5%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.conteiner-register-section{
+    width: 838px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.register-full{
+    width: 80%;
+    height: 864px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    background-color: #56566C;
+    border-radius: 5%;
+    margin-top: 1.7rem;
+}
+.container-btn{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 14px;
+    font-family: "Outfit", sans-serif;
+    font-weight: normal;
+}
+.logo{
+    display: inline-flex;
+    align-items: center;
+}
+.btn-gf{
+    display: flex;
+    width: 248px;
+    height: 23.5px;
+    align-items: center;
+    justify-content: center;
+    background-color: #A7A7B9;
+    border-radius: 14px;
+    border: none;
+    padding: 0%;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    color: black;
+}
+.btn-gf-text {
+    flex: 1;
+    text-align: center;
+    margin-right: 1rem;
+    display: inline-block;
+}
+.btn-gf img{
+    margin: 0%;
+}
+
+
+
+a {
+    color: #5CCCFF;
+    cursor: pointer;
+    
+}
+.conteiner-form{
+    width: 277px;
+    align-items: center;
+
+}
+.form-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.nombre-label{
+    margin: 0%;
+}
+.span-form{
+    display: flex;
+    color: #A7A7B9;
+    font-size: 14px;
+    font-family: "Outfit", sans-serif;
+    font-weight: normal;
+}
+.input-form{
+    width: 277px;
+    height: 25px;
+    border-radius: 5px;
+    border-color: black;
+    background-color: rgba(0, 0, 0, 0.205);
+    background-color: #D3D3DC ;
+}
+.olvide-contra{
+    color: #26BBFF;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.btn-ini{
+    display: flex;
+    width: 248px;
+    height: 23.5px;
+    align-items: center;
+    justify-content: center;
+    background-color: #41C3FF;
+    color: black;
+    border-radius: 14px;
+    border: none;
+    padding: 0%;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: "Outfit", sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+}
+.no-cuenta{
+    color: white;
+}
+
+
+
+/* register */
+.conteiner-register{
+    width: 838px;
+    height: 680px;
+    background-color: #333340;
+    border-radius: 5%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+.password-conditions {
+    display: flex;
+    width: 208px;
+    height: 72px;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.password-conditions p {
+
+    margin-left: 20px;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    margin-right: 0%;
+    font-size: 12px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+}
+
+.password-condition--valid {
+    color: #307E3E; /* green */
+}
+
+.password-condition--invalid {
+    color: #FF3B30; /* red */
+}
+
+.password-condition__icon {
+    font-size: 24px;
+    margin-right: 8px;
+}
+.checkbox-terms {
+    display: flex;
+    align-items: center;
+    background: none;
+    border-radius: 0;
+    margin-top: 0;
+    margin-bottom: 5px;
+    width: 300px;
+    height: auto;
+    padding: 0;
+}
+
+.checkbox-terms input[type="checkbox"] {
+    width: 20px;
+    height: 18px;
+    accent-color: #fff;
+    border-radius: 5px;
+    background: #fff;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox-terms input[type="checkbox"]:checked {
+    background: #41C3FF;
+    border-color: #41C3FF;
+}
+
+.checkbox-terms label {
+    color: #5CCCFF;
+    font-size: 12px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    margin: 0%;
+}
+
+
+.input-form-age{
+    display: flex;
+    width: 50px;
+    height: 25px;
+    border-radius: 5px;
+    border-color: black;
+    background-color: rgba(0, 0, 0, 0.205);
+    background-color: #D3D3DC ;
+}
+.captcha{
+    width: 250px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+}
+.ya-tienes-cuenta{
+    width: 200px;
+    display: inline-flex;
+    color: #A7A7B9;
+    font-size: 14px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-registrarse-ya-cuenta{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.registrarse-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 251px;
+    height: 33px;
+    background-color: #41C3FF;
+    color: black;
+    border-radius: 14px;
+    border: none;
+    font-size: 18px;
+    font-family: "Outfit", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.registrarse-btn:disabled {
+    background-color: #747A83;
+    cursor: not-allowed;
+}
+.registrarse-btn:hover {
+    background-color: #5CCCFF;
+}
+.container-login-register{
+   display: none;
+}
+
+#loading-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Estilo para el porcentaje/mensaje de éxito */
+#loading-porcentage {
+    font-size: 40px;
+    color: #237C75;
+}
+
+/* Mensaje de éxito: oculto por defecto */
+#successMessage {
+    display: none;
+    color: #237C75; /* Color verde personalizado */
+    font-size: 40px;
+    text-align: center;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 8px solid rgba(255, 255, 255, 0.2);
+    border-top: 8px solid #747A83;;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

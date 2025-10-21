@@ -36,7 +36,46 @@ function moverCarruselDestacado(direccion, carruselId) {
       card.style.animation = `inclinacion 0.6s ease-in-out`;  //Aplica la animación
     });
 }
+/*
+ const carrousel = document.getElementById("carrousel");
+ const prevBtn = document.querySelector(".carrousel-btn.prev");
+ const nextBtn = document.querySelector(".carrousel-btn.next");
 
+ let index = 0;
+
+ function showSlide() {
+     if (!carrousel) return; // si no existe el carrusel, salir
+     const width = carrousel.clientWidth;
+     carrousel.style.transform = `translateX(${-index * width}px)`;
+ }
+
+//  Solo agregar eventos si existen los elementos
+ if (nextBtn && carrousel) {
+     nextBtn.addEventListener("click", () => {
+         if (index < carrousel.children.length - 1) {
+             index++;
+         } else {
+             index = 0; // vuelve al inicio
+         }
+         showSlide();
+     });
+ }
+
+ if (prevBtn && carrousel) {
+     prevBtn.addEventListener("click", () => {
+         if (index > 0) {
+             index--;
+         } else {
+             index = carrousel.children.length - 1; // vuelve al final
+         }
+         showSlide();
+     });
+ }
+
+ if (carrousel) {
+     window.addEventListener("resize", showSlide);
+ }
+*/
 
 const carrousel = document.getElementById("carrousel");
 const images = carrousel ? carrousel.querySelectorAll('.carrousel-img-item') : [];

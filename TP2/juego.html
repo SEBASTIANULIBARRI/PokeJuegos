@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1440, initial-scale=1.0">
-    <title>PokeJuegos - Peg Solitaire: Pikachu vs Charmander</title>
+    <title>PokeJuegos - Blocka: Armando Pokemones</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/juego.css">
+    <link rel="icon" type="image/png" href="img/logo-reg-ini.png">
 </head>
 
 <body>
@@ -44,12 +45,16 @@
             <img src="img/icon-home-logo.png" alt="Logo" class="logo-header clickeable">
             <a href="./home.html" class="title-header">POKEJUEGOS</a>
         </div>
+
         <div class="header-center">
             <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Buscar...">
-                <img src="img/icon-search.png" class="icon-search-in-input">
+                <input type="text" class="search-bar" id="searchInput" placeholder="Buscar...">
+                <button type="button" class="icon-search-button" onclick="clearSearch()">
+                    <img src="img/icon-search.png" class="icon-search-in-input">
+                </button>
             </div>
         </div>
+
         <div class="header-right">
             <div class="icon-cart clickeable"><img src="img/icon-cart.png"></div>
             <div class="icon-profile" id="profileMenuBtn">
@@ -71,8 +76,8 @@
         <div class="main-content-comments">
             <main class="main-content">
                 <nav class="breadcrumb">
-                    <a href="./home.html">Home</a> <span class="breadcrumb-sep">></span> <span>Peg Solitaire: Pikachu vs
-                        Charmander</span>
+                    <a href="./home.html">Home</a> <span class="breadcrumb-sep">></span> <span> Blocka: Armando
+                        Pokemones</span>
                 </nav>
                 <section class="game-section">
                     <div class="game-main">
@@ -150,7 +155,7 @@
                                         </div>
                                     </div>
 
-                                   <!-- GAME CANVAS -->
+                                    <!-- GAME CANVAS -->
 
                                     <canvas id="game-canvas"></canvas>
 
@@ -172,7 +177,8 @@
                                         <canvas id="victory-canvas"></canvas>
                                     </div>
                                     <div class="menu-buttons">
-                                        <button class="botones btn-primary" onclick="nextLevel()">Siguiente Nivel</button>
+                                        <button class="botones btn-primary" onclick="nextLevel()">Siguiente
+                                            Nivel</button>
                                         <button class="botones btn-secondary" onclick="showMainMenu()">Menú
                                             Principal</button>
                                     </div>
@@ -180,39 +186,48 @@
                             </div>
 
 
-                             <!-- GAME COMPLETE SCREEN -->
+                            <!-- GAME COMPLETE SCREEN -->
 
-                                <div id="complete-screen" class="screen">
-                                    <div class="contenedor-juego">
-                                        <h2 class="title">¡Juego Completado!</h2>
-                                        <div class="complete-content">
-                                            <p>Has completado todos los niveles</p>
-                                            <div id="level-times"></div>
-                                        </div>
-                                        <button class="botones btn-primary" onclick="showMainMenu()">Menú Principal</button>
+                            <div id="complete-screen" class="screen">
+                                <div class="contenedor-juego">
+                                    <h2 class="title">¡Juego Completado!</h2>
+                                    <div class="complete-content">
+                                        <p>Has completado todos los niveles</p>
+                                        <div id="level-times"></div>
                                     </div>
+                                    <button class="botones btn-primary" onclick="showMainMenu()">Menú Principal</button>
                                 </div>
+                            </div>
                         </div>
                 </section>
             </main>
 
             <div class="game-descripcion">
-                <h4>Bloka: Mundo Pokemon</h4>
+                <h4>Blocka: Armando Pokemones</h4>
                 <div class="descripcion-juego-imagen">
                     <div class="descripcion-juego">
-                        <p class="descripcion-title">¿Qué es BLOCKA?</p>
-                        <p>BLOCKA es un puzzle de rotación para un jugador. La imagen se divide en 4 piezas que están rotadas aleatoriamente. Tu objetivo es rotar cada pieza hasta reconstruir la imagen completa. Cada nivel presenta un filtro diferente (escala de grises, brillo reducido, colores negativos) que se elimina al completar el puzzle. Perfecto para jugar en el navegador, sin instalaciones.</p>
-                        
-                        <p class="descripcion-title">Instrucciones rápidas:</p>
-                        <ul class="instrucciones-lista">
-                            <li>Haz <strong>click izquierdo</strong> sobre una pieza para rotarla 90° a la izquierda.</li>
-                            <li>Haz <strong>click derecho</strong> sobre una pieza para rotarla 90° a la derecha.</li>
-                            <li>Las piezas correctamente posicionadas se marcan con un borde verde.</li>
-                            <li>Usa el botón <strong>"Ayudita"</strong> para colocar una pieza correctamente (añade 5 segundos).</li>
-                            <li><strong>Objetivo:</strong> reconstruir la imagen completa en el menor tiempo posible.</li>
+                        <h5>¿Qué es Blocka?</h5>
+                        <p>Blocka es un relajante y desafiante rompecabezas visual donde tu misión es reconstruir una
+                            imagen girando las piezas hasta que todas encajen perfectamente. Ideal para quienes
+                            disfrutan de los juegos de lógica y observación, con niveles que aumentan la dificultad y
+                            añaden un toque artístico.</p>
+
+                            <p>Objetivo:
+                            Gira las piezas para que todas queden en la orientación correcta y revelen la imagen
+                            completa em el menor tiempo posible.</p>
+
+                        <h5>Instrucciones rápidas:</h5>
+                        <ul>
+                            <li>Click Izquierdo: Gira la pieza 90° a la izquierda</li>
+                            <li>Click Derecho: Gira la pieza 90° a la derecha</li>
+                            <li>Cada nivel aplica un filtro diferente a la imagen. Completa todos los niveles para
+                                ganar.</li>
+                            <li>Usa el botón "Ayudita" para colocar una pieza correctamente, pero añadirá 5 segundos al
+                                tiempo.
+                            </li>
                         </ul>
                     </div>
-                    <div class="descripcion-div">
+                   <div class="descripcion-div">
                         <div class="imagen-descripcion">
                             <img src="./img/bloka_desc.png" alt="imagen mas chica de Bloka"
                                 srcset="">
@@ -266,7 +281,7 @@
                                 src="img/fat-footer/icon-tiktok.png"><span>TikTok</span></a>
                     </div>
                     <div class="modal-compartir-link">
-                        Link de la pagina: <a href="./juego.html" target="_blank">www.pokejuegos.com/bloka</a>
+                        Link de la pagina: <a href="./home.html" target="_blank">www.pokejuegos.com/peg-solitaire</a>
                     </div>
                 </div>
             </div>
@@ -303,6 +318,8 @@
                             <span>▶</span></button>
                     </div>
                 </form>
+
+
                 <div class="comment-box">
                     <div class="comment-user">
                         <img src="./img/juego/icon-comentarios-user.png" alt="User" class="comment-user-img clickeable">

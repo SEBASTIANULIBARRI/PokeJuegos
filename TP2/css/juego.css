@@ -412,6 +412,7 @@
     border: none;
     background: rgba(211, 211, 220, 0.753);
     color: #fff;
+    width: 100%;
 }
 
 
@@ -425,28 +426,36 @@
 /* === SEARCH INPUT ICON === */
 .search-container {
     position: relative;
-    width: 100%;
-    max-width: 31.25rem;
-    display: flex;
-    align-items: center;
+    display: inline-block;
 }
 
 .search-bar {
-    width: 100%;
-    padding-right: 2.5rem;
+    padding-right: 40px; /* Espacio para el botón */
 }
 
-.icon-search-in-input {
+.icon-search-button {
     position: absolute;
-    right: 1rem;
+    left: 18.5rem;
     top: 50%;
     transform: translateY(-50%);
-    width: 1.5rem;
-    height: 1.5rem;
-    pointer-events: none;
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-search-button:hover {
     opacity: 0.7;
 }
 
+.icon-search-in-input {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
 
 /* Flex para main-content y comments juntos */
 .main-content-comments {
@@ -494,10 +503,17 @@ h2{
     color: white;
     margin: 5px;
 }
-
+h3{
+    font-size: 40px;
+    font-weight: 600;
+}
 
 h4{
     font-size: 32px;
+    font-weight: 600;
+}
+h5{
+    font-size: 24px;
     font-weight: 600;
 }
 
@@ -539,6 +555,7 @@ label{
 
 .imagen-descripcion img {
     border-radius: 12px;
+    width: 338px
 }
 
 
@@ -918,8 +935,11 @@ label{
     flex-direction: row;
     align-items: flex-start;
     margin-bottom: 18px;
+    margin-left: 2.5rem;
 }
-
+.descripcion-juego-imagen h5 , .game-descripcion h4{
+    margin: 1rem;
+}
 
 .game-descripcion {
     background: #29293d;
@@ -939,12 +959,13 @@ label{
     color: #B9B9B9;
     font-size: 1.1rem;
     margin-bottom: 12px;
+    margin-left: 2.5rem;
 }
 
 .descripcion-juego ul {
     color: #B9B9B9;
     margin-bottom: 18px;
-    padding-left: 20px;
+    padding-left: 4rem;
 }
 
 .imagen-descripcion{

@@ -42,10 +42,6 @@ window.addEventListener("DOMContentLoaded", () => {
   victoryCanvas = document.getElementById("victory-canvas")
   victoryCtx = victoryCanvas.getContext("2d")
 
-  // SET TAMAÑO CANVAS
-  gameCanvas.width = 600
-  gameCanvas.height = 600
-
   // evita el menu principal con el click derecho
   gameCanvas.addEventListener("contextmenu", (e) => e.preventDefault())
 

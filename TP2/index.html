@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">   
-    <link rel="icon" type="image/png" href="img/logo-reg-ini.png">
+
     <title>PokeJuegos</title>
 </head>
 <body>
@@ -40,17 +40,17 @@
                     <img class="logo-separador-login" src="./img/linea-separador.png" alt="Logo Pokebola separador">
                 </div>
                 <div class="conteiner-form">
-                    <form class="form-login" id="loginForm" action="home.html" method="get">
+                    <form class="form-login" action="">
                         <div id="nombre-label">
                             <span class="span-form">Nombre De Usuario</span>
-                            <input type="text" class="input-form" name="nombre" required> 
+                            <input type="text" class="input-form" name="nombre"> 
                         </div>
                         <div>
                             <span class="span-form" >Contraseña</span>
-                            <input type="password" class="input-form" name="contra" required>
+                            <input type="password" class="input-form" name="contra">
                         </div>
                         <span class="olvide-contra" >Olvide mi contraseña</span>
-                        <button type="submit" class="btn-ini" id="btn-login">Iniciar Sesion</button>
+                        <a type="button" class="btn-ini" id="btn-login" href="home.html">Iniciar Sesion</a>
                         <div class="registrarse-no-cuenta">
                             <span class="no-cuenta">¿Aun no tienes cuenta?</span>
                             <a type="button" id="btn-registrarse-login" href="register.html">Registrarse</a>
@@ -59,6 +59,9 @@
                 </div>
             </div>
         </section>
-    </section>    
+    </section>
+
+    <script src="js/register-loading.js"></script>
+    
 </body>
 </html>   

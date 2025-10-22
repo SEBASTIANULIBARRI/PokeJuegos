@@ -172,7 +172,6 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     font-size: 1.125rem;
-    width: 100%;
     border: none;
     background: rgba(211, 211, 220, 0.753);
     color: #fff;
@@ -212,35 +211,24 @@ body {
 /* === SEARCH INPUT ICON === */
 .search-container {
     position: relative;
-    display: inline-block;
-}
-
-.search-bar {
-    padding-right: 40px; /* Espacio para el botón */
-}
-
-.icon-search-button {
-    position: absolute;
-    left: 18.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    padding: 4px;
-    cursor: pointer;
+    width: 100%;
+    max-width: 31.25rem;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
-
-.icon-search-button:hover {
-    opacity: 0.7;
+.search-bar {
+    width: 100%;
+    padding-right: 2.5rem;
 }
-
 .icon-search-in-input {
-    width: 20px;
-    height: 20px;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
     pointer-events: none;
+    opacity: 0.7;
 }
 
 
@@ -389,10 +377,12 @@ body {
     cursor: pointer;
     z-index: 2; /* Asegura que esté por encima del contenido */
 }
-.destacado-cards .flecha1, .destacado-cards .flecha2 {
-    margin-top: 5rem; /* Centra verticalmente */
+.destacado-cards .flecha1 {
+    top: 21%; /* Centra verticalmente */
 }
-
+.destacado-cards .flecha2 {
+    top: 41%; /* Centra verticalmente */
+}
 .flecha-derecha-destacado {
     right: 0;
 }
@@ -553,62 +543,7 @@ body {
 .flecha-izquierda img:hover, .flecha-derecha img:hover {
     transition: filter 0.3s ease; /* Suaviza la transición del brillo */
 }    
-  
-
-#loading-screen {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  color: white;
-  font-size: 24px;
-  text-align: center;
-}
-
-/* Estilo para el porcentaje/mensaje de éxito */
-#loading-porcentage {
-  font-size: 40px;
-  color: #237c75;
-}
-
-/* Mensaje de éxito: oculto por defecto */
-#successMessage {
-  display: none;
-  color: #237c75; /* Color verde personalizado */
-  font-size: 40px;
-  text-align: center;
-}
-
-.loading-content {
-  text-align: center;
-}
-
-.spinner {
-  width: 50px;
-  height: 50px;
-  border: 8px solid rgba(255, 255, 255, 0.2);
-
-  border-top: 8px solid #747a83;
-  ;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
+    
     
 /* === FAT FOOTER === */
 
@@ -741,9 +676,9 @@ body {
 
   /* BOTÓN 1: Relleno desde abajo */
   .btn-fill-bottom {
-    background: color #ffffff6b;
-    color: rgb(0, 0, 0);
-    border: 5px solid rgb(255, 255, 255);
+    background: transparent;
+    color: white;
+    border: 3px solid white;
     z-index: 1;
   }
 
@@ -836,9 +771,6 @@ body {
     text-align: center;
     opacity: 0.8;
   }
-
-
-  
 
 /* --- RESPONSIVE DESIGN --- */
 @media (max-width: 1200px) {
@@ -980,17 +912,10 @@ body {
   }
   .pokefat-footer {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
     padding: 1rem 0.5rem;
   }
-  .footer-juegos-bloque h4 {
-    margin-top: 0.25rem;
-    margin-bottom: 0.625rem;
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: rgb(255, 255, 255);
-}
   .fat-footer-col {
     min-width: 0;
     padding: 0.5rem 0;

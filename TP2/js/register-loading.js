@@ -1,5 +1,7 @@
 // Función para simular la carga y redirección
-function startLoadingAndRedirect() {
+function simularCargaYRedireccionar(event) {
+    event.preventDefault(); // Evitar la redirección inmediata del enlace
+  
     document.getElementById('loading-screen').style.display = 'flex';
 
     let porcentaje = 0;
@@ -12,21 +14,9 @@ function startLoadingAndRedirect() {
         window.location.href = 'home.html';
       }
     }, 100);
-}
-
-const loginForm = document.getElementById('loginForm');
-const googleBtn = document.getElementById('google');
-const facebookBtn = document.getElementById('facebook');
-
-if (loginForm) {
-  loginForm.addEventListener('submit', function(e) {
-    // Allow browser validation to run
-    if (!loginForm.checkValidity()) return;
-
-    e.preventDefault();
-    startLoadingAndRedirect();
-  });
-}
-
-if (googleBtn) googleBtn.addEventListener('click', function(e){ e.preventDefault(); startLoadingAndRedirect(); });
-if (facebookBtn) facebookBtn.addEventListener('click', function(e){ e.preventDefault(); startLoadingAndRedirect(); });
+  }
+  
+  // Event listeners para los botones
+  document.getElementById('btn-login').addEventListener('click', simularCargaYRedireccionar);
+  document.getElementById('google').addEventListener('click', simularCargaYRedireccionar);
+  document.getElementById('facebook').addEventListener('click', simularCargaYRedireccionar);

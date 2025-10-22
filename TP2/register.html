@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="img/logo-reg-ini.png">
     <title>PokeJuegos</title>
 </head>
 <body>
@@ -34,15 +33,15 @@
                     <img class="logo-separador-login" src="./img/linea-separador.png" alt="Logo Pokebola separador">
                 </div>
                 <div class="conteiner-form">
-                    <form id="registerForm" action="./home.html" method="get">
+                    <form>
                         <label>Nombre De Usuario</label>
-                         <input type="text" class="input-form" name="nombre" required> 
+                         <input type="text" class="input-form" name="nombre"> 
 
                         <label>Nickname (Opcional)</label>
                          <input type="text" class="input-form" name="nickname"> 
 
                         <label>Contraseña</label>
-                        <input type="password" class="input-form" name="contraseña" required>
+                        <input type="password" class="input-form" name="contraseña">
                         <div class="password-conditions">
                             <p class="password-condition--invalid">❌ 8 caracteres como mínimo</p>
                             <p class="password-condition--valid">✅ al menos un número</p>
@@ -50,31 +49,45 @@
                         </div>
 
                         <label>Repetir Contraseña</label>
-                       <input type="password" class="input-form" name="repetir-contraseña" required>
+                       <input type="password" class="input-form" name="repetir-contraseña">
 
                         <label>Edad</label>
-                        <input type="number" class="input-form-age" name="edad" min="1" required>
+                        <input type="number" class="input-form-age" name="edad" min="1">
 
                         <label>Mail</label>
-                        <input type="email" class="input-form" name="mail" required>
+                        <input type="email" class="input-form" name="mail">
 
                         <div class="captcha">
                             <img src="./img/captcha-robot.png" alt="Captcha" srcset="">
                         </div>
 
                         <div class="checkbox-terms">
-                            <input type="checkbox" id="termsCheckbox" required>
+                            <input type="checkbox" id="termsCheckbox">
                             <label>Acepto los <a href="#">términos y condiciones</a></label>
                         </div>
                         <div class="btn-registrarse-ya-cuenta">
-                            <a class="ya-tienes-cuenta" href="./index.html">Ya tienes cuenta? Inicia sesión</a>
-                            <button type="submit" class="registrarse-btn" id="registrarse-btn" >Registrarse</button>
+                            <a class="ya-tienes-cuenta" href="./home.html">Ya tienes cuenta? Inicia sesión</a>
+                            <button type="button" class="registrarse-btn" id="registrarse-btn" disabled>Registrarse</button>
                         </div>
                     </form>
                 </div>
             </div>
         </section>
     </section>
+
+    <!-- Pantalla de carga -->
+        <div id="loading-screen" class="loading-screen hidden">
+            <div class="spinner"></div>
+            <div class="loading-content">
+                <span id="loading-porcentage">0%</span>
+            </div>
+        </div>
+
+        <!-- Mensaje de éxito -->
+        <div id="successMessage" class="success-message hidden">Te Registraste correctamente!</div>
+    </section>  
+
+    <script src="./js/register-succesfull.js"></script> 
 </body>
 
 

@@ -562,7 +562,7 @@ label{
 .breadcrumb {
     color: #B9B9B9;
     font-size: 1rem;
-    margin: 24px 0 16px 0;
+    margin: 10px 0 12px 0;
     padding-left: 24px;
 }
 
@@ -759,7 +759,7 @@ label{
 }
 
 .game-footer {
-  margin-top: 2rem;
+  margin: 0.325rem;
   text-align: center;
 }
 
@@ -774,8 +774,6 @@ label{
 .screen {
   display: none;
   width: 100%;
-  min-height: 100vh;
-  padding: 2rem;
   align-items: center;
   justify-content: center;
 }
@@ -854,17 +852,16 @@ label{
   font-family: "Outfit", sans-serif;
   background: #101014;
   color: #ffffff;
-  min-height: 95vh;
+  min-height: 800px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   line-height: 1.6;
   border-radius: 18px;
   background-color: #333340;
   max-width: 1142px;
-  height: 700px;
   width: 100%;
-  margin-bottom: 8px;
+
 }
 
 
@@ -878,7 +875,8 @@ label{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-top: 0.265rem;
+  margin-bottom: 0.625rem;
   padding: 1.5rem;
   background: #101014;
   border: 1px solid #a0a0a0;
@@ -914,7 +912,6 @@ label{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    min-width: 0;
 }
 
 .img-juego {
@@ -1312,7 +1309,7 @@ label{
     flex-direction: column;
     align-items: center;
     padding: 0.75rem;
-    margin-top: 3.75rem;
+    margin-top: 2.625rem;
     position: relative;
     margin-right: 0.5rem;
     z-index: 5;

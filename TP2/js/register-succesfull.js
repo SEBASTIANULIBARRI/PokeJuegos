@@ -5,7 +5,6 @@ let successMessage = document.getElementById('successMessage');
 let loadingScreen = document.getElementById('loading-screen');
 let loadingPorcentage = document.getElementById('loading-porcentage');
 let spinner = document.querySelector('.spinner');
-const registerForm = document.getElementById('registerForm');
 
 // Mostrar/ocultar botón de registro dependiendo del checkbox
 checkbox.addEventListener('change', function () {
@@ -18,42 +17,28 @@ checkbox.addEventListener('change', function () {
     }
 });
 
-// Manejar submit del formulario para respetar 'required' y checkbox
-if (registerForm) {
-    registerForm.addEventListener('submit', function(event) {
-        // Si el formulario no es válido, dejar que el navegador muestre la validación
-        if (!registerForm.checkValidity()) {
-            return; // no prevenir, navegador mostrará mensajes
+// Manejar el clic en el botón de registro
+registerBtn.addEventListener('click', function(event) {
+    event.preventDefault();  // Prevenir comportamiento predeterminado del botón
+
+    // Mostrar la pantalla de carga cuando se haga clic
+    loadingScreen.style.display = 'flex';
+    
+    let porcentage = 0;
+    let loadingInterval = setInterval(function() {
+        porcentage += 7;
+        loadingPorcentage.textContent = porcentage + '%';
+
+        if (porcentage >= 100) {
+            clearInterval(loadingInterval);
+
+            // Reemplazar el porcentaje por el mensaje de éxito
+            loadingPorcentage.textContent = '¡Registro finalizado correctamente!';
+            spinner.style.display = 'none'; // Ocultar el spinner
+            // Mostrar el mensaje de éxito por 2 segundos y luego redirigir
+            setTimeout(function() {
+                window.location.href = 'index.html';  // Redirigir a index.html
+            }, 2000); // Mostrar el mensaje de éxito por 2 segundos
         }
-
-        // Comprobar checkbox de términos
-        if (!checkbox.checked) {
-            // mostrar indicación breve y evitar envío
-            event.preventDefault();
-            changeDiv.style.display = 'flex';
-            return;
-        }
-
-        // Si todo es válido, prevenir el envío real y mostrar pantalla de carga
-        event.preventDefault();
-        loadingScreen.style.display = 'flex';
-
-        let porcentage = 0;
-        let loadingInterval = setInterval(function() {
-            porcentage += 7;
-            loadingPorcentage.textContent = porcentage + '%';
-
-            if (porcentage >= 100) {
-                clearInterval(loadingInterval);
-
-                // Reemplazar el porcentaje por el mensaje de éxito
-                loadingPorcentage.textContent = '¡Registro finalizado correctamente!';
-                spinner.style.display = 'none'; // Ocultar el spinner
-                // Mostrar el mensaje de éxito por 2 segundos y luego redirigir
-                setTimeout(function() {
-                    window.location.href = 'home.html';  // Redirigir a home.html
-                }, 2000); // Mostrar el mensaje de éxito por 2 segundos
-            }
-        }, 100); // Incrementa el porcentaje cada 100ms
-    });
-}
+    }, 100); // Incrementa el porcentaje cada 100ms
+});

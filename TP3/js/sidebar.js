@@ -3,7 +3,7 @@
         var btnJugar = document.getElementById("btn-jugar");
         if (btnJugar) {
           btnJugar.addEventListener("click", function () {
-            window.location.href = "juego.html";
+            window.location.href = "pegSolitarie.html";
           });
         }
       });

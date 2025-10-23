@@ -101,38 +101,95 @@ function nextLevel() {
   }
 }
 //CARROUSEL 
-function startImageCarousel(imageArray, duration = 3000, interval = 300) {
-  // duration = total time of the carousel
-  // interval = time between image changes (slower = bigger number)
+function startImageCarousel(imageArray, totalDuration = 5000, startInterval = 150, endInterval = 900) {
   return new Promise((resolve) => {
-    const carouselCanvas = document.getElementById("game-canvas")
-    const ctx = carouselCanvas.getContext("2d")
+    const canvas = document.getElementById("game-canvas")
+    const ctx = canvas.getContext("2d")
     const canvasSize = CANVAS_SIZE
 
     let elapsed = 0
-    const carouselInterval = setInterval(() => {
-      // pick a random image
+    let currentInterval = startInterval
+    let finalIndex = Math.floor(Math.random() * imageArray.length) // ya definimos el ganador
+    let finalImage = null
+
+    function drawImage(img) {
+      ctx.clearRect(0, 0, canvasSize, canvasSize)
+      const size = Math.min(img.width, img.height)
+      const cropX = (img.width - size) / 2
+      const cropY = (img.height - size) / 2
+      ctx.drawImage(img, cropX, cropY, size, size, 0, 0, canvasSize, canvasSize)
+    }
+
+    function nextImage() {
       const index = Math.floor(Math.random() * imageArray.length)
       const img = new Image()
       img.crossOrigin = "anonymous"
       img.src = imageArray[index]
 
       img.onload = () => {
-        ctx.clearRect(0, 0, canvasSize, canvasSize)
-        const size = Math.min(img.width, img.height)
-        const cropX = (img.width - size) / 2
-        const cropY = (img.height - size) / 2
-        ctx.drawImage(img, cropX, cropY, size, size, 0, 0, canvasSize, canvasSize)
+        drawImage(img)
       }
 
-      elapsed += interval
-      if (elapsed >= duration) {
-        clearInterval(carouselInterval)
-        resolve() // finish carousel
+      elapsed += currentInterval
+      if (elapsed < totalDuration) {
+        const progress = elapsed / totalDuration
+        currentInterval = startInterval + (endInterval - startInterval) * progress
+        setTimeout(nextImage, currentInterval)
+      } else {
+        // Cargar y mostrar la imagen final elegida
+        const finalImg = new Image()
+        finalImg.crossOrigin = "anonymous"
+        finalImg.src = imageArray[finalIndex]
+
+        finalImg.onload = () => {
+          finalImage = finalImg
+          animateFinalImage(finalImg, ctx, canvasSize, () => {
+            resolve(finalIndex) // devolvemos el índice ganador
+          })
+        }
       }
-    }, interval)
+    }
+
+    nextImage()
   })
 }
+function animateFinalImage(img, ctx, canvasSize, resolve) {
+  const size = Math.min(img.width, img.height)
+  const cropX = (img.width - size) / 2
+  const cropY = (img.height - size) / 2
+
+  let scale = 1
+  const maxScale = 1.15
+  const steps = 20
+  const flashSteps = 6
+  let step = 0
+
+  function animate() {
+    ctx.clearRect(0, 0, canvasSize, canvasSize)
+
+    // Efecto de zoom suave
+    const drawSize = canvasSize * scale
+    const offset = (canvasSize - drawSize) / 2
+    ctx.drawImage(img, cropX, cropY, size, size, offset, offset, drawSize, drawSize)
+
+    // Flash intermitente al final
+    if (step > steps - flashSteps) {
+      ctx.fillStyle = `rgba(255, 255, 255, ${(step % 2) * 0.5})`
+      ctx.fillRect(0, 0, canvasSize, canvasSize)
+    }
+
+    if (step < steps) {
+      scale += (maxScale - 1) / steps
+      step++
+      requestAnimationFrame(animate)
+    } else {
+      resolve()
+    }
+  }
+
+  animate()
+}
+
 
 function loadLevel() {
   showScreen("game-screen")
@@ -145,12 +202,10 @@ function loadLevel() {
   document.getElementById("current-level").textContent = gameState.currentLevel
 
   // INICIAR CARRUSEL
-  startImageCarousel(imageBank, 2000, 100).then(() => {
-    // Una vez termina el carrusel, elegir la imagen final
-    const randomIndex = Math.floor(Math.random() * imageBank.length)
+  startImageCarousel(imageBank, 5000, 150, 900).then((finalIndex) => {
     const img = new Image()
     img.crossOrigin = "anonymous"
-    img.src = imageBank[randomIndex]
+    img.src = imageBank[finalIndex]
 
     img.onload = () => {
       gameState.currentImage = img

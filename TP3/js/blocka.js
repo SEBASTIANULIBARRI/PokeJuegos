@@ -61,6 +61,9 @@ window.addEventListener("DOMContentLoaded", () => {
   gameCanvas.addEventListener("contextmenu", handleRightClick)
 })
 
+
+
+
 // Funciones de navegación
 function showScreen(screenId) {
   document.querySelectorAll(".screen").forEach((screen) => {
@@ -82,6 +85,7 @@ function showInstructions() {
 }
 
 function startGame() {
+  
   resetGame()
   gameState.currentLevel = 1
   gameState.levelTimes = []
@@ -96,9 +100,72 @@ function nextLevel() {
     loadLevel()
   }
 }
+//CARROUSEL 
+function startImageCarousel(imageArray, duration = 3000, interval = 300) {
+  // duration = total time of the carousel
+  // interval = time between image changes (slower = bigger number)
+  return new Promise((resolve) => {
+    const carouselCanvas = document.getElementById("game-canvas")
+    const ctx = carouselCanvas.getContext("2d")
+    const canvasSize = CANVAS_SIZE
 
+    let elapsed = 0
+    const carouselInterval = setInterval(() => {
+      // pick a random image
+      const index = Math.floor(Math.random() * imageArray.length)
+      const img = new Image()
+      img.crossOrigin = "anonymous"
+      img.src = imageArray[index]
 
-// Logica del juego
+      img.onload = () => {
+        ctx.clearRect(0, 0, canvasSize, canvasSize)
+        const size = Math.min(img.width, img.height)
+        const cropX = (img.width - size) / 2
+        const cropY = (img.height - size) / 2
+        ctx.drawImage(img, cropX, cropY, size, size, 0, 0, canvasSize, canvasSize)
+      }
+
+      elapsed += interval
+      if (elapsed >= duration) {
+        clearInterval(carouselInterval)
+        resolve() // finish carousel
+      }
+    }, interval)
+  })
+}
+
+function loadLevel() {
+  showScreen("game-screen")
+  stopTimer()
+  gameState.timerSeconds = 0
+  gameState.timerStarted = false
+  gameState.helpUsed = false
+  updateTimer()
+
+  document.getElementById("current-level").textContent = gameState.currentLevel
+
+  // INICIAR CARRUSEL
+  startImageCarousel(imageBank, 2000, 100).then(() => {
+    // Una vez termina el carrusel, elegir la imagen final
+    const randomIndex = Math.floor(Math.random() * imageBank.length)
+    const img = new Image()
+    img.crossOrigin = "anonymous"
+    img.src = imageBank[randomIndex]
+
+    img.onload = () => {
+      gameState.currentImage = img
+
+      // Calcular recorte central
+      const cropSize = Math.min(img.width, img.height)
+      const cropX = Math.floor((img.width - cropSize) / 2)
+      const cropY = Math.floor((img.height - cropSize) / 2)
+      gameState.imageCrop = { cropX, cropY, cropSize }
+
+      showPreview(img)
+    }
+  })
+}
+/*// Logica del juego
 function loadLevel() {
   showScreen("game-screen")
   stopTimer()
@@ -112,6 +179,7 @@ function loadLevel() {
 
   // Seleccionar imagen random
   const randomIndex = Math.floor(Math.random() * imageBank.length)
+
   const img = new Image()
   img.crossOrigin = "anonymous"
   img.src = imageBank[randomIndex]
@@ -127,7 +195,7 @@ function loadLevel() {
 
     showPreview(img)
   }
-}
+}*/
 
 function showPreview(img) {
   const previewContainer = document.getElementById("preview-container")
@@ -369,6 +437,10 @@ function updateTimer() {
   const seconds = gameState.timerSeconds % 60
   const timeString = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
   document.getElementById("timer").textContent = timeString
+  if(minutes >= 2 ){
+    showDefeatScreen() 
+    stopTimer()
+  }
 }
 
 function resetGame() {
@@ -379,6 +451,17 @@ function resetGame() {
   gameState.levelTimes = []
   stopTimer()
 }
+
+//Retry
+function retryLevel() {
+  stopTimer()
+  gameState.timerSeconds = 0
+  gameState.timerStarted = false
+  gameState.helpUsed = false
+  showScreen("game-screen")
+  loadLevel()
+}
+
 
 // Pantallas de victoria 
 function showVictoryScreen() {
@@ -396,6 +479,36 @@ function showVictoryScreen() {
   victoryCtx.clearRect(0, 0, 400, 400)
   victoryCtx.drawImage(gameState.currentImage, cropX, cropY, cropSize, cropSize, 0, 0, 400, 400)
 }
+
+//defeat
+function showDefeatScreen() {
+  showScreen("defeat-screen")
+
+  // Calcular tiempo final
+  const minutes = Math.floor(gameState.timerSeconds / 60)
+  const seconds = gameState.timerSeconds % 60
+  const timeString = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`
+  document.getElementById("defeat-time").textContent = timeString
+
+  // Dibujar imagen en escala de grises para indicar derrota
+  const { cropX, cropY, cropSize } = gameState.imageCrop
+  const defeatCanvas = document.getElementById("defeat-canvas")
+  const defeatCtx = defeatCanvas.getContext("2d")
+
+  defeatCanvas.width = 400
+  defeatCanvas.height = 400
+  defeatCtx.clearRect(0, 0, 400, 400)
+
+  defeatCtx.filter = "grayscale(100%) brightness(50%)"
+  defeatCtx.drawImage(gameState.currentImage, cropX, cropY, cropSize, cropSize, 0, 0, 400, 400)
+  defeatCtx.filter = "none"
+
+  // Texto “DERROTA” superpuesto
+  defeatCtx.font = "bold 48px sans-serif"
+  defeatCtx.fillStyle = "rgba(255, 0, 0, 0.8)"
+  defeatCtx.textAlign = "center"
+  defeatCtx.fillText("DERROTA", 200, 220)
+} 
 
 // Pantalla completada
 function showCompleteScreen() {

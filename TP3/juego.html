@@ -121,6 +121,7 @@
                                             <h3>💡Ayudita</h3>
                                             <p>Usa el botón "Ayudita" para colocar una pieza correctamente, pero añadirá
                                                 5 segundos al tiempo.</p>
+                                            <p>Ten en cuenta que tienes 2 minutos para completar cada nivel.</p>
                                         </div>
                                     </div>
                                     <button class="botones btn-instrucciones" onclick="showMainMenu()">Volver</button>
@@ -158,7 +159,8 @@
                                     <!-- GAME CANVAS -->
 
                                     <canvas id="game-canvas" width="600" height="600"></canvas>
-
+                                    <div id="previewContainer"></div>
+                                    
                                     <div class="game-footer">
                                         <button class="botones btn-secondary" onclick="showMainMenu()">Menú
                                             Principal</button>
@@ -185,6 +187,20 @@
                                 </div>
                             </div>
 
+                            <!-- DEFEAT SCREEN -->
+                            <div id="defeat-screen" class="screen">
+                              <div class="contenedor-juego">
+                                <h2 class="title">¡Has Perdido!</h2>
+                                <div class="defeat-content">
+                                  <p class="defeat-time">Tiempo: <span id="defeat-time">00:00</span></p>
+                                  <canvas id="defeat-canvas"></canvas>
+                                </div>
+                                <div class="menu-buttons">
+                                  <button class="botones btn-primary" onclick="retryLevel()">Reintentar Nivel</button>
+                                  <button class="botones btn-secondary" onclick="showMainMenu()">Menú Principal</button>
+                                </div>
+                              </div>
+                            </div>
 
                             <!-- GAME COMPLETE SCREEN -->
 

@@ -93,7 +93,9 @@ function startGame() {
 }
 
 function nextLevel() {
+  console.log(gameState.currentLevel)
   gameState.currentLevel++
+  if(gameState.currentLevel == gameState.maxLevels ) document.getElementById("nextLevel").textContent = "Ver resultados" 
   if (gameState.currentLevel > gameState.maxLevels) {
     showCompleteScreen()
   } else {

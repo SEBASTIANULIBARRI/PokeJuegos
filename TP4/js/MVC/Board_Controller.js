@@ -2,6 +2,8 @@ class Controller {
   constructor() {
     this.model = new Model();
     this.view = new View(this.model, this.handleClick.bind(this));
+    // Establecer imagen de fondo del tablero (MVC: View la maneja)
+    this.view.setBackground("img/img-peg/fondoPeg.jpeg");
     this.selected = null;
     this.hints = [];
     this.defeated = false;
@@ -13,7 +15,7 @@ class Controller {
 
     const cell = this.model.getCell(row, col);
 
-    if (cell === 1) {
+    if (cell > 0) { // Ahora acepta cualquier tipo de ficha (1 = pokebola, 2 = superball)
       this.selected = { row, col };
       this.hints = this.model.getValidMoves(row, col);
     } else if (cell === 0 && this.selected) {

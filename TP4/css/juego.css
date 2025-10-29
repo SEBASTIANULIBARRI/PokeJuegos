@@ -925,7 +925,9 @@ label{
     width: 100%;
     margin-bottom: 8px;
 }
-
+.pegCanvas{
+    border-radius: 10px;
+}
 
 .descripcion-juego-imagen {
     display: flex;
@@ -944,6 +946,7 @@ label{
     padding: 32px 16px 24px 16px;
     margin-right: 8px;
     margin-bottom: 8px;
+    margin-top: 10px;
 }
 
 .descripcion-juego h2 {

@@ -1,20 +1,22 @@
 class Model {
   constructor() {
     this.size = 7;
-    this.cellSize = 60;
-    this.offset = 30;
+    // Solo estado lógico del juego (MVC): tamaño y tablero.
+    // El cálculo de layout (tamaños en píxeles, offsets) corresponde a la View.
 
-    // -1 = invalid, 1 = peg, 0 = empty
+    // -1 = inválido, 0 = vacío, números positivos = tipos de fichas (1 = pokebola, 2 = superball)
     this.board = [
-      [-1, -1, 1, 1, 1, -1, -1],
-      [-1, -1, 1, 1, 1, -1, -1],
-      [ 1,  1, 1, 1, 1,  1,  1],
-      [ 1,  1, 1, 0, 1,  1,  1],
-      [ 1,  1, 1, 1, 1,  1,  1],
-      [-1, -1, 1, 1, 1, -1, -1],
-      [-1, -1, 1, 1, 1, -1, -1],
+      [-1, -1, 1, 2, 1, -1, -1],
+      [-1, -1, 2, 1, 2, -1, -1],
+      [ 1,  2, 1, 2, 1,  2,  1],
+      [ 2,  1, 2, 0, 2,  1,  2],
+      [ 1,  2, 1, 2, 1,  2,  1],
+      [-1, -1, 2, 1, 2, -1, -1],
+      [-1, -1, 1, 2, 1, -1, -1],
     ];
   }
+
+  // Nota: eliminado updateLayout para respetar responsabilidades MVC.
 
   getCell(row, col) {
     if (row < 0 || col < 0 || row >= this.size || col >= this.size) return -1;
@@ -34,9 +36,11 @@ class Model {
     if ((Math.abs(dr) === 2 && dc === 0) || (Math.abs(dc) === 2 && dr === 0)) {
       const midRow = (from.row + to.row) / 2;
       const midCol = (from.col + to.col) / 2;
+      const fromCell = this.getCell(from.row, from.col);
+      const midCell = this.getCell(midRow, midCol);
       return (
-        this.getCell(from.row, from.col) === 1 &&
-        this.getCell(midRow, midCol) === 1 &&
+        fromCell > 0 && // cualquier tipo de ficha
+        midCell > 0 && // cualquier tipo de ficha
         this.getCell(to.row, to.col) === 0
       );
     }
@@ -46,9 +50,11 @@ class Model {
   makeMove(from, to) {
     const midRow = (from.row + to.row) / 2;
     const midCol = (from.col + to.col) / 2;
+    const fromCell = this.getCell(from.row, from.col);
     this.setCell(from.row, from.col, 0);
     this.setCell(midRow, midCol, 0);
-    this.setCell(to.row, to.col, 1);
+    // Mantener el tipo de ficha que se movió (pokebola/superball)
+    this.setCell(to.row, to.col, fromCell > 0 ? fromCell : 1);
   }
 
   getValidMoves(row, col) {
@@ -71,7 +77,7 @@ class Model {
   hasAnyValidMoves() {
     for (let i = 0; i < this.size; i++) {
       for (let j = 0; j < this.size; j++) {
-        if (this.board[i][j] === 1 && this.getValidMoves(i, j).length > 0) {
+        if (this.board[i][j] > 0 && this.getValidMoves(i, j).length > 0) {
           return true;
         }
       }

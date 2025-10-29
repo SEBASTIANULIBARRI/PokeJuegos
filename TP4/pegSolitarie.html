@@ -44,10 +44,12 @@
             <img src="img/icon-home-logo.png" alt="Logo" class="logo-header clickeable">
             <a href="./home.html" class="title-header">POKEJUEGOS</a>
         </div>
-        <div class="header-center">
+         <div class="header-center">
             <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Buscar...">
-                <img src="img/icon-search.png" class="icon-search-in-input">
+                <input type="text" class="search-bar" id="searchInput" placeholder="Buscar...">
+                <button type="button" class="icon-search-button" onclick="clearSearch()">
+                    <img src="img/icon-search.png" class="icon-search-in-input">
+                </button>
             </div>
         </div>
         <div class="header-right">
@@ -76,16 +78,16 @@
                 </nav>
                 <section class="game-section">
                     <div class="game-main">
-                         <canvas id="pegCanvas" width="420" height="420"></canvas>
+                         <canvas id="pegCanvas" width="1142" height="720" class="pegCanvas"></canvas>
                          <!-- Defeat Screen -->
                         <div id="defeat-screen" class="screen">
                           <div class="defeat-content">
-                            <h2>Defeat!</h2>
-                            <p class="defeat-message">You’ve run out of moves. Try again!</p>
+                            <h2>!</h2>
+                            <p class="defeat-message">Te quedaste sin movimientos. ¡Vuelvelo a intentar!</p>
                             <img id="defeat-image" src="img/defeat.png" alt="Defeat Image">
                             <div class="defeat-buttons">
-                              <button class="botones btn-primary" id="btnRetry">Try Again</button>
-                              <button class="botones btn-secondary" id="btnMenu">Back to Menu</button>
+                              <button class="botones btn-primary" id="btnRetry">Intentar de nuevo</button>
+                              <button class="botones btn-secondary" id="btnMenu">Volver al menú</button>
                             </div>
                           </div>
                         </div>

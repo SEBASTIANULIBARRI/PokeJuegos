@@ -3,7 +3,7 @@ class Controller {
     this.model = new Model();
     this.view = new View(this.model, this.handleClick.bind(this));
     // Establecer imagen de fondo del tablero (MVC: View la maneja)
-    this.view.setBackground("img/img-peg/fondoPeg.jpeg");
+    this.view.setBackground("img/img-peg/fondoPeg3.jpg");
     this.selected = null;
     this.hints = [];
     this.defeated = false;

@@ -23,6 +23,10 @@ class View {
       2: null  // superball
     };
     this.loadBallImages();
+
+    // Factor de padding vertical (fracción de la altura del canvas)
+    // Ajusta este valor para dejar más o menos espacio arriba/abajo
+    this.verticalPaddingFactor = 0.06; // 6% por defecto
   }
 
   loadBallImages() {
@@ -276,11 +280,15 @@ class View {
   computeLayout() {
     const clientW = this.canvas.clientWidth;
     const clientH = this.canvas.clientHeight;
-    const boardSize = Math.min(clientW, clientH);
+    // Reservar un padding vertical para que los bordes se vean mejor
+    const verticalPadding = Math.floor(clientH * (this.verticalPaddingFactor || 0));
+    // Ajustar tamaño del tablero restando el padding superior e inferior
+    const boardSize = Math.min(clientW, Math.max(0, clientH - 2 * verticalPadding));
     const cellSize = boardSize / this.model.size;
     const offsetX = (clientW - boardSize) / 2 + cellSize / 2;
-    const offsetY = (clientH - boardSize) / 2 + cellSize / 2;
-    return { clientW, clientH, boardSize, cellSize, offsetX, offsetY };
+    // El offsetY comienza en verticalPadding + medio celda para centrar la primera ficha
+    const offsetY = verticalPadding + cellSize / 2;
+    return { clientW, clientH, boardSize, cellSize, offsetX, offsetY, verticalPadding };
   }
 
   // Redimensiona el canvas y redibuja

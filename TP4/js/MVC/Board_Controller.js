@@ -11,7 +11,7 @@ class Controller {
       }
     );
     // Establecer imagen de fondo del tablero (MVC: View la maneja)
-    this.view.setBackground("img/img-peg/fondoPeg3.jpg");
+    this.view.setBackground("img/img-peg/pika.png");
     this.selected = null;
     this.hints = [];
     this.defeated = false;
@@ -21,6 +21,56 @@ class Controller {
     this.startTime = 0;
     this.elapsedTime = 0;
     this.view.drawBoard();
+  }
+
+  async startWithFill(fillDelay = 40) {
+    // Hide any defeat screen if visible
+    const defeatScreenEl = document.getElementById('defeat-screen');
+    if (defeatScreenEl) defeatScreenEl.style.display = 'none';
+    // Reset model to template configuration and then show empty board and animate filling
+    if (this.model && typeof this.model.reset === 'function') this.model.reset();
+    // Template is the desired final board
+    const template = JSON.parse(JSON.stringify(this.model.board));
+
+    // Clear all valid cells (set to 0) while preserving -1 invalid cells
+    for (let i = 0; i < this.model.size; i++) {
+      for (let j = 0; j < this.model.size; j++) {
+        if (this.model.board[i][j] !== -1) this.model.board[i][j] = 0;
+      }
+    }
+    // draw empty board
+    this.view.drawBoard();
+
+    // Build list of positions to fill in reading order (top-left -> bottom-right)
+    const coords = [];
+    for (let i = 0; i < this.model.size; i++) {
+      for (let j = 0; j < this.model.size; j++) {
+        if (template[i][j] > 0) coords.push({ r: i, c: j, v: template[i][j] });
+      }
+    }
+
+    // Optional: sort coords to center-first or any pattern. We'll do a subtle center-outwards effect
+    const center = (this.model.size - 1) / 2;
+    coords.sort((a, b) => {
+      const da = Math.hypot(a.r - center, a.c - center);
+      const db = Math.hypot(b.r - center, b.c - center);
+      return da - db; // closer to center first
+    });
+
+    // Animate filling
+    for (let k = 0; k < coords.length; k++) {
+      const p = coords[k];
+      this.model.setCell(p.r, p.c, p.v);
+      this.view.drawBoard();
+      // small delay
+      await new Promise((res) => setTimeout(res, fillDelay));
+    }
+
+    // After fill, ensure game state ready and start timer
+    this.defeated = false;
+    this.elapsedTime = 0;
+    this.view.drawBoard();
+    this.startTimer();
   }
 
   handleClick(row, col) {
@@ -177,17 +227,20 @@ function startPegGame() {
   // iniciar el Controller si no está iniciado
   const ctrl = window.startPegController();
   if (ctrl) {
-    // reiniciar tablero sin iniciar timer automáticamente
-    if (typeof ctrl.resetGame === 'function') ctrl.resetGame(false);
-    // establecer texto inicial del timer según timeLimitMs
+    // Animación: mostrar tablero vacío y luego rellenar con fichas
     const el = document.getElementById('peg-timer');
     if (el && ctrl.timeLimitMs) {
       const mins = Math.floor(ctrl.timeLimitMs / 60000);
       el.textContent = `${String(mins).padStart(2, '0')}:00`;
     }
-    // iniciar el timer
-    if (typeof ctrl.startTimer === 'function') ctrl.startTimer();
-    if (ctrl.view) ctrl.view.drawBoard();
+    if (typeof ctrl.startWithFill === 'function') {
+      // startWithFill gestiona el reset, la animación y el inicio del timer
+      ctrl.startWithFill(40 /* ms per peg */);
+    } else {
+      // fallback: reiniciar y empezar inmediatamente
+      if (typeof ctrl.resetGame === 'function') ctrl.resetGame(true);
+      if (ctrl.view) ctrl.view.drawBoard();
+    }
   }
 }
 

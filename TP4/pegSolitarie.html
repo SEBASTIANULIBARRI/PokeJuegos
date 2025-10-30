@@ -16,26 +16,26 @@
     <nav class="sidebar-categorias" id="sidebarCategorias">
         <!-- El botón de cerrar se elimina, solo se usa el de header -->
         <ul class="sidebar-list">
-            <li id="sidebarInicio"><img class = "clickeable" src="img/icon-menu/icon-home.png"> INICIO</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-futbol.png"> FUTBOL</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-medicina.png"> MEDICINA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-misterio.png"> MISTERIO</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-novedades.png"> NOVEDADES</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-fotografia.png"> FOTOGRAFIA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-arte.png"> ARTE</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-cocina.png"> COCINA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-stickman.png"> STICKMAN</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-vestir.png"> VESTIR</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-universo.png"> UNIVERSO</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-controlador.png"> CONTROLADOR</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-ciencia.png"> CIENCIA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-ciclismo.png"> CICLISMO</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-autos.png"> AUTOS</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-barcos.png"> BARCOS</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-belleza.png"> BELLEZA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-baloncesto.png"> BALONCESTO</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-mascota.png"> MASCOTA</li>
-            <li class = "clickeable" ><img class = "clickeable" src="img/icon-menu/icon-multijugador.png"> MULTIJUGADOR</li>
+            <li id="sidebarInicio"><img class="clickeable" src="img/icon-menu/icon-home.png"> INICIO</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-futbol.png"> FUTBOL</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-medicina.png"> MEDICINA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-misterio.png"> MISTERIO</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-novedades.png"> NOVEDADES</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-fotografia.png"> FOTOGRAFIA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-arte.png"> ARTE</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-cocina.png"> COCINA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-stickman.png"> STICKMAN</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-vestir.png"> VESTIR</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-universo.png"> UNIVERSO</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-controlador.png"> CONTROLADOR</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-ciencia.png"> CIENCIA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-ciclismo.png"> CICLISMO</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-autos.png"> AUTOS</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-barcos.png"> BARCOS</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-belleza.png"> BELLEZA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-baloncesto.png"> BALONCESTO</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-mascota.png"> MASCOTA</li>
+            <li class="clickeable"><img class="clickeable" src="img/icon-menu/icon-multijugador.png"> MULTIJUGADOR</li>
         </ul>
     </nav>
     <header class="header">
@@ -44,7 +44,7 @@
             <img src="img/icon-home-logo.png" alt="Logo" class="logo-header clickeable">
             <a href="./home.html" class="title-header">POKEJUEGOS</a>
         </div>
-         <div class="header-center">
+        <div class="header-center">
             <div class="search-container">
                 <input type="text" class="search-bar" id="searchInput" placeholder="Buscar...">
                 <button type="button" class="icon-search-button" onclick="clearSearch()">
@@ -78,20 +78,127 @@
                 </nav>
                 <section class="game-section">
                     <div class="game-main">
-                         <canvas id="pegCanvas" width="1135" height="720" class="pegCanvas"></canvas>
-                         <!-- Defeat Screen -->
-                        <div id="defeat-screen" class="screen">
-                          <div class="defeat-content">
-                            <h2>!</h2>
-                            <p class="defeat-message">Te quedaste sin movimientos. ¡Vuelvelo a intentar!</p>
-                            <img id="defeat-image" src="img/defeat.png" alt="Defeat Image">
-                            <div class="defeat-buttons">
-                              <button class="botones btn-primary" id="btnRetry">Intentar de nuevo</button>
-                              <button class="botones btn-secondary" id="btnMenu">Volver al menú</button>
+                        <!-- MAIN MENU -->
+                        <div id="juego" class="screen active">
+                            <div class="contenedor-juego">
+                                <h1 class="title">PEG SOLITAIRE</h1>
+                                <p class="subtitle">Selecciona una ficha y salta sobre otra hasta quedarte con una sola.
+                                </p>
+                                <div class="menu-buttons">
+                                    <button class="botones btn-primary" id="startBtn">Comenzar</button>
+                                    <button class="botones btn-instrucciones"
+                                        id="showInstructionsBtn">Instrucciones</button>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                        
+
+                        <!-- INSTRUCCIONES -->
+                        <div id="instructions" class="screen" style="display:none;">
+                            <div class="contenedor-juego">
+                                <h2 class="title">Instrucciones</h2>
+                                <div class="instructions-content">
+                                    <div class="instruction-item">
+                                        <h3>🎯 Objetivo</h3>
+                                        <p>Quedarte con una sola ficha en el tablero (mejor si queda en el centro).</p>
+                                    </div>
+                                    <div class="instruction-item">
+                                        <h3>🎮 Controles</h3>
+                                        <p><strong>Mantener Click:</strong> Selecciona una ficha. Luego arrastrala al
+                                            hueco destino para saltar.</p>
+                                    </div>
+                                    <div class="instruction-item">
+                                        <h3>🔁 Reglas</h3>
+                                        <p>Sólo saltos ortogonales sobre una ficha adyacente que resulte en un hueco
+                                            vacío.</p>
+                                    </div>
+                                </div>
+                                <button class="botones btn-instrucciones" id="backToMenuBtn">Volver</button>
+                            </div>
+                        </div>
+
+                        <!-- GAME CANVAS (oculto hasta pulsar Comenzar) -->
+                        <div id="pegTimerContainer" style="display:none; text-align:center; margin-bottom:12px;">
+                            <span id="peg-timer" class="peg-timer">03:00</span>
+                        </div>
+                        <canvas id="pegCanvas" width="1135" height="720" class="pegCanvas"
+                            style="display:none;"></canvas>
+
+                        <script>
+                            // Funciones para controlar la visibilidad del menú y el inicio del juego
+                            function startPegGame() {
+                                // ocultar menú e instrucciones
+                                document.getElementById('juego').style.display = 'none';
+                                document.getElementById('instructions').style.display = 'none';
+                                // mostrar canvas y timer
+                                const c = document.getElementById('pegCanvas');
+                                c.style.display = '';
+                                const tcont = document.getElementById('pegTimerContainer');
+                                if (tcont) tcont.style.display = '';
+                                // iniciar el Controller si no está iniciado
+                                const ctrl = window.startPegController();
+                                if (ctrl) {
+                                    // reiniciar tablero sin iniciar timer automáticamente
+                                    if (typeof ctrl.resetGame === 'function') ctrl.resetGame(false);
+                                    // establecer texto inicial del timer según timeLimitMs
+                                    const el = document.getElementById('peg-timer');
+                                    if (el && ctrl.timeLimitMs) {
+                                        const mins = Math.floor(ctrl.timeLimitMs / 60000);
+                                        el.textContent = `${String(mins).padStart(2, '0')}:00`;
+                                    }
+                                    // iniciar el timer
+                                    if (typeof ctrl.startTimer === 'function') ctrl.startTimer();
+                                    if (ctrl.view) ctrl.view.drawBoard();
+                                }
+                            }
+
+                            document.getElementById('startBtn').addEventListener('click', startPegGame);
+                            document.getElementById('showInstructionsBtn').addEventListener('click', function () {
+                                document.getElementById('juego').style.display = 'none';
+                                document.getElementById('instructions').style.display = 'block';
+                            });
+                            document.getElementById('backToMenuBtn').addEventListener('click', function () {
+                                document.getElementById('instructions').style.display = 'none';
+                                document.getElementById('juego').style.display = 'block';
+                            });
+
+                            // Retry / Menu buttons on defeat screen
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const retry = document.getElementById('btnRetry');
+                                const menu = document.getElementById('btnMenu');
+                                if (retry) retry.addEventListener('click', function () {
+                                    const ctrl = window.startPegController();
+                                    if (ctrl && typeof ctrl.resetGame === 'function') {
+                                        // reiniciar y arrancar timer
+                                        ctrl.resetGame(true);
+                                        // asegurar canvas visible y esconder pantalla de derrota
+                                        document.getElementById('pegCanvas').style.display = '';
+                                        const tcont = document.getElementById('pegTimerContainer');
+                                        if (tcont) tcont.style.display = '';
+                                    }
+                                });
+                                if (menu) menu.addEventListener('click', function () {
+                                    const ctrl = window.startPegController();
+                                    if (ctrl && typeof ctrl.stopTimer === 'function') ctrl.stopTimer();
+                                    document.getElementById('pegCanvas').style.display = 'none';
+                                    const tcont = document.getElementById('pegTimerContainer');
+                                    if (tcont) tcont.style.display = 'none';
+                                    document.getElementById('juego').style.display = 'block';
+                                });
+                            });
+                        </script>
+                        <!-- Defeat Screen -->
+                        <div id="defeat-screen" class="screen">
+                            <div class="defeat-content">
+                                <h2>!</h2>
+                                <p class="defeat-message">Te quedaste sin movimientos. ¡Vuelvelo a intentar!</p>
+                                <img id="defeat-image" src="img/defeat.png" alt="Defeat Image">
+                                <div class="defeat-buttons">
+                                    <button class="botones btn-primary" id="btnRetry">Intentar de nuevo</button>
+                                    <button class="botones btn-secondary" id="btnMenu">Volver al menú</button>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="game-descripcion">
                             <h4>Peg Solitaire: Pikachu vs Charmander</h4>
                             <div class="descripcion-juego-imagen">
@@ -104,8 +211,9 @@
                                         públicos. Perfecto para jugar en el navegador, sin instalaciones.</p>
                                     <p>Instrucciones rápidas:</p>
                                     <ul>
-                                        <li>Haz clic/toca una clavija para seleccionarla.</li>
-                                        <li>Haz clic/toca el hueco donde quieres saltarla (sólo saltos ortogonales de
+                                        <li>Manten el click sobre una clavija para seleccionarla.</li>
+                                        <li>Manteniendo el click arrastrala al hueco donde quieres saltarla (sólo saltos
+                                            ortogonales de
                                             una ficha sobre otra).</li>
                                         <li>La clavija saltada se elimina.</li>
                                         <li>Objetivo: quedar con 1 sola clavija — ¡mejor si es en el centro!</li>
@@ -132,9 +240,12 @@
                             <div class="carrousel-container">
                                 <button class="carrousel-btn prev">&#10094;</button>
                                 <div class="carrousel-img" id="carrousel">
-                                    <img src="./img/Video_juego_1.png" alt="Muestra 1" class="carrousel-img-item clickeable">
-                                    <img src="./img/Video_juego_2.png" alt="Muestra 2" class="carrousel-img-item clickeable">
-                                    <img src="./img/Video_juego_3.png" alt="Muestra 3" class="carrousel-img-item clickeable">
+                                    <img src="./img/Video_juego_1.png" alt="Muestra 1"
+                                        class="carrousel-img-item clickeable">
+                                    <img src="./img/Video_juego_2.png" alt="Muestra 2"
+                                        class="carrousel-img-item clickeable">
+                                    <img src="./img/Video_juego_3.png" alt="Muestra 3"
+                                        class="carrousel-img-item clickeable">
                                 </div>
                                 <button class="carrousel-btn next">&#10095;</button>
                             </div>
@@ -252,17 +363,17 @@
         </div>
         <aside class="game-sidebar">
             <ul class="sidebar-games">
-                <li><img class = "clickeable" src="./img/cards/Cars.png" alt="Game 1"></li>
-                <li><img class = "clickeable" src="./img/cards/Words.png" alt="Game 2"></li>
-                <li><img class = "clickeable" src="./img/cards/Redball.png" alt="Game 3"></li>
-                <li><img class = "clickeable" src="./img/cards/Merge.png" alt="Game 4"></li>
-                <li><img class = "clickeable" src="./img/cards/Minicraft.png" alt="Game 5"></li>
-                <li><img class = "clickeable" src="./img/cards/Deluxe.png" alt="Game 6"></li>
-                <li><img class = "clickeable" src="./img/cards/Motos.png" alt="Game 7"></li>
-                <li><img class = "clickeable" src="./img/cards/plantas.png" alt="Game 8"></li>
-                <li><img class = "clickeable" src="./img/cards/Counter.jpg" alt="Game 8"></li>
-                <li><img class = "clickeable" src="./img/cards/Words.png" alt="Game 8"></li>
-                <li><img class = "clickeable" src="./img/cards/Aguafuego.png" alt="Game 8"></li>
+                <li><img class="clickeable" src="./img/cards/Cars.png" alt="Game 1"></li>
+                <li><img class="clickeable" src="./img/cards/Words.png" alt="Game 2"></li>
+                <li><img class="clickeable" src="./img/cards/Redball.png" alt="Game 3"></li>
+                <li><img class="clickeable" src="./img/cards/Merge.png" alt="Game 4"></li>
+                <li><img class="clickeable" src="./img/cards/Minicraft.png" alt="Game 5"></li>
+                <li><img class="clickeable" src="./img/cards/Deluxe.png" alt="Game 6"></li>
+                <li><img class="clickeable" src="./img/cards/Motos.png" alt="Game 7"></li>
+                <li><img class="clickeable" src="./img/cards/plantas.png" alt="Game 8"></li>
+                <li><img class="clickeable" src="./img/cards/Counter.jpg" alt="Game 8"></li>
+                <li><img class="clickeable" src="./img/cards/Words.png" alt="Game 8"></li>
+                <li><img class="clickeable" src="./img/cards/Aguafuego.png" alt="Game 8"></li>
             </ul>
         </aside>
     </div>

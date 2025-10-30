@@ -15,6 +15,11 @@ class Controller {
     this.selected = null;
     this.hints = [];
     this.defeated = false;
+    // Timer (por defecto 3 minutos)
+    this.timeLimitMs = 3 * 60 * 1000;
+    this.timerInterval = null;
+    this.startTime = 0;
+    this.elapsedTime = 0;
     this.view.drawBoard();
   }
 
@@ -44,6 +49,7 @@ class Controller {
   // Comprobar derrota
     if (!this.model.hasAnyValidMoves()) {
       this.defeated = true;
+      this.stopTimer();
       setTimeout(() => this.view.showDefeat(), 300);
     }
   }
@@ -98,12 +104,73 @@ class Controller {
   // Comprobar derrota
     if (!this.model.hasAnyValidMoves()) {
       this.defeated = true;
+      this.stopTimer();
       setTimeout(() => this.view.showDefeat(), 300);
     }
+  }
+
+  // Inicia el temporizador del juego
+  startTimer() {
+    // limpiar si ya hay uno
+    if (this.timerInterval) this.stopTimer();
+    this.startTime = Date.now() - this.elapsedTime;
+    this.timerInterval = setInterval(() => this.updateTimer(), 250);
+    this.updateTimer();
+  }
+
+  // Detiene el temporizador
+  stopTimer() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = null;
+    }
+  }
+
+  // Actualiza la visualización del temporizador y comprueba límite
+  updateTimer() {
+    this.elapsedTime = Date.now() - this.startTime;
+    const remaining = Math.max(0, this.timeLimitMs - this.elapsedTime);
+    const seconds = Math.floor(remaining / 1000);
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    const el = document.getElementById('peg-timer');
+    if (el) el.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    if (remaining <= 0) {
+      // tiempo cumplido -> derrota
+      this.stopTimer();
+      this.defeated = true;
+      this.view.showDefeat();
+    }
+  }
+
+  // Reinicia el juego (tablero, estados) y opcionalmente inicia timer
+  resetGame(startTimer = true) {
+    if (this.model && typeof this.model.reset === 'function') {
+      this.model.reset();
+    } else {
+      this.model = new Model();
+      this.view.model = this.model;
+    }
+    this.defeated = false;
+    this.selected = null;
+    this.hints = [];
+    this.elapsedTime = 0;
+    // reset timer display
+    const el = document.getElementById('peg-timer');
+    if (el) el.textContent = `${String(Math.floor(this.timeLimitMs/60000)).padStart(2,'0')}:00`;
+    this.view.drawBoard();
+    if (startTimer) this.startTimer();
   }
   
 }
 
 
 
-window.onload = () => new Controller();
+// No iniciar automáticamente el Controller: lo creamos cuando el jugador pulsa "Comenzar"
+window.controller = null;
+window.startPegController = function() {
+  if (!window.controller) {
+    window.controller = new Controller();
+  }
+  return window.controller;
+};

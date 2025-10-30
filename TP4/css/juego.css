@@ -593,15 +593,22 @@ label{
 
 
 .contenedor-juego{
-    max-width: 800px;
+    max-width: 1135px;
+    height: 800px;
     width: 100%;
     text-align: center;
+    background-color: #333340;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .title{
   font-size: 4rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+    margin-bottom: 2rem;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -612,7 +619,8 @@ label{
 .subtitle {
   font-size: 1.25rem;
   color: #ffffff;
-  margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    max-width: 80%;
 }
 
 
@@ -669,6 +677,33 @@ label{
 .btn-help:hover {
   background: #FF8233;
   transform: translateY(-2px);
+}
+
+/* Aumentar ancho de los botones del menú principal (contenedor-juego) */
+.contenedor-juego .menu-buttons .botones {
+    /* asegurar más longitud sin afectar botones globales */
+    min-width: 300px;
+    padding: 1rem 3rem; /* un poco más de padding horizontal */
+}
+
+/* Responsive: en pantallas pequeñas usar ancho relativo */
+@media (max-width: 600px) {
+    .contenedor-juego .menu-buttons .botones {
+        min-width: 0;
+        width: 80%;
+        padding: 0.9rem 1.2rem;
+    }
+}
+
+/* Temporizador del Peg Solitaire */
+.peg-timer {
+    display: inline-block;
+    font-size: 1.25rem;
+    color: #ffffff;
+    background: rgba(0,0,0,0.35);
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
 /* Preview */
@@ -784,8 +819,10 @@ label{
   background: #1a1a1a;
   border: 1px solid #333340;
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 4rem;
   margin-bottom: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .instruction-item {
@@ -912,6 +949,7 @@ label{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    font-family: "Outfit", sans-serif;
 }
 
 .img-juego {

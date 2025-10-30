@@ -11,12 +11,12 @@ class Controller {
       }
     );
     // Establecer imagen de fondo del tablero (MVC: View la maneja)
-    this.view.setBackground("img/img-peg/pika.png");
+    this.view.setBackground("img/img-peg/fondoPeg3.jpg");
     this.selected = null;
     this.hints = [];
     this.defeated = false;
-    // Timer (por defecto 3 minutos)
-    this.timeLimitMs = 3 * 60 * 1000;
+    // Timer (por defecto 6 minutos)
+    this.timeLimitMs = 6 * 60 * 1000;
     this.timerInterval = null;
     this.startTime = 0;
     this.elapsedTime = 0;

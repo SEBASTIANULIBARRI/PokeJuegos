@@ -3,6 +3,8 @@ class View {
     this.model = model;
     this.canvas = document.getElementById("pegCanvas");
     this.ctx = this.canvas.getContext("2d");
+    // Elemento DOM donde se muestra el timer (overlay en el canvas)
+    this.timerElement = document.getElementById("peg-timer");
     this.onClick = onClick;
     // Callbacks opcionales para arrastre
     callbacks = callbacks || {};
@@ -42,6 +44,21 @@ class View {
     this._dragging = null; // { fromRow, fromCol, type, clientX, clientY, offsetX, offsetY, pointerId }
     this._dragOver = null; // { row, col, valid }
     this._suppressClick = false; // evita doble-trigger entre click y pointer
+  }
+
+  /**
+   * Actualiza el texto del timer (recibe segundos restantes) y asegura que
+   * el contenedor dentro del canvas esté visible.
+   */
+  updateTimer(timeRemaining) {
+    if (typeof timeRemaining !== 'number' || !isFinite(timeRemaining)) timeRemaining = 0;
+    if (this.timerElement) {
+      const minutes = Math.floor(timeRemaining / 60);
+      const seconds = Math.max(0, Math.floor(timeRemaining % 60));
+      this.timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  const container = document.getElementById('pegTimerContainer');
+  if (container) container.style.display = 'block';
+    }
   }
 
   loadBallImages() {
@@ -370,6 +387,67 @@ class View {
   }
 
   showDefeat() {
+    // Preferir mostrar la pantalla de derrota HTML si existe
+    const defeatEl = document.getElementById('defeat-screen');
+    const canvasWrap = document.getElementById('pegCanvasWrap');
+    if (defeatEl && canvasWrap) {
+      // Mover el contenedor de derrota dentro del wrap del canvas para centrar respecto al tablero
+      if (defeatEl.parentNode !== canvasWrap) {
+        canvasWrap.appendChild(defeatEl);
+      }
+      // Estilar el overlay para cubrir exactamente el area del canvasWrap
+      Object.assign(defeatEl.style, {
+        display: 'flex',
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        background: 'rgba(0,0,0,0.6)',
+        zIndex: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        pointerEvents: 'auto'
+      });
+
+      // Ocultar controles dentro del canvas
+      const controls = document.getElementById('pegControls');
+      if (controls) controls.style.display = 'none';
+
+      // Ajustar el contenido interno para que esté centrado y con tamaño máximo
+      const defeatContent = defeatEl.querySelector('.defeat-content');
+      if (defeatContent) {
+        Object.assign(defeatContent.style, {
+          position: 'relative',
+          transform: '',
+          top: '',
+          left: '',
+          padding: '20px',
+          textAlign: 'center',
+          maxWidth: '600px',
+          width: '90%',
+          margin: '0 auto'
+        });
+      }
+
+      // Ajustar imagen para que se muestre centrada y mantenga proporciones
+      const defeatImg = document.getElementById('defeat-image');
+      if (defeatImg) {
+        defeatImg.style.maxWidth = '400px';
+        defeatImg.style.width = '100%';
+        defeatImg.style.height = 'auto';
+        defeatImg.style.display = 'block';
+        defeatImg.style.margin = '0 auto 24px';
+        defeatImg.style.objectFit = 'cover';
+      }
+
+      const message = defeatEl.querySelector('.defeat-message');
+      if (message) message.style.color = 'white';
+
+      return;
+    }
+
+    // Si no existe el div HTML, dibujamos un overlay de derrota en el canvas (fallback)
     const { ctx, canvas } = this;
     const clientW = this.canvas.clientWidth;
     const clientH = this.canvas.clientHeight;

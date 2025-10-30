@@ -92,8 +92,10 @@
                             </div>
                         </div>
 
+                        <!-- Nota: los controles dentro del canvas (#pegControls) se usan como botones principales -->
+
                         <!-- INSTRUCCIONES -->
-                        <div id="instructions" class="screen" style="display:none;">
+                        <div id="instructions" class="screen">
                             <div class="contenedor-juego">
                                 <h2 class="title">Instrucciones</h2>
                                 <div class="instructions-content">
@@ -116,20 +118,28 @@
                             </div>
                         </div>
 
-                        <!-- GAME CANVAS (oculto hasta pulsar Comenzar) -->
-                        <div id="pegTimerContainer" style="display:none; text-align:center; margin-bottom:12px;">
-                            <span id="peg-timer" class="peg-timer">03:00</span>
+                        <!-- GAME CANVAS (oculto hasta pulsar Comenzar). Timer overlay y controles dentro del contenedor del canvas -->
+                        <div id="pegCanvasWrap">
+                            <canvas id="pegCanvas" width="1135" height="720" class="pegCanvas"></canvas>
+                            <!-- Timer (esquina superior derecha) -->
+                            <div id="pegTimerContainer">
+                                <div class="timer-box">
+                                    <span id="peg-timer" class="peg-timer">03:00</span>
+                                </div>
+                            </div>
+                            <!-- Controles dentro del canvas (esquina superior izquierda) -->
+                            <div id="pegControls">
+                                <button id="btnRestartGame" class="botones btn-primary">Reiniciar</button>
+                                <button id="btnReturnMenu" class="botones btn-secondary">Menú</button>
+                            </div>
                         </div>
-                        <canvas id="pegCanvas" width="1135" height="720" class="pegCanvas"
-                            style="display:none;"></canvas>
 
                 
                         <!-- Defeat Screen -->
                         <div id="defeat-screen" class="screen">
                             <div class="defeat-content">
-                                <h2>!</h2>
                                 <p class="defeat-message">Te quedaste sin movimientos. ¡Vuelvelo a intentar!</p>
-                                <img id="defeat-image" src="img/defeat.png" alt="Defeat Image">
+                                <img id="defeat-image" src="img/defeat.webp" alt="Defeat Image">
                                 <div class="defeat-buttons">
                                     <button class="botones btn-primary" id="btnRetry">Intentar de nuevo</button>
                                     <button class="botones btn-secondary" id="btnMenu">Volver al menú</button>

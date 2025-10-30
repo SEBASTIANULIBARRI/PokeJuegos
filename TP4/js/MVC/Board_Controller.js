@@ -170,9 +170,10 @@ function startPegGame() {
   document.getElementById('instructions').style.display = 'none';
   // mostrar canvas y timer
   const c = document.getElementById('pegCanvas');
-  c.style.display = '';
+  if (c) c.style.display = 'block';
   const tcont = document.getElementById('pegTimerContainer');
-  if (tcont) tcont.style.display = '';
+  if (tcont) tcont.style.display = 'block';
+  const controls = document.getElementById('pegControls'); if (controls) controls.style.display = 'flex';
   // iniciar el Controller si no está iniciado
   const ctrl = window.startPegController();
   if (ctrl) {
@@ -207,12 +208,16 @@ document.addEventListener('DOMContentLoaded', function () {
   if (retry) retry.addEventListener('click', function () {
     const ctrl = window.startPegController();
     if (ctrl && typeof ctrl.resetGame === 'function') {
-      // reiniciar y arrancar timer
-      ctrl.resetGame(true);
-      // asegurar canvas visible y esconder pantalla de derrota
-      document.getElementById('pegCanvas').style.display = '';
-      const tcont = document.getElementById('pegTimerContainer');
-      if (tcont) tcont.style.display = '';
+  // reiniciar y arrancar timer
+  ctrl.resetGame(true);
+  // asegurar canvas visible, esconder derrota, y mostrar controles
+  const canvasEl = document.getElementById('pegCanvas'); if (canvasEl) canvasEl.style.display = 'block';
+  const tcont = document.getElementById('pegTimerContainer');
+  if (tcont) tcont.style.display = 'block';
+  const controls = document.getElementById('pegControls');
+  if (controls) controls.style.display = 'flex';
+  const defeatScreen = document.getElementById('defeat-screen');
+  if (defeatScreen) defeatScreen.style.display = 'none';
     }
   });
   if (menu) menu.addEventListener('click', function () {
@@ -221,10 +226,40 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('pegCanvas').style.display = 'none';
     const tcont = document.getElementById('pegTimerContainer');
     if (tcont) tcont.style.display = 'none';
+    const controls = document.getElementById('pegControls');
+    if (controls) controls.style.display = 'none';
+    const defeatScreen = document.getElementById('defeat-screen');
+    if (defeatScreen) defeatScreen.style.display = 'none';
     document.getElementById('juego').style.display = 'block';
   });
 });
 
+// Attach listeners for restart and return buttons (if present)
+const restartBtn = document.getElementById('btnRestartGame');
+if (restartBtn) {
+  restartBtn.addEventListener('click', function () {
+    const ctrl = window.startPegController();
+    if (ctrl && typeof ctrl.resetGame === 'function') {
+  ctrl.resetGame(true);
+  const c = document.getElementById('pegCanvas'); if (c) c.style.display = 'block';
+  const tcont = document.getElementById('pegTimerContainer'); if (tcont) tcont.style.display = 'block';
+  const controls = document.getElementById('pegControls'); if (controls) controls.style.display = 'flex';
+      if (ctrl.view) ctrl.view.drawBoard();
+    }
+  });
+}
+
+const returnBtn = document.getElementById('btnReturnMenu');
+if (returnBtn) {
+  returnBtn.addEventListener('click', function () {
+    const ctrl = window.startPegController();
+    if (ctrl && typeof ctrl.stopTimer === 'function') ctrl.stopTimer();
+    const c = document.getElementById('pegCanvas'); if (c) c.style.display = 'none';
+    const tcont = document.getElementById('pegTimerContainer'); if (tcont) tcont.style.display = 'none';
+    const controls = document.getElementById('pegControls'); if (controls) controls.style.display = 'none';
+    const elJ = document.getElementById('juego'); if (elJ) elJ.style.display = 'block';
+  });
+}
 
 // No iniciar automáticamente el Controller: lo creamos cuando el jugador pulsa "Comenzar"
 window.controller = null;

@@ -24,11 +24,11 @@ class Controller {
   }
 
   handleClick(row, col) {
-  if (this.defeated) return; // detener si el juego terminó
+    if (this.defeated) return; // detener si el juego terminó
 
     const cell = this.model.getCell(row, col);
 
-  // logs de depuración eliminados para dejar el código más limpio
+    // logs de depuración eliminados para dejar el código más limpio
 
     if (cell > 0) { // Ahora acepta cualquier tipo de ficha (1 = pokebola, 2 = superball)
       this.selected = { row, col };
@@ -46,34 +46,34 @@ class Controller {
 
     this.view.drawBoard(this.selected, this.hints);
 
-  // Comprobar derrota
+    // Comprobar derrota
     if (!this.model.hasAnyValidMoves()) {
       this.defeated = true;
       this.stopTimer();
       setTimeout(() => this.view.showDefeat(), 300);
     }
   }
-  
+
   // --- Manejadores de arrastre enviados desde la View ---
   handleDragStart(row, col, clientX, clientY) {
     if (this.defeated) return;
     const cell = this.model.getCell(row, col);
     if (cell > 0) {
-  // marcaremos la ficha como seleccionada y mostraremos sugerencias (hints)
+      // marcaremos la ficha como seleccionada y mostraremos sugerencias (hints)
       this.selected = { row, col };
       this.hints = this.model.getValidMoves(row, col);
-  // sugerencias (hints) calculadas
-  // limpiar indicador visual de celda candidata (drag-over)
+      // sugerencias (hints) calculadas
+      // limpiar indicador visual de celda candidata (drag-over)
       this.view._dragOver = null;
       this.view.drawBoard(this.selected, this.hints);
     }
   }
 
   handleDragMove(clientX, clientY, overRow, overCol) {
-  // Durante el arrastre indicamos visualmente si el destino es válido
+    // Durante el arrastre indicamos visualmente si el destino es válido
     if (!this.selected) return;
     const valid = this.model.isValidMove(this.selected, { row: overRow, col: overCol });
-  // candidato de arrastre calculado
+    // candidato de arrastre calculado
     this.view._dragOver = { row: overRow, col: overCol, valid };
     this.view.drawBoard(this.selected, this.hints);
   }
@@ -82,7 +82,7 @@ class Controller {
     if (!this.selected) return;
     const target = { row: overRow, col: overCol };
     const isValid = this.model.isValidMove(this.selected, target);
-  // Registro seguro: evitar llamar a getCell con índices no enteros (evita TypeError si el destino no está alineado)
+    // Registro seguro: evitar llamar a getCell con índices no enteros (evita TypeError si el destino no está alineado)
     const fromCell = this.model.getCell(this.selected.row, this.selected.col);
     const toCell = this.model.getCell(target.row, target.col);
     const midRow = (this.selected.row + target.row) / 2;
@@ -91,17 +91,17 @@ class Controller {
     if (Number.isInteger(midRow) && Number.isInteger(midCol)) {
       midCell = this.model.getCell(midRow, midCol);
     }
-  // fin del arrastre: información calculada (logs eliminados)
+    // fin del arrastre: información calculada (logs eliminados)
     if (isValid) {
       this.model.makeMove(this.selected, target);
     }
-  // limpiar selección y sugerencias en ambos casos (si fue válido movimos, si no, regresó)
+    // limpiar selección y sugerencias en ambos casos (si fue válido movimos, si no, regresó)
     this.selected = null;
     this.hints = [];
     this.view._dragOver = null;
     this.view.drawBoard(this.selected, this.hints);
 
-  // Comprobar derrota
+    // Comprobar derrota
     if (!this.model.hasAnyValidMoves()) {
       this.defeated = true;
       this.stopTimer();
@@ -157,18 +157,78 @@ class Controller {
     this.elapsedTime = 0;
     // reset timer display
     const el = document.getElementById('peg-timer');
-    if (el) el.textContent = `${String(Math.floor(this.timeLimitMs/60000)).padStart(2,'0')}:00`;
+    if (el) el.textContent = `${String(Math.floor(this.timeLimitMs / 60000)).padStart(2, '0')}:00`;
     this.view.drawBoard();
     if (startTimer) this.startTimer();
   }
-  
+
+}
+// Funciones para controlar la visibilidad del menú y el inicio del juego
+function startPegGame() {
+  // ocultar menú e instrucciones
+  document.getElementById('juego').style.display = 'none';
+  document.getElementById('instructions').style.display = 'none';
+  // mostrar canvas y timer
+  const c = document.getElementById('pegCanvas');
+  c.style.display = '';
+  const tcont = document.getElementById('pegTimerContainer');
+  if (tcont) tcont.style.display = '';
+  // iniciar el Controller si no está iniciado
+  const ctrl = window.startPegController();
+  if (ctrl) {
+    // reiniciar tablero sin iniciar timer automáticamente
+    if (typeof ctrl.resetGame === 'function') ctrl.resetGame(false);
+    // establecer texto inicial del timer según timeLimitMs
+    const el = document.getElementById('peg-timer');
+    if (el && ctrl.timeLimitMs) {
+      const mins = Math.floor(ctrl.timeLimitMs / 60000);
+      el.textContent = `${String(mins).padStart(2, '0')}:00`;
+    }
+    // iniciar el timer
+    if (typeof ctrl.startTimer === 'function') ctrl.startTimer();
+    if (ctrl.view) ctrl.view.drawBoard();
+  }
 }
 
+document.getElementById('startBtn').addEventListener('click', startPegGame);
+document.getElementById('showInstructionsBtn').addEventListener('click', function () {
+  document.getElementById('juego').style.display = 'none';
+  document.getElementById('instructions').style.display = 'block';
+});
+document.getElementById('backToMenuBtn').addEventListener('click', function () {
+  document.getElementById('instructions').style.display = 'none';
+  document.getElementById('juego').style.display = 'block';
+});
+
+// Retry / Menu buttons on defeat screen
+document.addEventListener('DOMContentLoaded', function () {
+  const retry = document.getElementById('btnRetry');
+  const menu = document.getElementById('btnMenu');
+  if (retry) retry.addEventListener('click', function () {
+    const ctrl = window.startPegController();
+    if (ctrl && typeof ctrl.resetGame === 'function') {
+      // reiniciar y arrancar timer
+      ctrl.resetGame(true);
+      // asegurar canvas visible y esconder pantalla de derrota
+      document.getElementById('pegCanvas').style.display = '';
+      const tcont = document.getElementById('pegTimerContainer');
+      if (tcont) tcont.style.display = '';
+    }
+  });
+  if (menu) menu.addEventListener('click', function () {
+    const ctrl = window.startPegController();
+    if (ctrl && typeof ctrl.stopTimer === 'function') ctrl.stopTimer();
+    document.getElementById('pegCanvas').style.display = 'none';
+    const tcont = document.getElementById('pegTimerContainer');
+    if (tcont) tcont.style.display = 'none';
+    document.getElementById('juego').style.display = 'block';
+  });
+});
 
 
 // No iniciar automáticamente el Controller: lo creamos cuando el jugador pulsa "Comenzar"
 window.controller = null;
-window.startPegController = function() {
+window.startPegController = function () {
   if (!window.controller) {
     window.controller = new Controller();
   }

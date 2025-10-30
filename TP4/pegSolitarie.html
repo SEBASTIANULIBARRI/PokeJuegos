@@ -123,69 +123,7 @@
                         <canvas id="pegCanvas" width="1135" height="720" class="pegCanvas"
                             style="display:none;"></canvas>
 
-                        <script>
-                            // Funciones para controlar la visibilidad del menú y el inicio del juego
-                            function startPegGame() {
-                                // ocultar menú e instrucciones
-                                document.getElementById('juego').style.display = 'none';
-                                document.getElementById('instructions').style.display = 'none';
-                                // mostrar canvas y timer
-                                const c = document.getElementById('pegCanvas');
-                                c.style.display = '';
-                                const tcont = document.getElementById('pegTimerContainer');
-                                if (tcont) tcont.style.display = '';
-                                // iniciar el Controller si no está iniciado
-                                const ctrl = window.startPegController();
-                                if (ctrl) {
-                                    // reiniciar tablero sin iniciar timer automáticamente
-                                    if (typeof ctrl.resetGame === 'function') ctrl.resetGame(false);
-                                    // establecer texto inicial del timer según timeLimitMs
-                                    const el = document.getElementById('peg-timer');
-                                    if (el && ctrl.timeLimitMs) {
-                                        const mins = Math.floor(ctrl.timeLimitMs / 60000);
-                                        el.textContent = `${String(mins).padStart(2, '0')}:00`;
-                                    }
-                                    // iniciar el timer
-                                    if (typeof ctrl.startTimer === 'function') ctrl.startTimer();
-                                    if (ctrl.view) ctrl.view.drawBoard();
-                                }
-                            }
-
-                            document.getElementById('startBtn').addEventListener('click', startPegGame);
-                            document.getElementById('showInstructionsBtn').addEventListener('click', function () {
-                                document.getElementById('juego').style.display = 'none';
-                                document.getElementById('instructions').style.display = 'block';
-                            });
-                            document.getElementById('backToMenuBtn').addEventListener('click', function () {
-                                document.getElementById('instructions').style.display = 'none';
-                                document.getElementById('juego').style.display = 'block';
-                            });
-
-                            // Retry / Menu buttons on defeat screen
-                            document.addEventListener('DOMContentLoaded', function () {
-                                const retry = document.getElementById('btnRetry');
-                                const menu = document.getElementById('btnMenu');
-                                if (retry) retry.addEventListener('click', function () {
-                                    const ctrl = window.startPegController();
-                                    if (ctrl && typeof ctrl.resetGame === 'function') {
-                                        // reiniciar y arrancar timer
-                                        ctrl.resetGame(true);
-                                        // asegurar canvas visible y esconder pantalla de derrota
-                                        document.getElementById('pegCanvas').style.display = '';
-                                        const tcont = document.getElementById('pegTimerContainer');
-                                        if (tcont) tcont.style.display = '';
-                                    }
-                                });
-                                if (menu) menu.addEventListener('click', function () {
-                                    const ctrl = window.startPegController();
-                                    if (ctrl && typeof ctrl.stopTimer === 'function') ctrl.stopTimer();
-                                    document.getElementById('pegCanvas').style.display = 'none';
-                                    const tcont = document.getElementById('pegTimerContainer');
-                                    if (tcont) tcont.style.display = 'none';
-                                    document.getElementById('juego').style.display = 'block';
-                                });
-                            });
-                        </script>
+                
                         <!-- Defeat Screen -->
                         <div id="defeat-screen" class="screen">
                             <div class="defeat-content">

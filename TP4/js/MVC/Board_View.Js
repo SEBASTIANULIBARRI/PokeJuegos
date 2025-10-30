@@ -1,23 +1,33 @@
 class View {
-  constructor(model, onClick) {
+  constructor(model, onClick, callbacks) {
     this.model = model;
     this.canvas = document.getElementById("pegCanvas");
     this.ctx = this.canvas.getContext("2d");
     this.onClick = onClick;
+    // Callbacks opcionales para arrastre
+    callbacks = callbacks || {};
+    this.onDragStart = callbacks.onDragStart || null;
+    this.onDragMove = callbacks.onDragMove || null;
+    this.onDragEnd = callbacks.onDragEnd || null;
 
-    // Manejo de eventos
-    this.canvas.addEventListener("click", (e) => this.handleClick(e));
+  // Manejo de eventos
+  this.canvas.addEventListener("click", (e) => this.handleClick(e));
+  // Eventos pointer para arrastrar/soltar (compatibles con mouse y táctil)
+  this.canvas.addEventListener('pointerdown', (e) => this._onPointerDown(e));
+  window.addEventListener('pointermove', (e) => this._onPointerMove(e));
+  window.addEventListener('pointerup', (e) => this._onPointerUp(e));
+  this.canvas.addEventListener('pointercancel', (e) => this._onPointerCancel(e));
 
     // Redibujar al cambiar tamaño de la ventana
     window.addEventListener("resize", () => this.resizeAndRedraw());
 
     // Configuración inicial del canvas para el tamaño actual
     this.resizeCanvasForDPR();
-    // Background image holders
-    this.bgImage = null;
-    this.bgSrc = null;
+  // Contenedores de imagen de fondo
+  this.bgImage = null;
+  this.bgSrc = null;
     
-    // Images for different types of pokeballs
+    // Imágenes para los diferentes tipos de pokébolas
     this.ballImages = {
       1: null, // pokeball
       2: null  // superball
@@ -27,6 +37,11 @@ class View {
     // Factor de padding vertical (fracción de la altura del canvas)
     // Ajusta este valor para dejar más o menos espacio arriba/abajo
     this.verticalPaddingFactor = 0.06; // 6% por defecto
+
+    // Estado de arrastre interno de la View
+    this._dragging = null; // { fromRow, fromCol, type, clientX, clientY, offsetX, offsetY, pointerId }
+    this._dragOver = null; // { row, col, valid }
+    this._suppressClick = false; // evita doble-trigger entre click y pointer
   }
 
   loadBallImages() {
@@ -58,6 +73,7 @@ class View {
   }
 
   handleClick(e) {
+    if (this._suppressClick) return; // si fue parte de un drag, ignorar el click
     const rect = this.canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -75,6 +91,79 @@ class View {
 
     if (row < 0 || col < 0 || row >= this.model.size || col >= this.model.size) return;
     this.onClick(row, col);
+  }
+
+  // --- Pointer / drag helpers ---
+  _pointToCell(clientX, clientY) {
+    const rect = this.canvas.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+    const layout = this.computeLayout();
+    const { cellSize, offsetX, offsetY } = layout;
+    const col = Math.floor((x - offsetX + cellSize / 2) / cellSize);
+    const row = Math.floor((y - offsetY + cellSize / 2) / cellSize);
+    return { row, col, localX: x, localY: y };
+  }
+
+  _onPointerDown(e) {
+    const p = this._pointToCell(e.clientX, e.clientY);
+    const row = p.row, col = p.col;
+    const cellVal = this.model.getCell(row, col);
+    if (cellVal > 0) {
+      // iniciar arrastre
+      try { this.canvas.setPointerCapture(e.pointerId); } catch (err) {}
+      this._dragging = {
+        fromRow: row,
+        fromCol: col,
+        type: cellVal,
+        clientX: e.clientX,
+        clientY: e.clientY,
+        localX: p.localX,
+        localY: p.localY,
+        pointerId: e.pointerId
+      };
+  this._suppressClick = true;
+  if (this.onDragStart) this.onDragStart(row, col, e.clientX, e.clientY);
+      e.preventDefault();
+    }
+  }
+
+  _onPointerMove(e) {
+    if (!this._dragging) return;
+    if (e.pointerId !== this._dragging.pointerId) return;
+    // actualizar posición y avisar al controller
+    const p = this._pointToCell(e.clientX, e.clientY);
+    this._dragging.clientX = e.clientX;
+    this._dragging.clientY = e.clientY;
+    this._dragging.localX = p.localX;
+    this._dragging.localY = p.localY;
+  // comunicar candidato (el Controller realizará el redraw con los hints correctos)
+  if (this.onDragMove) this.onDragMove(e.clientX, e.clientY, p.row, p.col);
+    e.preventDefault();
+  }
+
+  _onPointerUp(e) {
+    if (!this._dragging) return;
+    if (e.pointerId !== this._dragging.pointerId) return;
+    const p = this._pointToCell(e.clientX, e.clientY);
+    // Limpiar estado de arrastre antes de notificar al Controller para evitar que
+    // el 'ghost' se pinte durante el redraw que haga el Controller.
+    try { this.canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+    this._dragging = null;
+    this._dragOver = null;
+    // permitir al click siguiente funcionar (dejarlo reiniciarse en next tick)
+    setTimeout(() => { this._suppressClick = false; }, 0);
+    if (this.onDragEnd) this.onDragEnd(e.clientX, e.clientY, p.row, p.col);
+    e.preventDefault();
+  }
+
+  _onPointerCancel(e) {
+    if (!this._dragging) return;
+    if (e.pointerId !== this._dragging.pointerId) return;
+  try { this.canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+  this._dragging = null;
+  this._dragOver = null;
+  setTimeout(() => { this._suppressClick = false; }, 0);
   }
 
   drawBoard(selected = null, hints = []) {
@@ -165,11 +254,12 @@ class View {
         ctx.lineWidth = holeStroke;
         ctx.stroke();
 
-        // resaltar movimientos posibles (puntos naranja)
+        // resaltar movimientos posibles (puntos verdes)
         if (hints.some((h) => h.row === i && h.col === j)) {
           ctx.beginPath();
           ctx.arc(x, y, hintRadius, 0, Math.PI * 2);
-          ctx.fillStyle = "#4ef02dff";
+          // Usar rgba para compatibilidad amplia (evitar 8-char hex que algunos contextos no soportan)
+          ctx.fillStyle = "rgba(78,240,45,0.95)";
           ctx.fill();
         }
 
@@ -184,7 +274,8 @@ class View {
         }
 
         // dibujar ficha (diferentes tipos de pokébolas)
-        if (cell > 0) {
+        // Si estamos arrastrando y esta es la ficha origen, no la dibujamos aquí (se dibuja como 'ghost')
+        if (cell > 0 && !(this._dragging && this._dragging.fromRow === i && this._dragging.fromCol === j)) {
           const ballImage = this.ballImages[cell];
           if (ballImage) {
             // Dibujar la imagen de la pokébola correspondiente centrada en la celda
@@ -205,6 +296,41 @@ class View {
           }
         }
       }
+    }
+
+  // Si hay un candidato de arrastre (dragOver) lo pintamos como hint grande
+    if (this._dragOver && this._dragOver.row != null) {
+      const r = this._dragOver.row, c = this._dragOver.col;
+      if (r >= 0 && c >= 0 && r < model.size && c < model.size && model.getCell(r, c) === 0) {
+        const x = c * cellSize + offsetX;
+        const y = r * cellSize + offsetY;
+        ctx.beginPath();
+        ctx.arc(x, y, hintRadius * 1.25, 0, Math.PI * 2);
+        ctx.fillStyle = this._dragOver.valid ? "rgba(78,240,45,0.95)" : "rgba(255,0,0,0.6)";
+        ctx.fill();
+      }
+    }
+
+  // Dibujar ficha fantasma mientras se arrastra
+    if (this._dragging) {
+      const drag = this._dragging;
+      // coordenadas locales en canvas (CSS px)
+      const rect = this.canvas.getBoundingClientRect();
+      const lx = drag.clientX - rect.left;
+      const ly = drag.clientY - rect.top;
+      const ballImage = this.ballImages[drag.type];
+      const size = pegRadius * 2;
+      ctx.save();
+        ctx.globalAlpha = 0.95;
+        if (ballImage) {
+          ctx.drawImage(ballImage, lx - size/2, ly - size/2, size, size);
+        } else {
+          ctx.beginPath();
+          ctx.arc(lx, ly, pegRadius, 0, Math.PI * 2);
+          ctx.fillStyle = drag.type === 1 ? "#f00" : "#00f";
+          ctx.fill();
+        }
+      ctx.restore();
     }
   }
 
@@ -271,7 +397,7 @@ class View {
     if (this.canvas.width !== internalW || this.canvas.height !== internalH) {
       this.canvas.width = internalW;
       this.canvas.height = internalH;
-      // Reset transform and scale so drawing uses CSS pixel units
+  // Restablecer transform y escalar para que el dibujo use unidades de píxeles CSS
       this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
   }

@@ -1,4 +1,4 @@
-// === PROFILE DROPDOWN ===
+// === DESPLEGABLE DE PERFIL ===
 document.addEventListener('DOMContentLoaded', function() {
   const profileIcon = document.querySelector('.icon-profile');
   const profileMenu = document.querySelector('.profile-menu');

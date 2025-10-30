@@ -144,7 +144,7 @@ class View {
 
     // Tamaños relativos a cellSize
     const holeRadius = cellSize * 0.35;
-    const hintRadius = cellSize * 0.18;
+    const hintRadius = cellSize * 0.15;
     const pegRadius = cellSize * 0.40;
     const holeStroke = Math.max(1, cellSize * 0.04);
 
@@ -169,7 +169,7 @@ class View {
         if (hints.some((h) => h.row === i && h.col === j)) {
           ctx.beginPath();
           ctx.arc(x, y, hintRadius, 0, Math.PI * 2);
-          ctx.fillStyle = "#2bff00ff";
+          ctx.fillStyle = "#4ef02dff";
           ctx.fill();
         }
 

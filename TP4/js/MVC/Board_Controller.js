@@ -15,8 +15,9 @@ class Controller {
     this.selected = null;
     this.hints = [];
     this.defeated = false;
+    this.victory = false;
     // Timer (por defecto 6 minutos)
-    this.timeLimitMs = 6 * 60 * 1000;
+    this.timeLimitMs = 6* 60 * 1000; 
     this.timerInterval = null;
     this.startTime = 0;
     this.elapsedTime = 0;
@@ -68,6 +69,7 @@ class Controller {
 
     // After fill, ensure game state ready and start timer
     this.defeated = false;
+    this.victory = false;
     this.elapsedTime = 0;
     this.view.drawBoard();
     this.startTimer();
@@ -151,8 +153,13 @@ class Controller {
     this.view._dragOver = null;
     this.view.drawBoard(this.selected, this.hints);
 
-    // Comprobar derrota
-    if (!this.model.hasAnyValidMoves()) {
+    
+    // Check end of game conditions
+    if (this.model.hasOnlyCenterPeg()) {
+      this.victory = true;
+      this.stopTimer();
+      setTimeout(() => this.view.showVictory(), 300);
+    } else if (!this.model.hasAnyValidMoves()) {
       this.defeated = true;
       this.stopTimer();
       setTimeout(() => this.view.showDefeat(), 300);
@@ -185,6 +192,8 @@ class Controller {
     const secs = seconds % 60;
     const el = document.getElementById('peg-timer');
     if (el) el.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+   
+
     if (remaining <= 0) {
       // tiempo cumplido -> derrota
       this.stopTimer();
@@ -215,36 +224,56 @@ class Controller {
 }
 // Funciones para controlar la visibilidad del menú y el inicio del juego
 function startPegGame() {
-  // ocultar menú e instrucciones
-  document.getElementById('juego').style.display = 'none';
-  document.getElementById('instructions').style.display = 'none';
-  // mostrar canvas y timer
-  const c = document.getElementById('pegCanvas');
-  if (c) c.style.display = 'block';
+  // ✅ Primero ocultar cualquier pantalla o contenido previo
+  const juego = document.getElementById('juego');
+  const instructions = document.getElementById('instructions');
+  const defeatScreen = document.getElementById('defeat-screen');
+  const victoryScreen = document.getElementById('victory-screen');
+  const canvasWrap = document.getElementById('pegCanvasWrap');
+  const canvasEl = document.getElementById('pegCanvas');
   const tcont = document.getElementById('pegTimerContainer');
+  const controls = document.getElementById('pegControls');
+
+  if (juego) juego.style.display = 'none';
+  if (instructions) instructions.style.display = 'none';
+  if (defeatScreen) defeatScreen.style.display = 'none';
+  if (victoryScreen) victoryScreen.style.display = 'none';
+
+  // ✅ Asegurar que el canvas y sus contenedores aparezcan correctamente sin dejar fondo negro
+  if (canvasWrap) canvasWrap.style.display = 'flex';
+  if (canvasEl) {
+    canvasEl.style.display = 'block';
+    canvasEl.style.backgroundColor = 'transparent'; // evita parpadeo negro
+  }
+
   if (tcont) tcont.style.display = 'block';
-  const controls = document.getElementById('pegControls'); if (controls) controls.style.display = 'flex';
-  // iniciar el Controller si no está iniciado
+  if (controls) controls.style.display = 'flex';
+
+  // ✅ Iniciar el controlador solo al comenzar el juego
   const ctrl = window.startPegController();
   if (ctrl) {
-    // Animación: mostrar tablero vacío y luego rellenar con fichas
+    // Mostrar tiempo inicial en el contador
     const el = document.getElementById('peg-timer');
     if (el && ctrl.timeLimitMs) {
       const mins = Math.floor(ctrl.timeLimitMs / 60000);
       el.textContent = `${String(mins).padStart(2, '0')}:00`;
     }
+
+    // ✅ Ejecutar animación de llenado o reinicio del juego
     if (typeof ctrl.startWithFill === 'function') {
-      // startWithFill gestiona el reset, la animación y el inicio del timer
-      ctrl.startWithFill(40 /* ms per peg */);
+      ctrl.startWithFill(40); // ms por ficha
     } else {
-      // fallback: reiniciar y empezar inmediatamente
       if (typeof ctrl.resetGame === 'function') ctrl.resetGame(true);
       if (ctrl.view) ctrl.view.drawBoard();
     }
   }
 }
 
-document.getElementById('startBtn').addEventListener('click', startPegGame);
+
+document.getElementById('startBtn').addEventListener('click', ()=>{
+  document.getElementById('pegCanvasWrap').style.display = 'block';
+  startPegGame()}
+);
 document.getElementById('showInstructionsBtn').addEventListener('click', function () {
   document.getElementById('juego').style.display = 'none';
   document.getElementById('instructions').style.display = 'block';
@@ -253,39 +282,62 @@ document.getElementById('backToMenuBtn').addEventListener('click', function () {
   document.getElementById('instructions').style.display = 'none';
   document.getElementById('juego').style.display = 'block';
 });
-
-// Retry / Menu buttons on defeat screen
+// Retry / Menu buttons on defeat or victory screen
 document.addEventListener('DOMContentLoaded', function () {
   const retry = document.getElementById('btnRetry');
   const menu = document.getElementById('btnMenu');
-  if (retry) retry.addEventListener('click', function () {
-    const ctrl = window.startPegController();
-    if (ctrl && typeof ctrl.resetGame === 'function') {
-  // reiniciar y arrancar timer
-  ctrl.resetGame(true);
-  // asegurar canvas visible, esconder derrota, y mostrar controles
-  const canvasEl = document.getElementById('pegCanvas'); if (canvasEl) canvasEl.style.display = 'block';
-  const tcont = document.getElementById('pegTimerContainer');
-  if (tcont) tcont.style.display = 'block';
-  const controls = document.getElementById('pegControls');
-  if (controls) controls.style.display = 'flex';
-  const defeatScreen = document.getElementById('defeat-screen');
-  if (defeatScreen) defeatScreen.style.display = 'none';
-    }
-  });
-  if (menu) menu.addEventListener('click', function () {
+  const menu_ = document.getElementById('btnMenu_');
+
+  // Retry button (defeat screen)
+  if (retry) {
+    retry.addEventListener('click', function () {
+      const ctrl = window.startPegController();
+      if (ctrl && typeof ctrl.resetGame === 'function') {
+        ctrl.resetGame(true);
+
+        // Show game elements again
+        const canvasEl = document.getElementById('pegCanvas');
+        if (canvasEl) canvasEl.style.display = 'block';
+        const tcont = document.getElementById('pegTimerContainer');
+        if (tcont) tcont.style.display = 'block';
+        const controls = document.getElementById('pegControls');
+        if (controls) controls.style.display = 'flex';
+
+        // Hide defeat/victory screens
+        const defeatScreen = document.getElementById('defeat-screen');
+        if (defeatScreen) defeatScreen.style.display = 'none';
+        const victoryScreen = document.getElementById('victory-screen');
+        if (victoryScreen) victoryScreen.style.display = 'none';
+      }
+    });
+  }
+
+  // Menu buttons (both defeat and victory)
+  const handleMenuClick = () => {
     const ctrl = window.startPegController();
     if (ctrl && typeof ctrl.stopTimer === 'function') ctrl.stopTimer();
+
+    // Hide gameplay UI
     document.getElementById('pegCanvas').style.display = 'none';
     const tcont = document.getElementById('pegTimerContainer');
     if (tcont) tcont.style.display = 'none';
     const controls = document.getElementById('pegControls');
     if (controls) controls.style.display = 'none';
+
+    // Hide overlays
     const defeatScreen = document.getElementById('defeat-screen');
     if (defeatScreen) defeatScreen.style.display = 'none';
+    const victoryScreen = document.getElementById('victory-screen');
+    if (victoryScreen) victoryScreen.style.display = 'none';
+
+    // Show main menu
     document.getElementById('juego').style.display = 'block';
-  });
+  };
+
+  if (menu) menu.addEventListener('click', handleMenuClick);
+  if (menu_) menu_.addEventListener('click', handleMenuClick);
 });
+
 
 // Attach listeners for restart and return buttons (if present)
 const restartBtn = document.getElementById('btnRestartGame');
@@ -311,6 +363,7 @@ if (returnBtn) {
     const tcont = document.getElementById('pegTimerContainer'); if (tcont) tcont.style.display = 'none';
     const controls = document.getElementById('pegControls'); if (controls) controls.style.display = 'none';
     const elJ = document.getElementById('juego'); if (elJ) elJ.style.display = 'block';
+    document.getElementById('pegCanvasWrap').style.display = 'none';
   });
 }
 

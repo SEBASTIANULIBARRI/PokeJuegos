@@ -464,6 +464,85 @@ class View {
     ctx.fillText("DEFEAT 😢", clientW / 2, clientH / 2);
   }
 
+  showVictory() {
+  // Preferir mostrar la pantalla de victoria HTML si existe
+  const victoryEl = document.getElementById('victory-screen');
+  const canvasWrap = document.getElementById('pegCanvasWrap');
+  if (victoryEl && canvasWrap) {
+    // Mover el contenedor de victoria dentro del wrap del canvas
+    if (victoryEl.parentNode !== canvasWrap) {
+      canvasWrap.appendChild(victoryEl);
+    }
+
+    // Estilar el overlay para cubrir el área del canvasWrap
+    Object.assign(victoryEl.style, {
+      display: 'flex',
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '100%',
+      background: 'rgba(0,0,0,0.6)',
+      zIndex: 50,
+      alignItems: 'center',
+      justifyContent: 'center',
+      pointerEvents: 'auto'
+    });
+
+    // Ocultar controles dentro del canvas
+    const controls = document.getElementById('pegControls');
+    if (controls) controls.style.display = 'none';
+
+    // Ajustar el contenido interno para que esté centrado y con tamaño máximo
+    const victoryContent = victoryEl.querySelector('.victory-content');
+    if (victoryContent) {
+      Object.assign(victoryContent.style, {
+        position: 'relative',
+        transform: '',
+        top: '',
+        left: '',
+        padding: '20px',
+        textAlign: 'center',
+        maxWidth: '600px',
+        width: '90%',
+        margin: '0 auto'
+      });
+    }
+
+    // Ajustar imagen de victoria
+    const victoryImg = document.getElementById('victory-image');
+    if (victoryImg) {
+      victoryImg.style.maxWidth = '400px';
+      victoryImg.style.width = '100%';
+      victoryImg.style.height = 'auto';
+      victoryImg.style.display = 'block';
+      victoryImg.style.margin = '0 auto 24px';
+      victoryImg.style.objectFit = 'cover';
+    }
+
+    const message = victoryEl.querySelector('.victory-message');
+    if (message) message.style.color = 'white';
+
+    return;
+  }
+
+  // Si no existe el div HTML, dibujamos un overlay de victoria en el canvas (fallback)
+  const { ctx, canvas } = this;
+  const clientW = canvas.clientWidth;
+  const clientH = canvas.clientHeight;
+  ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+  ctx.fillRect(0, 0, clientW, clientH);
+
+  // Escalar la fuente según la dimensión menor
+  const size = Math.min(clientW, clientH);
+  const fontSize = Math.max(16, Math.floor(size * 0.08));
+  ctx.font = `bold ${fontSize}px Arial`;
+  ctx.fillStyle = "yellow";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("VICTORY 🎉", clientW / 2, clientH / 2);
+  }
+
   // Ajusta el buffer del canvas para devicePixelRatio y establece transform
   resizeCanvasForDPR() {
     const dpr = window.devicePixelRatio || 1;

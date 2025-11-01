@@ -405,19 +405,31 @@
 }
 
 /* Peg Solitaire specific layout and overlays */
-#defeat-screen { display: none; }
+#defeat-screen { 
+  display: none; 
+}
+
 #pegCanvasWrap {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    max-width: 1135px;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 1135px;
+
+  /* 🧩 Add these lines: ensures layout is stable even before the game loads */
+  min-height: 500px;     /* Adjust to your board's height */
+  background-color: black; /* Optional: avoids layout jump on load */
+  display: none;
 }
 
 #pegCanvas {
-    display: block;
-    width: 100%;
-    height: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+
+  /* 🧩 Optional: center the canvas and avoid layout flicker */
+  margin: 0 auto;
 }
+
 
 /* Utility class to hide elements when needed (Controller can toggle inline styles too) */
 .hidden { display: none !important; }

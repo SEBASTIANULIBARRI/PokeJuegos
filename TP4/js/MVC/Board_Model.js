@@ -14,6 +14,7 @@ class Model {
       [-1, -1, 2, 1, 2, -1, -1],
       [-1, -1, 1, 2, 1, -1, -1],
     ];
+ 
   }
 
   // Nota: eliminado updateLayout para respetar responsabilidades MVC.
@@ -85,6 +86,21 @@ class Model {
     return false;
   }
 
+
+  hasOnlyCenterPeg() {
+  let pegCount = 0;
+  let centerRow = Math.floor(this.size / 2);
+  let centerCol = Math.floor(this.size / 2);
+
+  for (let i = 0; i < this.size; i++) {
+    for (let j = 0; j < this.size; j++) {
+      if (this.board[i][j] == 1 ||  this.board[i][j] == 2 ) pegCount++;
+    }
+  }
+
+  // Return true if there's exactly one peg and it's in the center
+  return pegCount === 1 && (this.board[centerRow][centerCol] == 1 || this.board[centerRow][centerCol] == 2);
+}
   // Restablece el tablero al estado inicial
   reset() {
     this.board = [

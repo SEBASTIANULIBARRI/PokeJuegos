@@ -119,7 +119,7 @@
                         </div>
 
                         <!-- GAME CANVAS (oculto hasta pulsar Comenzar). Timer overlay y controles dentro del contenedor del canvas -->
-                        <div id="pegCanvasWrap">
+                        <div id="pegCanvasWrap" display="none">
                             <canvas id="pegCanvas" width="1135" height="720" class="pegCanvas"></canvas>
                             <!-- Timer (esquina superior derecha) -->
                             <div id="pegTimerContainer">
@@ -146,6 +146,17 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div id="victory-screen" style="display:none;">
+                            <div class="victory-content">
+                                <img id="victory-image" src="img/victoryScreen.jpg" alt="Victory">
+                                <div class="victory-message">Felicitaciones! Ganaste!</div>
+                                 <div class="victory-buttons">
+                                    <button class="botones btn-secondary" id="btnMenu_">Volver al menú</button>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="game-descripcion">
                             <h4>Peg Solitaire: Pikachu vs Charmander</h4>

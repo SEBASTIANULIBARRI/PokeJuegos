@@ -87,10 +87,8 @@ class Model {
   }
 
 
-  hasOnlyCenterPeg() {
+  hasOnlyOnePeg() {
   let pegCount = 0;
-  let centerRow = Math.floor(this.size / 2);
-  let centerCol = Math.floor(this.size / 2);
 
   for (let i = 0; i < this.size; i++) {
     for (let j = 0; j < this.size; j++) {
@@ -99,7 +97,16 @@ class Model {
   }
 
   // Return true if there's exactly one peg and it's in the center
-  return pegCount === 1 && (this.board[centerRow][centerCol] == 1 || this.board[centerRow][centerCol] == 2);
+  return pegCount === 1;
+}
+
+hasOnlyCenter() {
+  
+  let centerRow = Math.floor(this.size / 2);
+  let centerCol = Math.floor(this.size / 2);
+
+  // Return true if there's exactly one peg and it's in the center
+  return  (this.board[centerRow][centerCol] == 1 || this.board[centerRow][centerCol] == 2);
 }
   // Restablece el tablero al estado inicial
   reset() {

@@ -17,7 +17,7 @@ class Controller {
     this.defeated = false;
     this.victory = false;
     // Timer (por defecto 6 minutos)
-    this.timeLimitMs = 6* 60 * 1000; 
+    this.timeLimitMs = 1* 60 * 1000; // 1 minuto para pruebas rápidas (antes 6 minutos)
     this.timerInterval = null;
     this.startTime = 0;
     this.elapsedTime = 0;
@@ -99,7 +99,18 @@ class Controller {
     this.view.drawBoard(this.selected, this.hints);
 
     // Comprobar derrota
-    if (!this.model.hasAnyValidMoves()) {
+     if (this.model.hasOnlyOnePeg()) {
+      const image = document.getElementById('victory-image');
+      if(this.model.hasOnlyCenter()  ){
+        image.src = "img/opcionesjuego/iniciales.jpg";
+        document.getElementById('victory-message').textContent = "Felicitaciones! Ganaste! En la forma mas dificil!";
+      } else {image.src = "img/victoryScreen.jpg";
+        document.getElementById('victory-message').textContent = "Felicitaciones! Ganaste!";
+      }
+      this.victory = true;
+      this.stopTimer();
+      setTimeout(() => this.view.showVictory(), 300);}
+      else if (!this.model.hasAnyValidMoves()) {
       this.defeated = true;
       this.stopTimer();
       setTimeout(() => this.view.showDefeat(), 300);
@@ -155,11 +166,18 @@ class Controller {
 
     
     // Check end of game conditions
-    if (this.model.hasOnlyCenterPeg()) {
+    if (this.model.hasOnlyOnePeg()) {
+     const image = document.getElementById('victory-image');
+      if(this.model.hasOnlyCenter() ){
+        image.src = "img/opcionesjuego/iniciales.jpg";
+        document.getElementById('victory-message').textContent = "Felicitaciones! Ganaste! En la forma mas dificil!";
+      } else {image.src = "img/victoryScreen.jpg";
+        document.getElementById('victory-message').textContent = "Felicitaciones! Ganaste!";
+      }
       this.victory = true;
       this.stopTimer();
       setTimeout(() => this.view.showVictory(), 300);
-    } else if (!this.model.hasAnyValidMoves()) {
+    } else if(!this.model.hasAnyValidMoves()) {
       this.defeated = true;
       this.stopTimer();
       setTimeout(() => this.view.showDefeat(), 300);

@@ -17,7 +17,7 @@ class Controller {
     this.defeated = false;
     this.victory = false;
     // Timer (por defecto 6 minutos)
-    this.timeLimitMs = 1* 60 * 1000; // 1 minuto para pruebas rápidas (antes 6 minutos)
+    this.timeLimitMs = 6* 60 * 1000; // 1 minuto para pruebas rápidas (antes 6 minutos)
     this.timerInterval = null;
     this.startTime = 0;
     this.elapsedTime = 0;

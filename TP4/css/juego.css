@@ -785,6 +785,12 @@ label{
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
 }
+#btnRestartGame {
+  background: #69f058;
+}
+#btnRestartGame:hover{
+  background:  #00ff15 ;
+}
 
 .btn-secondary {
   background: #2a2a2a;

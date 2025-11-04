@@ -71,6 +71,7 @@ class Controller {
     this.defeated = false;
     this.victory = false;
     this.elapsedTime = 0;
+    
     this.view.drawBoard();
     this.startTimer();
   }

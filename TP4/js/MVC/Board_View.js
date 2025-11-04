@@ -195,9 +195,17 @@ class View {
     ctx.clearRect(0, 0, clientW, clientH);
 
     // Dibujar imagen de fondo (cubrir TODO el canvas) si existe
+  
     if (this.bgImage) {
-      this._drawImageCover(this.bgImage, 0, 0, clientW, clientH);
-    }
+        this._drawImageCover(this.bgImage, 0, 0, clientW, clientH);
+
+        // --- 🔹 Apply a semi-transparent dark overlay to shadow the background ---
+        ctx.save();
+        ctx.fillStyle = "rgba(0, 0, 0, 0.35)"; // Adjust opacity (0.25–0.5 recommended)
+        ctx.fillRect(0, 0, clientW, clientH);
+        ctx.restore();
+        
+      }
 
     // Dibujar un contorno que siga el perímetro real del tablero (forma de '+')
     // Para ello acumulamos los segmentos de borde: si una celda válida tiene
@@ -233,10 +241,13 @@ class View {
       }
     }
 
+
+
     if (segments.length > 0) {
       ctx.save();
         // Color del contorno en forma de '+' según solicitud
-        ctx.strokeStyle = "rgba(0, 0, 0, 0.78)";
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.78)";
+        //ctx.strokeStyle = "rgba(0, 0, 0, 0.78)";
       ctx.lineWidth = Math.max(2, Math.floor(cellSize * 0.06));
       ctx.lineCap = 'round';
       ctx.beginPath();
@@ -244,6 +255,7 @@ class View {
         ctx.moveTo(s.x1, s.y1);
         ctx.lineTo(s.x2, s.y2);
       }
+      
       ctx.stroke();
       ctx.restore();
     }

@@ -110,14 +110,34 @@ hasOnlyCenter() {
 }
   // Restablece el tablero al estado inicial
   reset() {
-    this.board = [
-      [-1, -1, 1, 1, 1, -1, -1],
-      [-1, -1, 1, 1, 1, -1, -1],
-      [ 1,  1, 1, 1, 1,  1,  1],
-      [ 1,  1, 1, 0, 1,  1,  1],
-      [ 1,  1, 1, 1, 1,  1,  1],
-      [-1, -1, 1, 1, 1, -1, -1],
-      [-1, -1, 1, 1, 1, -1, -1],
-    ];
+    let value = Math.floor(Math.random() * 2) + 1;// 1 o 2;
+for (let i = 0; i < this.board.length; i++) {
+  for (let j = 0; j < this.board[i].length; j++) {
+    // Example rule: set corners (-1), center (0), rest (1)
+    if (
+      (i < 2 && j < 2) || (i < 2 && j > 4) ||
+      (i > 4 && j < 2) || (i > 4 && j > 4)
+    ) {
+      this.board[i][j] = -1;
+    } 
+    else if (i == Math.floor (this.board.length / 2) && j == Math.floor (this.board.length / 2)) {
+      this.board[i][j] = 0;
+    } 
+    else {
+      this.board[i][j] = value;
+    }
+  }
+}
+
+    
+    //this.board = [
+    //  [-1, -1, 1, 1, 1, -1, -1],
+    //  [-1, -1, 1, 1, 1, -1, -1],
+    //  [ 1,  1, 1, 1, 1,  1,  1],
+    //  [ 1,  1, 1, 0, 1,  1, 1],
+    //  [ 1,  1, 1, 1, 1,  1,  1],
+    //  [-1, -1, 1, 1, 1, -1, -1],
+    //  [-1, -1, 1, 1, 1, -1, -1],
+    //];
   }
 }

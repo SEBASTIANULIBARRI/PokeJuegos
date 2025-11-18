@@ -81,10 +81,6 @@
                 </nav>
                 <section class="game-section">
                     <div class="game-main">
-                            <div class="layer layer-4"></div>
-                            <div class="layer layer-3"></div>
-                            <div class="layer layer-2"></div>
-                            <div class="layer layer-1"></div>
                         <div class="body-juego">
 
                             <!-- MAIN MENU -->
@@ -164,7 +160,7 @@
 
                                     <canvas id="game-canvas" width="600" height="600"></canvas>
                                     <div id="previewContainer"></div>
-
+                                    
                                     <div class="game-footer">
                                         <button class="botones btn-secondary" onclick="showMainMenu()">Menú
                                             Principal</button>
@@ -183,8 +179,7 @@
                                         <canvas id="victory-canvas"></canvas>
                                     </div>
                                     <div class="menu-buttons">
-                                        <button class="botones btn-primary" id="nextLevel"
-                                            onclick="nextLevel()">Siguiente
+                                        <button class="botones btn-primary" id="nextLevel" onclick="nextLevel()">Siguiente
                                             Nivel</button>
                                         <button class="botones btn-secondary" onclick="showMainMenu()">Menú
                                             Principal</button>
@@ -194,19 +189,17 @@
 
                             <!-- DEFEAT SCREEN -->
                             <div id="defeat-screen" class="screen">
-                                <div class="contenedor-juego">
-                                    <h2 class="title">¡Has Perdido!</h2>
-                                    <div class="defeat-content">
-                                        <p class="defeat-time">Tiempo: <span id="defeat-time">00:00</span></p>
-                                        <canvas id="defeat-canvas"></canvas>
-                                    </div>
-                                    <div class="menu-buttons">
-                                        <button class="botones btn-primary" onclick="retryLevel()">Reintentar
-                                            Nivel</button>
-                                        <button class="botones btn-secondary" onclick="showMainMenu()">Menú
-                                            Principal</button>
-                                    </div>
+                              <div class="contenedor-juego">
+                                <h2 class="title">¡Has Perdido!</h2>
+                                <div class="defeat-content">
+                                  <p class="defeat-time">Tiempo: <span id="defeat-time">00:00</span></p>
+                                  <canvas id="defeat-canvas"></canvas>
                                 </div>
+                                <div class="menu-buttons">
+                                  <button class="botones btn-primary" onclick="retryLevel()">Reintentar Nivel</button>
+                                  <button class="botones btn-secondary" onclick="showMainMenu()">Menú Principal</button>
+                                </div>
+                              </div>
                             </div>
 
                             <!-- GAME COMPLETE SCREEN -->
@@ -235,7 +228,7 @@
                             disfrutan de los juegos de lógica y observación, con niveles que aumentan la dificultad y
                             añaden un toque artístico.</p>
 
-                        <p>Objetivo:
+                            <p>Objetivo:
                             Gira las piezas para que todas queden en la orientación correcta y revelen la imagen
                             completa em el menor tiempo posible.</p>
 
@@ -250,9 +243,10 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="descripcion-div">
+                   <div class="descripcion-div">
                         <div class="imagen-descripcion">
-                            <img src="./img/bloka_desc.png" alt="imagen mas chica de Bloka" srcset="">
+                            <img src="./img/bloka_desc.png" alt="imagen mas chica de Bloka"
+                                srcset="">
                         </div>
                         <div class="compartir-row">
                             <!-- <img src="./img/juego/btn-share.png" alt="boton compartir" class="btn-compartir-img"> -->
@@ -270,12 +264,9 @@
                 <div class="carrousel-container">
                     <button class="carrousel-btn prev">&#10094;</button>
                     <div class="carrousel-img" id="carrousel">
-                        <img src="./img/opcionesjuego/pokemon.webp" alt="Muestra 1"
-                            class="carrousel-img-item clickeable">
-                        <img src="./img/opcionesjuego/pikachu.jpg" alt="Muestra 2"
-                            class="carrousel-img-item clickeable">
-                        <img src="./img/opcionesjuego/iniciales.jpg" alt="Muestra 3"
-                            class="carrousel-img-item clickeable">
+                        <img src="./img/opcionesjuego/pokemon.webp" alt="Muestra 1" class="carrousel-img-item clickeable">
+                        <img src="./img/opcionesjuego/pikachu.jpg" alt="Muestra 2" class="carrousel-img-item clickeable">
+                        <img src="./img/opcionesjuego/iniciales.jpg" alt="Muestra 3" class="carrousel-img-item clickeable">
                     </div>
                     <button class="carrousel-btn next">&#10095;</button>
                 </div>

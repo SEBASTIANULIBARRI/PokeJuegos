@@ -1,36 +1,259 @@
-html,body {
-  margin:0;
+/* --- FLAPPY MAGIKARP --- */
+.game-container {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, #87CEEB 0%, #4A90A4 50%, #2C6B7F 100%);
+  position: relative;
+  overflow: hidden;
 }
 
-#fondo {
-  background:url(../img/img-tp5/Fondo.jpg) repeat-X;
-  animation: movebg 9s linear infinite;
+#magikarp {
+  width: 77px;
+  height: 56px;
+  background-image: url(../img/img-tp5/magikarp.png);
+  background-repeat: no-repeat;
+  background-size: 616px 56px;
+  animation: magikarp-walk 1.2s steps(8) infinite;
+  position: absolute;
+  left: 30%;
+  transform: translateX(-50%);
+  z-index: 10;
+  bottom: 510px;
 }
 
-#agua {
-  background:url(../img/img-tp5/Agua.jpg) repeat-x;
-  animation: movebg 6s linear infinite;
-  /* Posicionamos el mar, para que no solape al cielo */
-  position:relative;
-  top:145px;
-  /* Pequeño degradado interior para suavizar el mar. Puede consumir muchos recursos */
-  box-shadow:10px 10px 45px RGBA(0,0,0, 0.85) inset;
+@keyframes magikarp-walk {
+  0% { background-position: 0 0; }
+  100% { background-position: -623px 0; }
 }
 
-
-#sky {
-  background:url(https://cdn.rawgit.com/ManzDev/cursos-assets/gh-pages/css3/monkey-sky.png) repeat-X;
-  animation: movebg 9s linear infinite;
+.obstacle {
+  width: 80px;
+  position: absolute;
+  background-image: url('../img/img-tp5/Torre.png');
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  /*background-size: 100% 100%;
+  background-repeat: no-repeat; Asi es para que no se repitan, pero se ve feo(CONSULTAR CON AYUDANTE)*/ 
+  z-index: 5;
 }
 
+.obstacle-top {
+  top: 0;
+  transform: rotate(180deg);
+}
 
-@keyframes movebg {
+.obstacle-bottom {
+  bottom: 0;
+}
+
+.score {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+  z-index: 20;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 30;
+}
+
+.screen.hidden {
+  display: none;
+}
+
+.screen h1 {
+  color: white;
+  font-size: 64px;
+  margin-bottom: 20px;
+  text-shadow: 3px 3px 0 #000;
+}
+
+.screen p {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.screen button {
+  padding: 15px 40px;
+  font-size: 24px;
+  background: #FFA500;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #000;
+  transition: transform 0.1s;
+}
+
+.screen button:hover {
+  transform: scale(1.1);
+  background: #FF8C00;
+}
+
+.screen button:active {
+  transform: scale(0.95);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.parallax-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  left: 0;
+}
+
+.layer img {
+  display: block;
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fondo {
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.fondo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.agua {
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  height: auto;
+  animation: slide-slow 60s linear infinite;
+}
+
+.agua img {
+  min-height: 250px;
+}
+
+.playa {
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  height: auto;
+  animation: slide-medium 40s linear infinite;
+}
+
+.playa img {
+  min-height: 200px;
+}
+
+.nubes {
+  z-index: 4;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  animation: slide-fast 20s linear infinite;
+}
+
+.nubes img {
+  min-height: 600px;
+}
+
+@keyframes slide-slow {
   0% {
-    background-position: 550px
+    transform: translateX(0);
   }
-
   100% {
-    background-position: 0
+    transform: translateX(-50%);
   }
 }
 
+@keyframes slide-medium {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes slide-fast {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Added styles for play button */
+.play-button-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+#playButton {
+  font-family: 'Outfit', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 20px 40px;
+  background: linear-gradient(135deg, #ff6b6b, #ff8787);
+  color: white;
+  border: 4px solid white;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#playButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #ff5252, #ff6b6b);
+}
+
+#playButton:active {
+  transform: scale(0.95);
+}

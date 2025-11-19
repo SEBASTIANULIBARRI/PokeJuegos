@@ -1,145 +1,36 @@
-* {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+html,body {
+  margin:0;
+}
 
-    body {
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      font-family: system-ui, -apple-system, sans-serif;
-    }
+#fondo {
+  background:url(../img/img-tp5/Fondo.jpg) repeat-X;
+  animation: movebg 9s linear infinite;
+}
 
-    .parallax-container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-    }
+#agua {
+  background:url(../img/img-tp5/Agua.jpg) repeat-x;
+  animation: movebg 6s linear infinite;
+  /* Posicionamos el mar, para que no solape al cielo */
+  position:relative;
+  top:145px;
+  /* Pequeño degradado interior para suavizar el mar. Puede consumir muchos recursos */
+  box-shadow:10px 10px 45px RGBA(0,0,0, 0.85) inset;
+}
 
-    .layer {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
 
-    .layer img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
+#sky {
+  background:url(https://cdn.rawgit.com/ManzDev/cursos-assets/gh-pages/css3/monkey-sky.png) repeat-X;
+  animation: movebg 9s linear infinite;
+}
 
-    /* Fondo - capa 1 */
-    .fondo {
-      z-index: 1;
-      top: 0;
-      left: 0;
-    }
 
-    .fondo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+@keyframes movebg {
+  0% {
+    background-position: 550px
+  }
 
-    /* Agua - capa 2 */
-    .agua {
-      z-index: 2;
-      bottom: 0;
-      left: 0;
-      height: auto;
-      animation: slide-slow 60s linear infinite;
-    }
+  100% {
+    background-position: 0
+  }
+}
 
-    .agua img {
-      min-height: 250px;
-    }
-
-    /* Playa - capa 3 */
-    .playa {
-      z-index: 3;
-      bottom: 0;
-      left: 0;
-      height: auto;
-      animation: slide-medium 40s linear infinite;
-    }
-
-    .playa img {
-      min-height: 200px;
-    }
-
-    /* Nubes - capa 4 */
-    .nubes {
-      z-index: 4;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      animation: slide-fast 20s linear infinite;
-    }
-
-    .nubes img {
-      min-height: 600px;
-    }
-
-    /* Animaciones de parallax horizontal */
-    @keyframes slide-slow {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    @keyframes slide-medium {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    @keyframes slide-fast {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    /* Duplicar imágenes para efecto continuo */
-    .layer::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 100%;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-repeat: repeat-x;
-    }
-
-    .fondo::after {
-      background-image: url('/images/fondo.jpg');
-      display: none;
-    }
-
-    .agua::after {
-      background-image: url('/images/agua.jpg');
-      bottom: 0;
-      height: 250px;
-    }
-
-    .playa::after {
-      background-image: url('/images/playa.png');
-      bottom: 0;
-      height: 200px;
-    }
-
-    .nubes::after {
-      background-image: url('/images/nubes.png');
-      height: 600px;
-    }

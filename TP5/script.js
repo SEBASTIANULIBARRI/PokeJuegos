@@ -32,7 +32,7 @@ let gameLoop;
 let obstacleInterval;
 let coinInterval;
 
-const obstacleGap = 240;
+const obstacleGap = 300; // aumentado para huecos más amplios
 const obstacleSpeed = 3;
 const obstacleFrequency = 2000;
 const coinFrequency = 4000; // ms (menos frecuencia)
@@ -52,6 +52,8 @@ function init() {
     document.querySelectorAll('.obstacle').forEach(obs => obs.remove());
     // Clear existing coins
     document.querySelectorAll('.coin').forEach(c => c.remove());
+    // Clear any remaining mantines so restart is clean
+    document.querySelectorAll('.mantine').forEach(w => w.remove());
 }
 
 // Start game
@@ -91,10 +93,10 @@ function update() {
     if (magiPosition < techoLimite || magiPosition > pisoLimite) {
         endGame();
     }
-    // Hitbox ajustada
-    const magiWidth = 61;
+    // Hitbox ajustada (Magikarp): restaurada a la caja original
+    const magiWidth = 60;
     const magiHeight = 42;
-    const magiLeft = window.innerWidth * 0.3 + (77 - magiWidth) / 2 + 4;
+    const magiLeft = window.innerWidth * 0.3 + (60 - magiWidth) / 2 + 4;
     const magiTop = magiPosition + (56 - magiHeight) / 2 + 6;
     const magiRight = magiLeft + magiWidth;
     const magiBottom = magiTop + magiHeight;
@@ -110,13 +112,19 @@ function update() {
             obstacle.passed = true;
             score++;
             scoreDisplay.textContent = score;
+            // comprobar condición de victoria
+            if (score >= 40 || coinScore >= 15) {
+                showVictoryScreen();
+                return;
+            }
         }
         // Eliminar obstáculos fuera de pantalla
-        if (obstacle.left < -80) {
-            obstacle.topElement.remove();
-            obstacle.bottomElement.remove();
-            obstacles.splice(i, 1);
-            continue;
+            if (obstacle.left < -80) {
+                obstacle.topElement.remove();
+                obstacle.bottomElement.remove();
+                if (obstacle.mantineElement) obstacle.mantineElement.remove();
+                obstacles.splice(i, 1);
+                continue;
         }
         // Colisión
         const obstacleLeft = obstacle.left;
@@ -128,6 +136,20 @@ function update() {
         const bottomCollision = magiBottom > gapBottom && horizontalCollision;
         if (topCollision || bottomCollision) {
             endGame();
+        }
+
+        // Mover y chequear mantine si existe (hitbox circular)
+        if (obstacle.mantineElement) {
+            obstacle.mantineElement.style.left = obstacle.left + 'px';
+            const mCenterX = obstacle.left + obstacle.mantineWidth / 2;
+            const mCenterY = parseFloat(obstacle.mantineElement.style.top) + obstacle.mantineHeight / 2;
+            // hacer la hitbox de Mantine más pequeña (factor)</br>
+            const mantineRadiusFactor = 0.9; // 0.0-1.0, reduce el radio de colisión
+            const radius = Math.max(obstacle.mantineWidth, obstacle.mantineHeight) / 2 * mantineRadiusFactor;
+            const hitMantine = rectCircleCollides(magiLeft, magiTop, magiRight, magiBottom, mCenterX, mCenterY, radius);
+            if (hitMantine) {
+                endGame();
+            }
         }
     }
 
@@ -157,6 +179,54 @@ function update() {
             coins.splice(i, 1);
             coinScore++;
             coinCountDisplay.textContent = coinScore;
+            // comprobar condición de victoria
+            if (score >= 10 || coinScore >= 15) {
+                showVictoryScreen();
+                return;
+            }
+        }
+    }
+}
+
+// Helper: circle vs rect collision
+function rectCircleCollides(rectLeft, rectTop, rectRight, rectBottom, circleX, circleY, radius) {
+    // find closest point on the rectangle to the circle center
+    const closestX = Math.max(rectLeft, Math.min(circleX, rectRight));
+    const closestY = Math.max(rectTop, Math.min(circleY, rectBottom));
+    const dx = circleX - closestX;
+    const dy = circleY - closestY;
+    return (dx * dx + dy * dy) <= (radius * radius);
+}
+
+// Victory handler: detiene el juego y muestra la pantalla de victoria si existe
+function showVictoryScreen() {
+    gameRunning = false;
+    clearInterval(gameLoop);
+    clearInterval(obstacleInterval);
+    clearInterval(coinInterval);
+    console.log('Victory reached! Score:', score, 'Coins:', coinScore);
+    const victoryEl = document.getElementById('victoryScreen');
+    if (victoryEl) {
+        // ocultar pantallas anteriores si existen
+        try { startScreen.classList.add('hidden'); } catch(e) {}
+        try { gameOverScreen.classList.add('hidden'); } catch(e) {}
+        // actualizar valores mostrados si existen
+        const vs = document.getElementById('victoryScore');
+        const vc = document.getElementById('victoryCoins');
+        if (vs) vs.textContent = score;
+        if (vc) vc.textContent = coinScore;
+        victoryEl.classList.remove('hidden');
+        // vincular botón de victory para reiniciar si existe
+        const vBtn = document.getElementById('victoryButton');
+        if (vBtn) {
+            // remover listeners previos asegurando idempotencia
+            vBtn.replaceWith(vBtn.cloneNode(true));
+            const newBtn = document.getElementById('victoryButton');
+            if (newBtn) newBtn.addEventListener('click', () => {
+                // ocultar la pantalla de victoria y reiniciar
+                victoryEl.classList.add('hidden');
+                startGame();
+            });
         }
     }
 }
@@ -216,11 +286,40 @@ function createObstacle() {
     bottomObstacle.style.height = (window.innerHeight - gapTop - obstacleGap) + 'px';
     gameContainer.appendChild(bottomObstacle);
     
+    // Decidir si añadimos un Mantine dentro del gap (probabilidad)
+    let mantineElement = null;
+    const shouldAddMantine = Math.random() < 0.35; // 35% de probabilidad
+    if (shouldAddMantine) {
+        mantineElement = document.createElement('div');
+        mantineElement.classList.add('mantine');
+        // colocar inicialmente alineado con el obstáculo a la derecha
+        mantineElement.style.left = window.innerWidth + 'px';
+        // centrar verticalmente en el gap, pero evitar el centro (donde está la moneda)
+        const mantineHeight = 20; // coincide con CSS (.mantine height)
+        const center = gapTop + obstacleGap / 2;
+        const coinHeight = 20; // altura de la moneda
+        const padding = 12; // separación entre moneda y mantine
+        const placeBelow = Math.random() < 0.5;
+        let mantineTop;
+        if (placeBelow) {
+            mantineTop = center + (coinHeight / 2) + (mantineHeight / 2) + padding;
+        } else {
+            mantineTop = center - (coinHeight / 2) - (mantineHeight / 2) - padding;
+        }
+        mantineTop = Math.max(80, Math.min(window.innerHeight - 80, mantineTop));
+        mantineElement.style.top = mantineTop + 'px';
+        gameContainer.appendChild(mantineElement);
+    }
+
     obstacles.push({
         left: window.innerWidth,
         gapTop: gapTop,
         topElement: topObstacle,
-        bottomElement: bottomObstacle
+        bottomElement: bottomObstacle,
+        mantineElement: mantineElement,
+        mantineWidth: mantineElement ? 20 : 0,
+        mantineHeight: mantineElement ? 20 : 0,
+        passed: false
     });
 }
 

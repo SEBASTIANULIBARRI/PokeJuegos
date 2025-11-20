@@ -4,7 +4,7 @@
   height: 20px;
   background-image: url('../img/img-tp5/coin.png');
   background-repeat: no-repeat;
-  /* total width = frameWidth * frames (20 * 6 = 120) to keep frames aligned */
+  /* ancho total = anchoFrame * frames (20 * 6 = 120) para mantener los frames alineados */
   background-size: 120px 20px;
   position: absolute;
   z-index: 15;
@@ -13,7 +13,7 @@
 
 @keyframes coin-spin {
   0% { background-position: 0 0; }
-  /* move exactly the total width (6 frames * 20px = 120px) */
+  /* mover exactamente el ancho total (6 frames * 20px = 120px) */
   100% { background-position: -120px 0; }
 }
 
@@ -35,7 +35,7 @@
   width: 20px;
   height: 20px;
   background-image: url('../img/img-tp5/coin.png');
-  /* small icon uses 6 frames scaled to 20px width: 20 * 6 = 120 */
+  /* icono pequeño usa 6 frames escalados a 20px de ancho: 20 * 6 = 120 */
   background-size: 120px 20px;
   background-repeat: no-repeat;
   display: inline-block;
@@ -46,16 +46,27 @@
   100% { background-position: -120px 0; }
 }
 
-/* --- MANTINE OBSTACLE --- */
+/* --- OBSTÁCULO MANTINE --- */
 .mantine {
-  width: 50px;
-  height: 25px;
+  width: 60px;
+  height: 40px;
   position: absolute;
   z-index: 16;
   background-image: url('../img/img-tp5/mantine.png');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+    /* Hoja de sprites con 7 frames horizontales. Usar tamaño en porcentajes
+      para que el ancho del elemento defina el tamaño del frame y la hoja
+      escale correctamente independientemente de las dimensiones reales
+      de la imagen. */
+  background-size: 243px 40px;
   pointer-events: none;
+  /* Animar usando steps(7) para avanzar exactamente entre frames */
+  animation: mantine-fly 0.8s steps(4) infinite;
+}
+
+@keyframes mantine-fly {
+  0% { background-position: 0 0; }
+  100% { background-position: -245px 0; }
 }
 /* --- FLAPPY MAGIKARP --- */
 .game-container {
@@ -92,7 +103,7 @@
   background-size: 100% auto;
   background-repeat: repeat-y;
   /*background-size: 100% 100%;
-  background-repeat: no-repeat; Asi es para que no se repitan, pero se ve feo(CONSULTAR CON AYUDANTE)*/ 
+  background-repeat: no-repeat; Así es para que no se repitan, pero se ve feo (CONSULTAR CON AYUDANTE)*/ 
   z-index: 5;
 }
 
@@ -282,7 +293,7 @@ body {
   }
 }
 
-/* Added styles for play button */
+/* Estilos añadidos para el botón de play */
 .play-button-container {
   position: absolute;
   top: 50%;

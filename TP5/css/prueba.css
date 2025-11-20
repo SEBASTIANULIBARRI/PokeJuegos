@@ -1,3 +1,50 @@
+/* --- COIN ANIMADA --- */
+.coin {
+  width: 20px;
+  height: 20px;
+  background-image: url('../img/img-tp5/coin.png');
+  background-repeat: no-repeat;
+  /* total width = frameWidth * frames (20 * 6 = 120) to keep frames aligned */
+  background-size: 120px 20px;
+  position: absolute;
+  z-index: 15;
+  animation: coin-spin 0.7s steps(6) infinite;
+}
+
+@keyframes coin-spin {
+  0% { background-position: 0 0; }
+  /* move exactly the total width (6 frames * 20px = 120px) */
+  100% { background-position: -120px 0; }
+}
+
+.coin-counter {
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 32px;
+  font-weight: bold;
+  color: gold;
+  text-shadow: 2px 2px 0 #000, -1px -1px 0 #000;
+  z-index: 21;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.coin-counter .coin-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url('../img/img-tp5/coin.png');
+  /* small icon uses 6 frames scaled to 20px width: 20 * 6 = 120 */
+  background-size: 120px 20px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  animation: coin-spin-small 0.7s steps(6) infinite;
+}
+@keyframes coin-spin-small {
+  0% { background-position: 0 0; }
+  100% { background-position: -120px 0; }
+}
 /* --- FLAPPY MAGIKARP --- */
 .game-container {
   width: 100vw;

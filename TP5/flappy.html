@@ -80,119 +80,8 @@
                 </nav>
                 <section class="game-section">
                     <div class="game-main">
-                        <div class="body-juego">
 
-                            <!-- MAIN MENU -->
-                            <div id="juego" class="screen active">
-                                <div class="contenedor-juego">
-                                    <h1 class="title">FLAPPY MAGI</h1>
-                                    <p class="subtitle">Salta para esquivar los obstaculos</p>
-                                    <div class="menu-buttons">
-                                        <button class="botones btn-primary" onclick="startGame()">Comenzar</button>
-                                        <button class="botones btn-instrucciones"
-                                            onclick="showInstructions()">Instrucciones</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- INSTRUCCIONES -->
-
-                            <div id="instructions" class="screen">
-                                <div class="contenedor-juego">
-                                    <h2 class="title">Instrucciones</h2>
-                                    <div class="instructions-content">
-                                        <div class="instruction-item">
-                                            <h3>🎯Objetivo</h3>
-                                            <p>Salta para esquivar los obstaculos y obtener la mayor puntuación posible.</p>
-                                        </div>
-                                        <div class="instruction-item">
-                                            <h3>🎮Controles</h3>
-                                            <p><strong>Click Izquierdo o Barra Espaciadora:</strong> Salta</p>
-                                        </div>
-                                        <div class="instruction-item">
-                                            <h3>📊Niveles</h3>
-                                            <p>Consta de un unico nivel que aumenta su dificultad.</p>
-                                        </div>
-                                    <button class="botones btn-instrucciones" onclick="showMainMenu()">Volver</button>
-                                </div>
-                            </div>
-
-                            <!-- GAME SCREEN -->
-
-                            <div id="game-screen" class="screen">
-                                <div class="contenedor-juego">
-                                    <div class="game-header">
-                                        <div class="game-info">
-                                        
-
-                                    <!-- PREVIEW CANVAS -->
-
-                                    <div id="preview-container" class="preview-container">
-                                        <canvas id="preview-canvas"></canvas>
-                                        <div class="preview-overlay">
-                                            <p>Memoriza la imagen...</p>
-                                            <div class="countdown" id="countdown">3</div>
-                                        </div>
-                                    </div>
-
-                                    <!-- GAME CANVAS -->
-
-                                    <canvas id="game-canvas" width="600" height="600"></canvas>
-                                    <div id="previewContainer"></div>
-                                    
-                                    <div class="game-footer">
-                                        <button class="botones btn-secondary" onclick="showMainMenu()">Menú
-                                            Principal</button>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <!-- VICTORY SCREEN -->
-
-                            <div id="victory-screen" class="screen">
-                                <div class="contenedor-juego">
-                                    <h2 class="title">¡Nivel Completado!</h2>
-                                    <div class="victory-content">
-                                        <p class="victory-time">Tiempo: <span id="final-time">00:00</span></p>
-                                        <canvas id="victory-canvas"></canvas>
-                                    </div>
-                                    <div class="menu-buttons">
-                                        <button class="botones btn-primary" id="nextLevel" onclick="nextLevel()">Siguiente
-                                            Nivel</button>
-                                        <button class="botones btn-secondary" onclick="showMainMenu()">Menú
-                                            Principal</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- DEFEAT SCREEN -->
-                            <div id="defeat-screen" class="screen">
-                              <div class="contenedor-juego">
-                                <h2 class="title">¡Has Perdido!</h2>
-                                <div class="defeat-content">
-                                  <p class="defeat-time">Tiempo: <span id="defeat-time">00:00</span></p>
-                                  <canvas id="defeat-canvas"></canvas>
-                                </div>
-                                <div class="menu-buttons">
-                                  <button class="botones btn-primary" onclick="retryLevel()">Reintentar Nivel</button>
-                                  <button class="botones btn-secondary" onclick="showMainMenu()">Menú Principal</button>
-                                </div>
-                              </div>
-                            </div>
-
-                            <!-- GAME COMPLETE SCREEN -->
-
-                            <div id="complete-screen" class="screen">
-                                <div class="contenedor-juego">
-                                    <h2 class="title">¡Juego Completado!</h2>
-                                    <div class="complete-content">
-                                        <p>Has completado todos los niveles</p>
-                                        <div id="level-times"></div>
-                                    </div>
-                                    <button class="botones btn-primary" onclick="showMainMenu()">Menú Principal</button>
-                                </div>
-                            </div>
+                     
                         </div>
                 </section>
             </main>
@@ -442,7 +331,6 @@
     <script src="./js/sidebar.js"></script>
     <script src="./js/carrusel.js"></script>
     <script src="./js/recargar.js"></script>
-    <script src="./js/blocka.js"></script>
 
 </body>
 

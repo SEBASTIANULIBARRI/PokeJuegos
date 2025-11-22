@@ -27,10 +27,16 @@ let gameRunning = false;
 let score = 0;
 let obstacles = [];
 let coins = [];
+let kyogres = [];
 let coinScore = 0;
 let gameLoop;
 let obstacleInterval;
 let coinInterval;
+let kyogreTimer = null;
+// Modo persistente de Kyogre (debug). false = comportamiento normal.
+let kyogrePersistentMode = false;
+// Permitir muerte por límites sólo después de una gracia inicial
+let allowBoundaryDeath = false;
 
 const obstacleGap = 300; // aumentado para huecos más amplios
 const obstacleSpeed = 3;
@@ -48,12 +54,17 @@ function init() {
     scoreDisplay.textContent = score;
     coinCountDisplay.textContent = coinScore;
     magikarp.style.top = magiPosition + 'px';
+    // Asegurar que la clase de muerte se elimina al reiniciar
+    magikarp.classList.remove('dead');
     // Eliminar obstáculos existentes
     document.querySelectorAll('.obstacle').forEach(obs => obs.remove());
     // Eliminar monedas existentes
     document.querySelectorAll('.coin').forEach(c => c.remove());
     // Eliminar mantines restantes para reiniciar limpio
     document.querySelectorAll('.mantine').forEach(w => w.remove());
+    // Eliminar kyogres existentes y reiniciar arreglo
+    document.querySelectorAll('.kyogre').forEach(k => k.remove());
+    kyogres = [];
 }
 
 // Iniciar juego
@@ -62,13 +73,32 @@ function startGame() {
     startScreen.classList.add('hidden');
     gameOverScreen.classList.add('hidden');
     gameRunning = true;
+    // desactivar muerte por límites durante una pequeña gracia para evitar cierres inmediatos
+    allowBoundaryDeath = false;
+    setTimeout(() => { allowBoundaryDeath = true; }, 600);
     // Iniciar bucle del juego
     gameLoop = setInterval(update, 1000 / 60); // 60 FPS
     // Crear obstáculos periódicamente
     obstacleInterval = setInterval(createObstacle, obstacleFrequency);
     // Crear monedas periódicamente
     coinInterval = setInterval(createCoin, coinFrequency);
+        // Programar la aparición aleatoria de Kyogre (aprox cada ~5s)
+        scheduleNextKyogre();
 }
+
+    // Programa la siguiente aparición de Kyogre con jitter alrededor de 5s
+    function scheduleNextKyogre() {
+        // limpiar timer previo por seguridad
+        if (kyogreTimer) { clearTimeout(kyogreTimer); kyogreTimer = null; }
+        // intervalo fijo de 7000ms (7s)
+        const delay = 7000; // 7000ms = 7s
+        kyogreTimer = setTimeout(() => {
+            console.log('scheduleNextKyogre: creando Kyogre');
+            createKyogre();
+            // reprogramar la siguiente aparición
+            scheduleNextKyogre();
+        }, delay);
+    }
 
 // Función de salto
 function jump() {
@@ -79,21 +109,22 @@ function jump() {
 // Actualizar estado del juego
 function update() {
     if (!gameRunning) return;
-    // Aplicar gravedad
+    // Aplicar gravedad y actualizar posición
     magiVelocity += gravity;
     magiPosition += magiVelocity;
-    // Actualizar posición de Magikarp
+    // Actualizar posición de Magikarp en DOM
     magikarp.style.top = magiPosition + 'px';
     // Rotar Magikarp según la velocidad
     let rotation = Math.min(Math.max(magiVelocity * 3, -30), 90);
     magikarp.style.transform = `rotate(${rotation}deg)`;
-    // Comprobar límites (más permisivo)
+    // Comprobar límites sólo después de la gracia inicial
     const techoLimite = -300;
     const pisoLimite = window.innerHeight - 20;
-    if (magiPosition < techoLimite || magiPosition > pisoLimite) {
-        endGame();
+    if (allowBoundaryDeath && (magiPosition < techoLimite || magiPosition > pisoLimite)) {
+        endGame(false);
+        return;
     }
-    // Hitbox ajustada (Magikarp): restaurada a la caja original
+    // Hitbox ajustada (Magikarp)
     const magiWidth = 60;
     const magiHeight = 42;
     const magiLeft = window.innerWidth * 0.3 + (60 - magiWidth) / 2 + 4;
@@ -112,8 +143,8 @@ function update() {
             obstacle.passed = true;
             score++;
             scoreDisplay.textContent = score;
-            // comprobar condición de victoria
-            if (score >= 40 || coinScore >= 15) {
+            // comprobar condición de victoria (nuevo umbral)
+            if (score >= 20 || coinScore >= 10) {
                 showVictoryScreen();
                 return;
             }
@@ -135,7 +166,7 @@ function update() {
         const topCollision = magiTop < gapTop && horizontalCollision;
         const bottomCollision = magiBottom > gapBottom && horizontalCollision;
         if (topCollision || bottomCollision) {
-            endGame();
+            endGame(true);
         }
 
         // Mover y comprobar mantine si existe (hitbox circular)
@@ -154,7 +185,7 @@ function update() {
             const radius = Math.max(obstacle.mantineWidth, obstacle.mantineHeight) / 2 * mantineRadiusFactor;
             const hitMantine = rectCircleCollides(magiLeft, magiTop, magiRight, magiBottom, mCenterX, mCenterY, radius);
             if (hitMantine) {
-                endGame();
+                endGame(true);
             }
         }
     }
@@ -181,15 +212,40 @@ function update() {
             magiBottom > coinTop &&
             magiTop < coinBottom;
         if (collide) {
-            coin.element.remove();
-            coins.splice(i, 1);
-            coinScore++;
-            coinCountDisplay.textContent = coinScore;
-            // comprobar condición de victoria
-            if (score >= 10 || coinScore >= 15) {
-                showVictoryScreen();
-                return;
-            }
+                const el = coin.element;
+                // Evitar reanimar o volver a contar si ya está en proceso
+                if (!el.classList.contains('coin-picked')) {
+                    // Marcar puntuación (1 por moneda)
+                    coinScore += 1;
+                    coinCountDisplay.textContent = coinScore;
+                    // Añadir animación de recogida y eliminar al finalizar la animación
+                    el.classList.add('coin-picked');
+                    el.addEventListener('animationend', () => {
+                        // remover del DOM y del array (buscar el índice actual)
+                        try { el.remove(); } catch (e) {}
+                        const idx = coins.indexOf(coin);
+                        if (idx !== -1) coins.splice(idx, 1);
+                    }, { once: true });
+
+                    // comprobar condición de victoria tras incrementar
+                    if (score >= 20 || coinScore >= 10) {
+                        showVictoryScreen();
+                        return;
+                    }
+                }
+        }
+    }
+
+    // Kyogres: mover y eliminar cuando salen de pantalla
+    for (let i = kyogres.length - 1; i >= 0; i--) {
+        const k = kyogres[i];
+        k.left -= k.speed;
+        k.element.style.left = k.left + 'px';
+        // eliminar cuando sale a la izquierda
+        if (k.left < -k.width) {
+            k.element.remove();
+            kyogres.splice(i, 1);
+            continue;
         }
     }
 }
@@ -272,6 +328,40 @@ function createCoin() {
     });
 }
 
+// Crear un Kyogre que nada a través de la pantalla; no interactuable
+function createKyogre() {
+    if (!gameRunning) return;
+    // limitar número simultáneo para evitar saturar
+    if (kyogres.length > 2) return;
+    console.log('createKyogre: spawn');
+    const ky = document.createElement('div');
+    ky.className = 'kyogre';
+    // empezar a la derecha
+    const initialLeft = window.innerWidth;
+    ky.style.left = initialLeft + 'px';
+    // altura aleatoria dentro del área jugable
+    const top = Math.random() * (window.innerHeight - 160) + 80;
+    ky.style.top = top + 'px';
+    gameContainer.appendChild(ky);
+
+    // obtener dimensiones reales
+    const rect = ky.getBoundingClientRect();
+    const kWidth = rect.width || ky.offsetWidth || 78;
+    const kHeight = rect.height || ky.offsetHeight || 63;
+
+    // velocidad relativa (px por frame) — más lento que obstáculos
+    const speed = 1.6 + Math.random() * 1.2; // 1.6 - 2.8
+
+    kyogres.push({
+        left: initialLeft,
+        top: top,
+        width: kWidth,
+        height: kHeight,
+        element: ky,
+        speed: speed
+    });
+}
+
 // Crear obstáculo
 function createObstacle() {
     if (!gameRunning) return;
@@ -339,13 +429,34 @@ function createObstacle() {
 }
 
 // Finalizar juego
-function endGame() {
+function endGame(animate = true) {
+    // Detener lógica del juego y limpiar recursos inmediatamente
     gameRunning = false;
     clearInterval(gameLoop);
     clearInterval(obstacleInterval);
     clearInterval(coinInterval);
-    finalScoreDisplay.textContent = score;
-    gameOverScreen.classList.remove('hidden');
+    if (kyogreTimer) { clearTimeout(kyogreTimer); kyogreTimer = null; }
+    document.querySelectorAll('.kyogre').forEach(k => k.remove());
+    kyogres = [];
+
+    if (!animate) {
+        // Si no animamos, mostrar pantalla final inmediatamente
+        finalScoreDisplay.textContent = score;
+        gameOverScreen.classList.remove('hidden');
+        return;
+    }
+
+    // Reproducir animación de muerte para Magikarp y mostrar pantalla final al terminar
+    if (!magikarp.classList.contains('dead')) {
+        magikarp.classList.add('dead');
+        magikarp.addEventListener('animationend', () => {
+            finalScoreDisplay.textContent = score;
+            gameOverScreen.classList.remove('hidden');
+        }, { once: true });
+    } else {
+        finalScoreDisplay.textContent = score;
+        gameOverScreen.classList.remove('hidden');
+    }
 }
 
 // Manejadores de eventos

@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let kyogreTimer = null;
     let allowBoundaryDeath = false;
 
-    const obstacleGap = 200;
+    const obstacleGap = 300;
     const obstacleSpeed = 3;
     const obstacleFrequency = 2000;
     const coinFrequency = 4000;
@@ -529,6 +529,11 @@ document.addEventListener('DOMContentLoaded', function() {
             obstacle.topElement.style.left = obstacle.left + 'px';
             obstacle.bottomElement.style.left = obstacle.left + 'px';
             
+            // Actualizar posición del Mantine
+            if (obstacle.mantineElement) {
+                obstacle.mantineElement.style.left = obstacle.left + 'px';
+            }
+            
             if (!obstacle.passed && magiLeft > obstacle.left + 80) {
                 obstacle.passed = true;
                 score++;
@@ -557,6 +562,19 @@ document.addEventListener('DOMContentLoaded', function() {
             if (topCollision || bottomCollision) {
                 endGame(true);
                 return;
+            }
+            
+            // Colisión con Mantine (hitbox circular)
+            if (obstacle.mantineElement) {
+                const mCenterX = obstacle.left + 30;
+                const mCenterY = parseFloat(obstacle.mantineElement.style.top) + 20;
+                const mantineRadiusFactor = 0.7;
+                const radius = Math.max(60, 40) / 2 * mantineRadiusFactor;
+                const hitMantine = rectCircleCollides(magiLeft, magiTop, magiRight, magiBottom, mCenterX, mCenterY, radius);
+                if (hitMantine) {
+                    endGame(true);
+                    return;
+                }
             }
         }
 
@@ -606,6 +624,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 kyogres.splice(i, 1);
             }
         }
+    }
+
+    function rectCircleCollides(rectLeft, rectTop, rectRight, rectBottom, circleX, circleY, radius) {
+        const closestX = Math.max(rectLeft, Math.min(circleX, rectRight));
+        const closestY = Math.max(rectTop, Math.min(circleY, rectBottom));
+        const dx = circleX - closestX;
+        const dy = circleY - closestY;
+        return (dx * dx + dy * dy) <= (radius * radius);
     }
 
     function showVictoryScreen() {

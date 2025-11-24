@@ -1,4 +1,3 @@
-
 // Flappy Magikarp - Versión simplificada para contenedor redimensionado
 document.addEventListener('DOMContentLoaded', function() {
     const gameContainer = document.querySelector('.game-container-flappy');
@@ -32,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let coinInterval;
     let kyogreTimer = null;
     let allowBoundaryDeath = false;
-
+    let victoryShown = false;
+    
     const obstacleGap = 300;
     const obstacleSpeed = 3;
     const obstacleFrequency = 2000;
@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         obstacles = [];
         coins = [];
         coinScore = 0;
+        victoryShown = false;
         scoreDisplay.textContent = score;
         coinCountDisplay.textContent = coinScore;
         magikarp.style.top = magiPosition + 'px';
@@ -116,7 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Actualizar posición del Mantine
             if (obstacle.mantineElement) {
-                obstacle.mantineElement.style.left = obstacle.left + 'px';
+                const offsetX = parseFloat(obstacle.mantineElement.dataset.offsetX) || 0;
+                obstacle.mantineElement.style.left = (obstacle.left + offsetX) + 'px';
             }
             
             if (!obstacle.passed && magiLeft > obstacle.left + 80) {
@@ -149,15 +151,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Colisión con Mantine (hitbox circular)
+            // Colisión con Mantine (AABB más precisa)
             if (obstacle.mantineElement) {
-                // const mCenterX = obstacle.left + 30;
-                const mCenterX = obstacle.left + 10;
-                const mCenterY = parseFloat(obstacle.mantineElement.style.top) + 20;
-                const mantineRadiusFactor = 0.2;
-                const radius = Math.max(60, 40) / 2 * mantineRadiusFactor;
-                const hitMantine = rectCircleCollides(magiLeft, magiTop, magiRight, magiBottom, mCenterX, mCenterY, radius);
-                if (hitMantine) {
+                const offsetX = parseFloat(obstacle.mantineElement.dataset.offsetX) || 0;
+                const mantineLeft = obstacle.left + offsetX;
+                const mantineTop = parseFloat(obstacle.mantineElement.style.top) || 0;
+                const mantineWidth = obstacle.mantineWidth || 60;
+                const mantineHeight = obstacle.mantineHeight || 40;
+                const mantineRight = mantineLeft + mantineWidth;
+                const mantineBottom = mantineTop + mantineHeight;
+
+                const collideMantine = !(magiRight < mantineLeft || magiLeft > mantineRight || magiBottom < mantineTop || magiTop > mantineBottom);
+                if (collideMantine) {
                     endGame(true);
                     return;
                 }
@@ -221,26 +226,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showVictoryScreen() {
-        gameRunning = false;
-        clearInterval(gameLoop);
-        clearInterval(obstacleInterval);
-        clearInterval(coinInterval);
-        const victoryEl = document.getElementById('victoryScreen');
-        if (victoryEl) {
-            startScreen.classList.add('hidden');
-            gameOverScreen.classList.add('hidden');
-            document.getElementById('victoryScore').textContent = score;
-            document.getElementById('victoryCoins').textContent = coinScore;
-            victoryEl.classList.remove('hidden');
-            const vBtn = document.getElementById('victoryButton');
-            if (vBtn) {
-                vBtn.replaceWith(vBtn.cloneNode(true));
-                document.getElementById('victoryButton').addEventListener('click', () => {
-                    victoryEl.classList.add('hidden');
-                    startGame();
-                });
-            }
-        }
+        if (victoryShown) return;
+        victoryShown = true;
+         gameRunning = false;
+         clearInterval(gameLoop);
+         clearInterval(obstacleInterval);
+         clearInterval(coinInterval);
+         const victoryEl = document.getElementById('victoryScreen');
+         if (victoryEl) {
+             startScreen.classList.add('hidden');
+             gameOverScreen.classList.add('hidden');
+             document.getElementById('victoryScore').textContent = score;
+             document.getElementById('victoryCoins').textContent = coinScore;
+             victoryEl.classList.remove('hidden');
+             const vBtn = document.getElementById('victoryButton');
+             if (vBtn) {
+                 vBtn.replaceWith(vBtn.cloneNode(true));
+                 document.getElementById('victoryButton').addEventListener('click', () => {
+                     victoryEl.classList.add('hidden');
+                     startGame();
+                 });
+             }
+         }
     }
 
     function createCoin() {
@@ -321,15 +328,77 @@ document.addEventListener('DOMContentLoaded', function() {
         
         let mantineElement = null;
         if (Math.random() < 0.35) {
+            // crear mantine y decidir si aparece dentro del hueco o debajo (NUNCA arriba)
             mantineElement = document.createElement('div');
             mantineElement.classList.add('mantine');
-            mantineElement.style.left = gameWidth + 'px';
-            const center = gapTop + obstacleGap / 2;
-            const mantineTop = center - 10;
-            mantineElement.style.top = Math.max(50, Math.min(gameHeight - 50, mantineTop)) + 'px';
-            gameContainer.appendChild(mantineElement);
-        }
+            const mantineOffsetX = Math.floor(Math.random() * 120) - 40; // -40 .. 79
+            mantineElement.dataset.offsetX = mantineOffsetX;
 
+            const mantineW = 60;
+            const mantineH = 40;
+
+            // decidir ubicación vertical: 'inside' (70%), 'below' (30%)
+            const r = Math.random();
+            let mantineTop;
+            const center = gapTop + obstacleGap / 2;
+
+            if (r < 0.7) {
+                // dentro del hueco, con pequeña variación
+                const variability = Math.min(obstacleGap / 2 - 10, 100);
+                mantineTop = center + (Math.random() - 0.5) * variability;
+            } else {
+                // por debajo del hueco
+                mantineTop = gapTop + obstacleGap + 20 + Math.random() * 80;
+            }
+
+            // clamp para que no salga completamente del contenedor (pequeño margen)
+            mantineTop = Math.max(20, Math.min(gameHeight - mantineH - 20, mantineTop));
+            mantineElement.style.top = mantineTop + 'px';
+            mantineElement.style.left = (gameWidth + mantineOffsetX) + 'px';
+            gameContainer.appendChild(mantineElement);
+
+            // Validar solapamiento con la torre superior (y con la inferior por si acaso).
+            // Si solapa, intentar reposicionar (dentro -> más centrado; below -> más abajo). 
+            // Si no se puede resolver en pocos intentos, eliminar mantine.
+            (function validateMantinePlacement() {
+                const attempts = 3;
+                let placed = true;
+                for (let t = 0; t < attempts; t++) {
+                    const mRect = mantineElement.getBoundingClientRect();
+                    const topRect = topObstacle.getBoundingClientRect();
+                    const bottomRect = bottomObstacle.getBoundingClientRect();
+
+                    const overlapsTop = mRect.top < topRect.bottom;
+                    const overlapsBottom = mRect.bottom > bottomRect.top;
+
+                    if (!overlapsTop && !overlapsBottom) {
+                        placed = true;
+                        break;
+                    }
+
+                    // intentar mover dentro del hueco si estaba cerca del borde
+                    const wasInside = (mantineTop > gapTop && mantineTop + mantineH < gapTop + obstacleGap);
+                    if (wasInside) {
+                        // desplazar hacia el centro del hueco
+                        mantineTop = gapTop + obstacleGap / 2 - mantineH / 2 + (Math.random() - 0.5) * 20;
+                    } else {
+                        // estaba abajo: desplazar más abajo
+                        mantineTop = gapTop + obstacleGap + 30 + Math.random() * 80;
+                    }
+                    // aplicar clamp y reubicar
+                    mantineTop = Math.max(20, Math.min(gameHeight - mantineH - 20, mantineTop));
+                    mantineElement.style.top = mantineTop + 'px';
+                }
+
+                // última comprobación, si sigue solapando eliminarlo para evitar colisión injusta
+                const finalM = mantineElement.getBoundingClientRect();
+                if (finalM.top < topObstacle.getBoundingClientRect().bottom || finalM.bottom > bottomObstacle.getBoundingClientRect().top) {
+                    try { mantineElement.remove(); } catch (e) {}
+                    mantineElement = null;
+                }
+            })();
+        }
+        
         obstacles.push({
             left: gameWidth,
             gapTop: gapTop,

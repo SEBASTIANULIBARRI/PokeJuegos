@@ -962,7 +962,6 @@ label{
 .instructions-content {
   text-align: left;
     border-radius: 1rem;
-    margin-left: 4.5rem;
     margin-right: 1rem;
     max-height: 400px;
 }
@@ -1974,10 +1973,10 @@ label{
 
 .coin-counter {
   position: absolute;
-  top: 30px;
-  left: 50%;
+  top: 20px;
+  left: 55%;
   transform: translateX(-50%);
-  font-size: 32px;
+  font-size: 48px;
   font-weight: bold;
   color: gold;
   text-shadow: 2px 2px 0 #000, -1px -1px 0 #000;
@@ -2238,3 +2237,17 @@ label{
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+
+.puntaje{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+
+
+   
+
+

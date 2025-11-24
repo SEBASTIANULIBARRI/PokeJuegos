@@ -373,3 +373,16 @@ body {
 #playButton:active {
   transform: scale(0.95);
 }
+
+
+.puntaje {
+    position: absolute;
+    top: 20px;
+    left: 46%;
+    transform: translateX(-50%);
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+    z-index: 20;
+}

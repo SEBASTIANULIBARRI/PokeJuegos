@@ -151,9 +151,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Colisión con Mantine (hitbox circular)
             if (obstacle.mantineElement) {
-                const mCenterX = obstacle.left + 30;
+                // const mCenterX = obstacle.left + 30;
+                const mCenterX = obstacle.left + 10;
                 const mCenterY = parseFloat(obstacle.mantineElement.style.top) + 20;
-                const mantineRadiusFactor = 0.7;
+                const mantineRadiusFactor = 0.2;
                 const radius = Math.max(60, 40) / 2 * mantineRadiusFactor;
                 const hitMantine = rectCircleCollides(magiLeft, magiTop, magiRight, magiBottom, mCenterX, mCenterY, radius);
                 if (hitMantine) {
